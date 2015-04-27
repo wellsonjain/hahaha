@@ -21,6 +21,9 @@
 
       %section.post-content= yield
       = disqus
+
+      /# Google Analytics
+      = google_analytics_tag
       %footer.post-footer
         - if gravatar?
           %figure.author-image

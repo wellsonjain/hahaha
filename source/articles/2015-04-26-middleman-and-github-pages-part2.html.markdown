@@ -26,7 +26,7 @@ gem 'middleman-deploy'
 $ middleman build
 $ middleman deploy
 ```
-這樣就把我們的 blog 赤裸裸的一絲不掛的一滴不漏的推到全世界的眼前了!! (水拉!!!) 但是既然我們把 blog 公開出來，當然也希望能得到一些回應，所以我就很跟風的看著許多技術社群的大大都會在文章的底下外掛上套件 [Disqus](https://disqus.com/) 基於如果剛剛就結束的話篇幅有點短，所以再繼續為大家介紹如何外掛上 Disqus。
+這樣就把我們的 blog 赤裸裸的一絲不掛的一滴不漏的推到全世界的眼前了!! (水拉!!!) 但是既然我們把 blog 公開出來，當然也希望能得到一些回應，所以我就很跟風的看著許多技術社群的大大都會在文章的底下外掛上套件 [Disqus](https://disqus.com/) ，而且如果剛剛就結束的話篇幅有點短，所以再繼續<del>灌水</del>為大家介紹如何外掛上 Disqus。
 
 ####3. Disqus plug-in
 在技術社群上總是有很多高手幫助我們造好輪子，這樣我們就只要專心在如何加強引擎就好，一樣有前輩為了這個需求而開發好了 [middleman-disqus](https://github.com/simonrice/middleman-disqus) 這個 gem，接下來一樣是在 `Gemfile` 內加入

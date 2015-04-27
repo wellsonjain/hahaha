@@ -22,3 +22,6 @@ gem 'middleman-deploy'
 
 # For Disqus gem
 gem "middleman-disqus"
+
+# For Google Analytics
+gem "middleman-google-analytics"

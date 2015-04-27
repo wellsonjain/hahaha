@@ -161,3 +161,27 @@ end
 activate :disqus do |d|
   d.shortname = "wellsonjain"
 end
+
+# Activate Google Analytic
+activate :google_analytics do |ga|
+  # Property ID (default = nil)
+  ga.tracking_id = 'UA-62313382-1'
+
+  # Removing the last octet of the IP address (default = false)
+  ga.anonymize_ip = false
+
+  # Tracking across a domain and its subdomains (default = nil)
+  ga.domain_name = 'wellsonjain.github.io'
+
+  # Tracking across multiple domains and subdomains (default = false)
+  ga.allow_linker = false
+
+  # Tracking Code Debugger (default = false)
+  ga.debug = false
+
+  # Tracking in development environment (default = true)
+  ga.development = true
+
+  # Compress the JavaScript code (default = false)
+  ga.minify = false
+end
