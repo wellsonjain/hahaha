@@ -30,6 +30,13 @@ per_page: 6
     %span.author-stats
       %i.icon-stats
       = pluralize(blog.articles.count, 'post')
+    %a.icon-twitter{href: blog_author.twitter, target: :blank }
+      %span.hidden Twitter
+    %a.icon-facebook{href: blog_author.facebook, target: :blank}
+      %span.hidden Facebook
 
-%main#content.content{role: :main}
-  = partial(:page_articles)
+  %h2 About
+  %p Hello World! I'm Tzu Chein Wei(@wellsonjain).
+  %p I'm a Ruby on Rails Developer, and trying to become a outstanding developer.
+  %p Love to reading, traveling,and exercising.
+  %br

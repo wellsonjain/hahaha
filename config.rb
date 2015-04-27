@@ -31,7 +31,7 @@ end
 
 set :casper, {
   blog: {
-    url: 'http://www.example.com',
+    url: 'http://wellsonjain.github.io',
     name: '規矩與秩序',
     description: 'Make things in order.',
     date_format: '%d %B %Y',
@@ -40,13 +40,16 @@ set :casper, {
   },
   author: {
     name: 'wellsonjain',
-    bio: nil, # Optional
-    location: nil, # Optional
-    website: nil, # Optional
-    gravatar_email: nil # Optional
+    bio: '不以規距，不成方圓', # Optional
+    location: 'Taipei, Taiwan', # Optional
+    website: nil,
+    gravatar_email: 'isly35@msn.com',
+    facebook:'http://www.facebook.com/wellson.wei',
+    twitter:'http://www.twitter.com/wellsonjain'
   },
   navigation: {
-    "Home" => "/"
+    "Home" => "/",
+    "About" => "/author/wellsonjain/"
   }
 }
 
