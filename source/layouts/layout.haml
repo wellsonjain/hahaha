@@ -2,6 +2,7 @@
 %html
   %head
     %title= page_title
+    %meta{name: "google-site-verification", content: "e78DhW2j1u56fpTbd8MY6D2LoLfyvkIDe-pLF_Uirwc"}
     %meta{name: :description, content: page_description}
     %meta{charset: 'utf-8'}
     %meta{name: :viewport, content: 'width=device-width, initial-scale=1.0'}
@@ -18,6 +19,8 @@
     .site-wrapper
       = yield
 
+      /# Google Analytics
+      = google_analytics_tag
       %footer.site-footer.clearfix
         %section.copyright
           %a{href: home_path}= blog_settings.name
