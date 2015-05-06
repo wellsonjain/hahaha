@@ -25,3 +25,6 @@ gem "middleman-disqus"
 
 # For Google Analytics
 gem "middleman-google-analytics"
+
+# For Font Awesome
+gem 'font-awesome-middleman'

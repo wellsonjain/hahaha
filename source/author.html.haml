@@ -30,10 +30,12 @@ per_page: 6
     %span.author-stats
       %i.icon-stats
       = pluralize(blog.articles.count, 'post')
-    %a.icon-twitter{href: blog_author.twitter, target: :blank }
+    %a.fa.fa-twitter.fa-lg{href: blog_author.twitter, target: :blank }
       %span.hidden Twitter
-    %a.icon-facebook{href: blog_author.facebook, target: :blank}
+    %a.fa.fa-facebook-square.fa-lg{href: blog_author.facebook, target: :blank}
       %span.hidden Facebook
+    %a.fa.fa-github.fa-lg{href: blog_author.github, target: :blank}
+      %span.hidden Github
 
   %h2 About
   %p Hello World! I'm Tzu Chein Wei(@wellsonjain).

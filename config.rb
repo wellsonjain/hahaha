@@ -44,8 +44,9 @@ set :casper, {
     location: 'Taipei, Taiwan', # Optional
     website: nil,
     gravatar_email: 'isly35@msn.com',
-    facebook:'http://www.facebook.com/wellson.wei',
-    twitter:'http://www.twitter.com/wellsonjain'
+    facebook: 'http://www.facebook.com/wellson.wei',
+    twitter: 'http://www.twitter.com/wellsonjain',
+    github: 'http://www.github.com/wellsonjain'
   },
   navigation: {
     "Home" => "/",
@@ -185,3 +186,5 @@ activate :google_analytics do |ga|
   # Compress the JavaScript code (default = false)
   ga.minify = false
 end
+
+set :fonts_dir,  "fonts-folder"
