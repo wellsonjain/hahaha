@@ -28,7 +28,6 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    crass (1.0.2)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -108,8 +107,6 @@ GEM
     net-ssh (2.9.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    nokogumbo (1.2.0)
-      nokogiri
     padrino-helpers (0.12.5)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.12.5)
@@ -127,10 +124,6 @@ GEM
       ffi (>= 0.5.0)
     redcarpet (3.2.3)
     rouge (1.8.0)
-    sanitize (3.1.2)
-      crass (~> 1.0.1)
-      nokogiri (>= 1.4.4)
-      nokogumbo (= 1.2.0)
     sass (3.4.13)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -160,7 +153,7 @@ PLATFORMS
 DEPENDENCIES
   builder (~> 3.2.2)
   font-awesome-middleman
-  middleman (~> 3.3.10)
+  middleman (~> 3.3.11)
   middleman-blog (~> 3.5.3)
   middleman-deploy
   middleman-disqus
@@ -168,5 +161,4 @@ DEPENDENCIES
   middleman-livereload (~> 3.4.2)
   middleman-syntax (~> 2.0.0)
   nokogiri (~> 1.6.6.2)
-  redcarpet (~> 3.2.2)
-  sanitize (~> 3.1.2)
+  redcarpet (~> 3.2.3)

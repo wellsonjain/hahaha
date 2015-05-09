@@ -31,7 +31,7 @@ API 基本上會介接許多種裝置，可能是電腦也可能是手機，因�
 
 ````ruby
 # test/integration/listing_recipes_test.rb
-class ListingZombiesTest < ActionDispatch::IntegrationTest
+class ListingRecipesTest < ActionDispatch::IntegrationTest
   test 'returns recipes in JSON' do
     get '/recipes', {}, { 'Accept' => Mime::JSON }
     assert_equal 200, response.status

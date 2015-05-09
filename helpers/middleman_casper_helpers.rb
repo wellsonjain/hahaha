@@ -41,7 +41,6 @@ module MiddlemanCasperHelpers
   def read_next_summary(article, words)
     body = strip_tags(article.body)
     truncate_words(body, length: words, omission: '')
->>>>>>> a232cc323fc3c4ad84e000c55e4694fe36a642a9
   end
 
   def blog_author
