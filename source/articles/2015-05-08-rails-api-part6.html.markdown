@@ -220,6 +220,8 @@ class RecipesController < ApplicationController
       end
 
       def render_unauthorized
+        self.headers['WWW-Authenticate'] = 'Token realm="Recipes"'
+
         respond_to |format|
           format.json { render json: "Bad credencial", status: 401}
           format.xml { render xml: "Bad credencial", status: 401}
