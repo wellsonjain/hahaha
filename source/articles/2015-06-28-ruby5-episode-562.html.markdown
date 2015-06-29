@@ -1,0 +1,10 @@
+---
+title: Ruby5 Episode 562
+date: 2015-06-28 07:02 UTC
+tags: ruby, rails, ruby5
+layout: post
+published: false
+---
+> Luck is believing you're lucky. - Tennessee Williams
+
+從這禮拜開始會在每次 [Ruby5](https://ruby5.codeschool.com/) 出了新的 podcast，就會根據該集所講的內容做一個翻譯或是小整理，其實想這麼做也是蠻久一段時間了，但是真的<del>太多事要做</del>，所以每次都一延再延，所以這次我下定決心一定要好好的做好這件事情 (遙想前幾篇說的要 review Rails Guild...)，好 der 廢話不多說，開始這次的內容

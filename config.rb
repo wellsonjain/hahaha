@@ -33,7 +33,7 @@ set :casper, {
   blog: {
     url: 'http://wellsonjain.github.io',
     name: '規矩與秩序',
-    description: 'Make things in order.',
+    description: 'Make things in elegance.',
     date_format: '%d %B %Y',
     navigation: true,
     logo: nil # Optional
