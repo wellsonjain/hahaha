@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Class Concept</title>
+<meta content=' People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou Class 在 ...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Class Concept' property='og:title'>
+<meta content=' People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou Class 在 ...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/06/17/class-concept/' property='og:url'>
+<meta content='2015-06-17' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Class Concept' name='twitter:title'>
+<meta content=' People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou Class 在 ...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/06/17/class-concept/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Class Concept</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-06-17'>
+17 June 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou</p>
+</blockquote>
+
+<h4>Class</h4>
+
+<p>在 Ruby 這個萬物皆物件的程式語言中，我們實作上當然也最好 follow 物件導向的概念，首先先談談封裝 (Encapsulation)，實務上封裝想要達到的結果就是一個 class 不應該知道太多其他 class 的資訊，或是不要在該物件去做不是屬於他的任務，下面就有幾個必須要考慮到的狀況</p>
+
+<ul>
+<li>Pass string 或是 number 的 data 會打破封裝</li>
+<li>在使用 data 的地方必須知道如何去 handle</li>
+<li>單一地方的修改也會必須在其他很多地方修改</li>
+</ul>
+
+<p>舉例來說，</p>
+<pre class="highlight ruby"><code><span class="n">send_tweet</span><span class="p">(</span><span class="s2">"Practicing Ruby"</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="c1">#################################</span>
+
+<span class="k">def</span> <span class="nf">send_tweet</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">owner_id</span><span class="p">)</span>
+  <span class="n">retrieve_user</span><span class="p">(</span><span class="n">owner_id</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
+</code></pre>
+
+<p>這樣可能就不是一個很好的寫法，因為要傳進去 Magic Number 並不直觀，而且還要再 method 裏頭去存取別的 Class 的內容，就沒有很好的實踐封裝的精神，所以可以改成這樣，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="kp">attr_accessor</span> <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+
+  <span class="nf">def</span> <span class="n">owner</span>
+    <span class="n">retieve_user</span><span class="p">(</span><span class="n">owner_id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">#################################</span>
+
+<span class="n">tweet</span>          <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">status</span>   <span class="o">=</span> <span class="s2">"Practice Ruby"</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">owner_id</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">id</span>
+
+<span class="n">send_tweet</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+
+<span class="c1">#################################</span>
+
+<span class="k">def</span> <span class="nf">sendtweet</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+  <span class="n">message</span><span class="p">.</span><span class="nf">owner</span>
+<span class="k">end</span>
+
+<span class="c1">#################################</span>
+</code></pre>
+
+<p>然而，除了物件不應該知道太多其他物件的資訊以外，那在物件裡面呢？當然也是必須要有使用的限制，在 ruby 裡面提供了三種方法，<code>public</code>，<code>protected，</code>private`，通常我們一開始定義方法時，如果沒有特別指定，就是預設是 public，也就是任何物件都可以呼叫包含繼承自該 class 的物件，而 private 和 protected 則否，至於這兩者之間的差異則是在於 private 的方法，前面不能有 receiver，關於這三者之間的關係，在龍哥寫的這篇文章 <a href="http://blog.eddie.com.tw/2011/07/26/public-protected-and-private-method-in-ruby/" rel="nofollow">Public, Protected and Private Method in Ruby</a> 裏頭有很清楚地解釋，所以這樣就除了對外清楚劃分權責，對內也一樣分割清楚權限，像是下面這個例子，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">User</span>
+  <span class="k">def</span> <span class="nf">up_vote</span><span class="p">(</span><span class="n">friend</span><span class="p">)</span>
+    <span class="n">bump_karma</span>
+    <span class="n">friend</span><span class="p">.</span><span class="nf">bump_karma</span>
+  <span class="k">end</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">bump_karma</span>
+    <span class="nb">puts</span> <span class="s2">"karma up for </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>最後談一下 <code>super</code> 這個方法，通常我們在繼承父類別的時候，直接更改父類別的方法就能直接的改變子類別繼承下來的方法，但是 <code>super</code> 這個用法呢，則是再不改動父類別的狀況之下，在子類別去增強方法的內容，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Animal</span>
+  <span class="k">def</span> <span class="nf">move</span>
+    <span class="s2">"I can move"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Bird</span> <span class="o">&lt;</span> <span class="no">Animal</span>
+  <span class="k">def</span> <span class="nf">move</span>
+    <span class="k">super</span> <span class="o">+</span> <span class="s2">" by flying"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>在 new 出 <code>Bird</code> 這個物件並且呼叫了 move 這個 method 之後， <code>super</code> 會向上父類別去尋找是否有 <code>move</code> 這個方法，如果有叫呼叫，所以結果會是 <code>I can move by flying</code>。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Class Concept&amp;amp;url=http://wellsonjain.github.io/2015/06/17/class-concept/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/06/17/class-concept/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/06/17/class-concept/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/06/12/optional-argument/'>
+<section class='post'>
+<h2>Optional Argument</h2>
+<p>Never give up on a dream just because of the time it will take to accomplish it. The time&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/06/28/module-concept/'>
+<section class='post'>
+<h2>Module Concept</h2>
+<p>Choose a job you love and you will never have to work a day of your life. - Confucius&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

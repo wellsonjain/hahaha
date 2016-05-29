@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: regex</title>
+  <subtitle>Posts tagged with regex</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/regex/feed.xml" rel="self"/>
+  <updated>2015-08-03T23:03:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Regular Expression Tutorial (1)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/"/>
+    <id>http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/</id>
+    <published>2015-08-03T23:03:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Stop managing your time. Start managing your focus. - Robin Sharma
+
+
+之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的是相當有幫助，今天就來稍微筆記一下看完整個課程的幾個重要的地方。
+
+The String Story
+
+首先先介紹一下 Regular Expression，又稱作 regex (以下內容都會以 regex </summary>
+  </entry>
+  <entry>
+    <title>Regular Expression Tutorial (2)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/"/>
+    <id>http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/</id>
+    <published>2015-08-31T11:48:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Sometimes life hits you in the head with a brick. Don’t lose faith. - Steve Jobs
+
+
+Confirmative
+
+表示 “OK” 有很多種說法，像是 OKay, Okie Dokie，之類的很多種，以上面三種來看，假如只接受前兩種但是不接受最後一種的話，那該怎麼做呢？首先我們先限定 OK 這個字串，然後再把第二種的 pattern 加入，那就會變成，
+/\bok(ay)?\b/i
+
+
+這邊出現了兩個新的 character</summary>
+  </entry>
+</feed>

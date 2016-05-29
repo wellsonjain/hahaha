@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: ruby</title>
+<meta content='Make things in elegance.' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='website' property='og:type'>
+<meta content='ruby' property='og:title'>
+<meta content='Make things in elegance.' property='og:description'>
+<meta content='http://wellsonjain.github.io/tag/ruby/page/2/' property='og:url'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='ruby' name='twitter:title'>
+<meta content='Make things in elegance.' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/tag/ruby/page/2/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='archive-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/tag/ruby/page/2/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover tag-head'>
+<nav class='main-nav overlay clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+<div class='vertical'>
+<div class='main-header-content inner'>
+<h1 class='page-title'>ruby</h1>
+<h2 class='page-description'>A 5-post collection</h2>
+</div>
+</div>
+</header>
+<main class='content' id='content' role='main'>
+<div class='extra-pagination inner'>
+<nav class='pagination' role='pagination'>
+<a href="/tag/ruby/" class="newer-posts">← Newer Posts</a>
+<span class='page-number'>Page 2 of 2</span>
+</nav>
+
+</div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/01/the-block/">The Block</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The future depends on what we do in the present. - Mahatma Gandhi
+
+
+在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block
+
+Block
+
+在 Ruby 的語法中有個非常常用的方法 each，
+words = ['Hello', 'world', 'I am', 'Wellson']
+words.each do |word|
+  backward_word
+<a href="/2015/07/01/the-block/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-01'>
+01 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/28/module-concept/">Module Concept</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Choose a job you love and you will never have to work a day of your life. - Confucius
+
+
+Module
+
+接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，首先 Module 不能被繼承，像是這樣，
+module Speaker
+  def quack
+    ...
+  end
+end
+
+class MakeSound &lt; Speaker
+  ...
+end
+<a href="/2015/06/28/module-concept/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-28'>
+28 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/17/class-concept/">Class Concept</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou
+
+
+Class
+
+在 Ruby 這個萬物皆物件的程式語言中，我們實作上當然也最好 follow 物件導向的概念，首先先談談封裝 (Encapsulation)，實務上封裝想要達到的結果就是一個 class 不應該知道太多其他 class
+<a href="/2015/06/17/class-concept/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-17'>
+17 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/12/optional-argument/">Optional Argument</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale
+
+
+Optional Arguments
+
+當我們要傳入 method 的 argument 可能不是每個都是必要的，可能有些事是情況傳入的，如果說定義死的話就是必定需要傳入的，那在呼叫 method 的狀況可能是這樣，method(arg1,
+<a href="/2015/06/12/optional-argument/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-12'>
+12 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/11/control-flow/">Control Flow</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown
+
+
+Rails 要學得好，Ruby 才是 Rails 開發者的根基，而且其實有很多用 Ruby 寫成的應用也常常讓我覺得很有趣，只是有很多比較深入的用法如果平常沒有接觸，有些技巧性的寫法就會覺得實在跟魔法沒兩樣，但是又很難參透其中的道理，所以今天要來談的就是比較深入一點的 Ruby
+<a href="/2015/06/11/control-flow/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-11'>
+11 June 2015
+</time>
+</footer>
+</article>
+<nav class='pagination' role='pagination'>
+<a href="/tag/ruby/" class="newer-posts">← Newer Posts</a>
+<span class='page-number'>Page 2 of 2</span>
+</nav>
+
+
+</main>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Middleman And Github Pages (2)</title>
+<meta content='接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。 2. Deploy to Github Page Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Midd...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Middleman And Github Pages (2)' property='og:title'>
+<meta content='接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。 2. Deploy to Github Page Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Midd...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/' property='og:url'>
+<meta content='2015-04-26' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Middleman And Github Pages (2)' name='twitter:title'>
+<meta content='接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。 2. Deploy to Github Page Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Midd...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Middleman And Github Pages (2)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-04-26'>
+26 April 2015
+</time>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/github/'>github</a>, <a href='/tag/electives/'>electives</a>
+</section>
+</header>
+<section class='post-content'><p>接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。</p>
+
+<h4>2. Deploy to Github Page</h4>
+
+<p>Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Middleman + Github 的 Solution，所以就沒有特別去研究其他的方式，不過之後會對於 Rails 專案的紀錄比較多種 deploy 組合的方式。</p>
+
+<p>首先先在 <code>Gemfile</code> 內加入</p>
+<pre class="highlight plaintext"><code>gem 'middleman-deploy'
+</code></pre>
+
+<p>並執行 <code>bundle install</code>，現在我們已經具備了可以 deploy 到 Github 上的 method 了</p>
+
+<p>接著要做的就是到 Github 新增一個給 blog 的 repository，在這邊要注意一下因為我們是要單純做一個個人的 blog，所以我們在設定上就相對簡單許多，在 Domain 上相當單純只有使用者帳號，但是要注意的是一個帳號也只能有這麼一個名稱為 <em>username.github.io </em> 的 Domain。</p>
+
+<blockquote>
+<p>在 <a href="https://pages.github.com/" rel="nofollow">Github Pages</a> 上也是有很簡單易懂的教學。</p>
+</blockquote>
+
+<p>當我們完成了上面這兩件事情之後，我們就可以開始極度<del>無腦</del>簡單的 deploy 步驟</p>
+<pre class="highlight plaintext"><code>$ middleman build
+$ middleman deploy
+</code></pre>
+
+<p>這樣就把我們的 blog 赤裸裸的一絲不掛的一滴不漏的推到全世界的眼前了!! (水拉!!!) 但是既然我們把 blog 公開出來，當然也希望能得到一些回應，所以我就很跟風的看著許多技術社群的大大都會在文章的底下外掛上套件 <a href="https://disqus.com/" rel="nofollow">Disqus</a> ，而且如果剛剛就結束的話篇幅有點短，所以再繼續<del>灌水</del>為大家介紹如何外掛上 Disqus。</p>
+
+<h4>3. Disqus plug-in</h4>
+
+<p>在技術社群上總是有很多高手幫助我們造好輪子，這樣我們就只要專心在如何加強引擎就好，一樣有前輩為了這個需求而開發好了 <a href="https://github.com/simonrice/middleman-disqus" rel="nofollow">middleman-disqus</a> 這個 gem，接下來一樣是在 <code>Gemfile</code> 內加入</p>
+<pre class="highlight plaintext"><code>gem 'middleman-disqus'
+</code></pre>
+
+<p>然後執行 <code>bundle install</code>，接著在 <code>config.rb</code> 內將這個功能給開啟</p>
+<pre class="highlight plaintext"><code># config.rb
+activate :disqus do |d|
+  d.shortname = 'your-shortname' # Replace with your Disqus shortname.
+end
+</code></pre>
+
+<blockquote>
+<p><code>your_shortname</code> 這是要去 <a href="https://disqus.com/" rel="nofollow">Disqus</a> 上面申請的</p>
+</blockquote>
+
+<p>接著在你的 layout 上新增</p>
+
+<p>Haml:</p>
+<pre class="highlight haml"><code><span class="c">/ link with `#disqus_thread` is optional if not using `disqus_count` --&gt;
+</span><span class="nt">%a</span><span class="p">{</span><span class="ss">:href</span> <span class="o">=&gt;</span> <span class="s2">"http://example.com/foo.html#disqus_thread"</span><span class="p">}</span> Comments
+
+<span class="p">=</span> <span class="n">disqus</span>
+<span class="p">=</span> <span class="n">disqus_count</span>
+</code></pre>
+
+<p>ERB:</p>
+<pre class="highlight erb"><code><span class="c">&lt;!-- link with `#disqus_thread` is optional if not using `disqus_count` --&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://example.com/foo.html#disqus_thread"</span><span class="nt">&gt;</span>Comments<span class="nt">&lt;/a&gt;</span>
+
+<span class="cp">&lt;%=</span> <span class="n">disqus</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">disqus_count</span> <span class="cp">%&gt;</span>
+</code></pre>
+
+<p>這樣一個具備完整功能的 blog 就完成了，接下來就開始一點一點的累積生活的日常吧!!</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Middleman And Github Pages (2)&amp;amp;url=http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/04/26/middleman-and-github-pages/'>
+<section class='post'>
+<h2>Middleman and Github Pages (1)</h2>
+<p>事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以後就可以用這個來記錄自己在 Programming 上或是在生活上的一些學習歷程以及心得。 事實上在個人 blog platform&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/04/29/pattern/'>
+<section class='post'>
+<h2>Pattern</h2>
+<p>我認為每一個獨立事件都具有一種 pattern。 不知道是從什麼時候知道 專案管理生活思維 這個 blog，當初因為發現在這個 blog 裏頭有許多對於感情相關很精闢的文章，進而又多看了很多在裡面很其他很有趣想法的文章，其中對於他們對於 「局」這個題目印象深刻，在這裡的局可以我認為可以廣義的理解成賽局。 賽局：具有競爭或對抗性質的行為稱為博弈行為。在這類行為中，參加鬥爭或競爭的各方各自具有不同的目標或利益。為了達到各自的目標和利益，各方必須考慮對手的各種可能的行動方案，并力圖選取對自己最為有利或最為合理的方案。 - Wikipedia 這個題目其實有點特別，其實也可以理解成對於整個局勢的理解，局勢可以是對於全球局勢，或是產業的局勢，從大局到小局都可以套用，我將它理解為一種政治角力的觀察。那這些與這篇文章的題目又有什麼關係呢? 誠如我開頭破題所說的，我認為每一個獨立事件都具有一種 pattern，每個人所設計的程式有一定的 pattern，而那些大師級的開發者可能有些相似的 pattern，所以演化出 design pattern&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

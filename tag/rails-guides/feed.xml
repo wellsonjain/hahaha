@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: rails guides</title>
+  <subtitle>Posts tagged with rails guides</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/rails-guides/feed.xml" rel="self"/>
+  <updated>2015-05-31T17:34:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Security in Rails (1)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/"/>
+    <id>http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/</id>
+    <published>2015-05-31T17:34:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen
+
+
+這是第一篇開始對於 Rails Guides 所做的筆記記錄，也不一定是按照著順序寫，最近對於 Security 有點興趣而且也在這方面的機制不是很了解，所以就先從這篇開始看起。
+
+Session
+
+HTTP 是 stateless</summary>
+  </entry>
+</feed>

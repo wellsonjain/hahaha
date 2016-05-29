@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Security in Rails (1)</title>
+<meta content=' Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen 這是第一篇開始對於 R...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Security in Rails (1)' property='og:title'>
+<meta content=' Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen 這是第一篇開始對於 R...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/' property='og:url'>
+<meta content='2015-05-31' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Security in Rails (1)' name='twitter:title'>
+<meta content=' Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen 這是第一篇開始對於 R...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Security in Rails (1)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-31'>
+31 May 2015
+</time>
+on <a href='/tag/rails/'>rails</a>, <a href='/tag/rails-guides/'>rails guides</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen</p>
+</blockquote>
+
+<p>這是第一篇開始對於 <a href="http://guides.rubyonrails.org/index.html" rel="nofollow">Rails Guides</a> 所做的筆記記錄，也不一定是按照著順序寫，最近對於 Security 有點興趣而且也在這方面的機制不是很了解，所以就先從<a href="http://guides.rubyonrails.org/security.html" rel="nofollow">這篇</a>開始看起。</p>
+
+<h4>Session</h4>
+
+<p>HTTP 是 stateless 的 protocl，如果說在 content 裡有需要驗證使用者身份或是像是購物車狀態，seesion 的功用就是要讓為了記錄狀態，如果沒有 session 的機制，每一次的 request 都必須做一次驗證，光用想的就覺得惱人啊，一個 session 通常是由 session id 和 hash values 所組成，session id 是由隨機產生的，所以有產生 collision 的可能，不過截至目前為止都是相當安全。</p>
+
+<p>有關於 session 的安全性議題最常見的稱之為 Session Hijacking，是指竊取使用者的 session id 得到使用 Web app 的使用權限，有以下幾種情境</p>
+
+<ul>
+<li>藉由在不安全的網路環境進行竊聽 cookie，就可以竊取 session</li>
+</ul>
+<pre class="highlight ruby"><code>  <span class="c1"># 方法：以 SSL 建立安全的網路連線，在 rails 裡可以在 config 裡面進行設定</span>
+
+    <span class="n">config</span><span class="p">.</span><span class="nf">force_ssl</span> <span class="o">=</span> <span class="kp">true</span>
+</code></pre>
+
+<ul>
+<li>使用者在 public 的環境下使用卻沒有登出的習慣</li>
+<li>Cross-Site Scripting(XSS) 讓使用者自動送出他們的 cookie</li>
+<li>將 Session 的識別碼修正成可以 attacker 的(Session Fixation)</li>
+</ul>
+
+<p>Session Fixation 是常見的手法，就由先跟 Server 要到 session 之後，再把使用者的 session 偷偷改成自己的，當使用者登入之後，Hacker 也可以擁有對方的資料了，解決的方式其實很簡單，<code>reset_session</code>，或者是記錄 user 更細節的資訊，像是 IP address，並且在每個 request 都進行驗證，如果有不同馬上就把 session 清除。</p>
+
+<h4>Cross-Site Request Frogery (CSRF)</h4>
+
+<p>借刀殺人一直以來都是相當陰險的招數，在惡意攻擊也有類似的手法，讓你在 Hacker 網站植入一個對 A 網站進行惡意存取的動作，如果使用者剛好有 A 網站的使用權限並且 session 還是合法的狀態，這個攻擊就被觸發了，而從行為上來看，就像是你自己觸發這件事一樣，實際上則是這個請求是自動觸發，你甚至不知道有這件事發生，他只是把動作再加上你自己的 session，就代替你做了這個請求。</p>
+
+<p>而 rails 則提供了一個方法，就是在做非 GET 的 request 的時候，都必須帶一個安全性的 token，而這個 token 只有該網站才會知道甚至只有在該網站內進行 POST request 的時候才知道，其他網站不知道，所以上述的情況則是 Hacker 網站無法得到該網站的 token，所以就算竊取了你的 session 但是因為沒有辦法得到 token 或是沒辦法 match，該請求無效。</p>
+
+<p>Rails 會在 application controller 裡面 default 加入下面這段，</p>
+<pre class="highlight ruby"><code>  <span class="n">protect_from_forgery</span> <span class="ss">with: :exception</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Security in Rails (1)&amp;amp;url=http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/31/security-in-rails-part1/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/31/1984/'>
+<section class='post'>
+<h2>1984</h2>
+<p>Big Brother is watching you - George Orwell, 1984 一個半月前和幾個久不見面的老朋友一起吃飯，很開心第一次的見到朋友的老公，想不到他們夫妻倆竟然送了我一套反烏托邦經典小說 (1984, 美麗新世界, 我們)，而且還收到另一個朋友送 V 怪客的口罩(豈不是系列產品?)，非常感動，當下就下定決心，我不只看完每一本書都會寫下一篇心得，還要寫在自己架起來的 Blog，我想表達我真的很重視並且開心地收到這些禮物，以及對方把我放在心上。 話雖如此，這段時間還是很龜速地看這本書，花了我一個半月才看完這本書，一方面是因為有很多時間都在記錄一些學習上的心得，一方面也是這本書的步調相當沈重，以至於這篇心得一直放到現在才寫出來，看完至今依舊情緒激動，而且在閱讀本書的過程一直覺得 V 怪客應該是以這本書當作劇本的藍圖，一查果然沒錯，是&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/06/02/session-and-flash-type-in-rails4/'>
+<section class='post'>
+<h2>Session and Flash Type in Rails4</h2>
+<p>You may not control all the events that happen to you, but you can decide not to be reduced&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

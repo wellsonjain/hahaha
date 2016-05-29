@@ -1,0 +1,1281 @@
+<div class='extra-pagination inner'>
+
+</div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/03/25/basic-javascript-object/">Basic Javascript Object</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+You got this. Make it happen. - Danielle LaPorte
+
+
+What is Object? Object is a “container” of multiple related data, call properties. Like a Book may have the properties, which is title, author, publisher, numChapters, numPages, illustrator.
+
+In javascript
+<a href="/2016/03/25/basic-javascript-object/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2016-03-25'>
+25 March 2016
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/03/18/demystifying-javascript-closures-callbacks-iifes/">Demystifying Javascript Closures Callbacks IIFEs</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Don’t let the noise of others’ opinions drown out your own inner voice. Have the courage to follow your own heart and intuition. - Steve Jobs
+
+
+Translated from: Demystifying JavaScript Closures, Callbacks and IIFEs
+
+我們已經了解了 Scope 和 Hoist，今天我們就來探討三個現
+<a href="/2016/03/18/demystifying-javascript-closures-callbacks-iifes/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2016-03-18'>
+18 March 2016
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/03/18/demystifying-javascript-variable-scope-hoisting/">Demystifying Javascript Variable Scope Hoisting</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Today I will do what others won’t, so tomorrow I can do what others can’t. - Jerry Rice
+
+
+Translated from: Demystifying JavaScript Variable Scope and Hoisting
+
+每個構建都需要建立在強大的基礎建設上，而在 JavaScript 中了解 variable 的 scope 是建立堅固基礎的關鍵之一。本文將解釋 JavaScript 的 scope
+<a href="/2016/03/18/demystifying-javascript-variable-scope-hoisting/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2016-03-18'>
+18 March 2016
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/03/18/back-to-basics-javascript-hoisting/">Back to Basics Javascript Hoisting</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou
+
+
+Translated from: Back to Basics: JavaScript Hoisting
+
+Variable declarations 是任何 programming language 最基本的概念之一。然而，JavaScript 有一個很奇怪概
+<a href="/2016/03/18/back-to-basics-javascript-hoisting/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2016-03-18'>
+18 March 2016
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/03/02/basic-javascipt-closure/">Basic Javascipt Closure</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh
+We mentioned about function:
+
+function buildTicket (allRides, passRides, pick){
+  if (passRides[0] == pick) {
+    var pass = allRides.
+<a href="/2016/03/02/basic-javascipt-closure/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2016-03-02'>
+02 March 2016
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/03/02/basic-javascript/">Basic Javascript</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes
+The basic function structure
+
+
+Here is basic function structure:
+function sumOfCubes (a, b) {
+  // do some stuff
+
+  return // something (or nothing
+<a href="/2016/03/02/basic-javascript/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2016-03-02'>
+02 March 2016
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/11/17/ruby5-episode-598/">Ruby5 Episode 598</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+It’s time to start living the life you’ve only imagined. - Unknown
+
+
+原文出處 Episode #598
+
+How Ruby Interprets and Runs Your Programs
+
+visit SITE
+
+在本篇的文章作者 Starr Horne 解釋到底我們的 source code 進到 ruby 的世界裡後，是如何運做的？
+
+How to Write a Cucumber Test for Google Maps
+<a href="/2015/11/17/ruby5-episode-598/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-11-17'>
+17 November 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/11/11/australia-student-visa/">Australia Student Visa</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+It’s up to you how far you go. If you don’t try, you’ll never know! - Merlin, “Sword in the Stone”
+
+
+今天的每日箴言真的很適合這個系列文的開頭，今天我在澳洲的簽證正式發下來了，今年年底我將再度前往澳洲，原因有二，一方面是希望可以跟女友繼續一起生活，另一方面也是想去參加當地的 Rails 社群，或是 Web develop 相關的社群，所以之後將會在這裡分享我在澳洲參與當地社群的一些紀錄。
+
+台灣
+<a href="/2015/11/11/australia-student-visa/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/life-in-au/'>life-in-au</a>
+<time class='post-date' datetime='2015-11-11'>
+11 November 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/10/16/from-hypertext-to-hyperdata_part1/">From Hypertext to Hyperdata (1) - RESTful Rails Development</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Every dream begins with a dreamer. Always remember, you have within you the strength, the patience, and the passion to reach for the stars to change the world. - Harriet Tubman
+
+
+最近公司買了幾本新書，其中一本就是我最近非常有興趣的一本書 RESTful Rails Developement，真的非常建議如果是 Ruby
+<a href="/2015/10/16/from-hypertext-to-hyperdata_part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-10-16'>
+16 October 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/10/11/farewell/">Farewell</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Never look back unless you are planning to go that way. - Henry David Thoreau
+
+
+最近在臉書上面看到一篇石頭的專訪死亡這麼近，更要用力的活著，稍微的瀏覽一下之後覺得很多想法十分認同，立刻就在臉書上面分享了，然後今天在滑臉書的時候看到了另外一篇廣告小妹寫的離婚是人生另一個開始，突然間覺得好像對自己解釋了什麼一樣，於是有了這篇文章。
+
+這一個月來因為女朋友跑到澳洲去打工度假了，因為以前的經驗，其實蠻常因此思緒而有點混亂，
+<a href="/2015/10/11/farewell/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>
+<time class='post-date' datetime='2015-10-11'>
+11 October 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/08/31/regular-expression-tutorial-part2/">Regular Expression Tutorial (2)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Sometimes life hits you in the head with a brick. Don’t lose faith. - Steve Jobs
+
+
+Confirmative
+
+表示 “OK” 有很多種說法，像是 OKay, Okie Dokie，之類的很多種，以上面三種來看，假如只接受前兩種但是不接受最後一種的話，那該怎麼做呢？首先我們先限定 OK 這個字串，然後再把第二種的 pattern 加入，那就會變成，
+/\bok(ay)?\b/i
+
+
+這邊出現了兩個新的 character
+<a href="/2015/08/31/regular-expression-tutorial-part2/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/regex/'>regex</a>, <a href='/tag/electives/'>electives</a>
+<time class='post-date' datetime='2015-08-31'>
+31 August 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/08/03/regular-expression-tutorial-part1/">Regular Expression Tutorial (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Stop managing your time. Start managing your focus. - Robin Sharma
+
+
+之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的是相當有幫助，今天就來稍微筆記一下看完整個課程的幾個重要的地方。
+
+The String Story
+
+首先先介紹一下 Regular Expression，又稱作 regex (以下內容都會以 regex 
+<a href="/2015/08/03/regular-expression-tutorial-part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/regex/'>regex</a>, <a href='/tag/electives/'>electives</a>
+<time class='post-date' datetime='2015-08-03'>
+03 August 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/25/domain-specific-language/">Domain Specific Language</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Failure is just practice for success. - Unknown
+
+
+終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為是了 XD，這個程度應該只是入門到中階的程度而已，常常去翻 Ruby 程式設計這本書，就很常覺得在裡面說提到的概念才是真正的精華所在，而精華也是最難以讀通的地方啊…不過在經過這些更為扎實的基礎學習之後，的確對
+<a href="/2015/07/25/domain-specific-language/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-25'>
+25 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/20/decorator/">Decorator</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+If you hear a voice within you say ‘you cannot paint,’ then by all means paint and that voice will be silenced. - Vincent Van Gogh
+
+
+Decorators
+
+如果不是看了 Rails Pattern 這堂課還真的是不知道有 decorator 這個東西，本篇文章就要來好好介紹一下，那麼先來說明一下什麼是 decorator，這是 Design pattern 的一
+<a href="/2015/07/20/decorator/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-20'>
+20 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/17/method-missing-and-delegate/">Method Missing and Delegate</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+To be beautiful means to be yourself. You don’t need to be accepted by others. You need to be yourself. - Thich Nhat Hanh
+
+
+Method Missing
+
+Method Missing 是 Ruby 所提供的非常強大的工具，雖然之前我都只是以為這個功用只是告訴我呼叫錯誤的方法了，藉由 Method Missing 來處理未定義的方法，因此就可以更有彈性的去增加功能，不過在
+<a href="/2015/07/17/method-missing-and-delegate/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-17'>
+17 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/17/concerns-in-rails/">Concerns in Rails</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Muddy water is best cleared by leaving it alone. - Alan Watts
+
+
+Model Concerns
+
+接下來是要介紹在 rails4 之後，非常重要的重構技巧，就是將重複的程式，抽出來後放在 concerns 這個資料夾底下，這其實跟我們之前所提到的 PORO 的概念可能不太相同，在這邊的方法就會是以 Module 的形式出現，
+# app/models/post.rb
+class Post &lt; ActiveRecord::Base
+ 
+<a href="/2015/07/17/concerns-in-rails/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-17'>
+17 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/12/self-class-eval-and-instance-eval/">Self、Class_eval and Instance_eval</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Life shrinks or expands in proportion to one’s courage. - Anaïs Nin
+
+
+Self
+
+在 Ruby 的世界裡 self 這個保留字代表當前物件的意思，
+class Tweet
+  def self.find(keyword)
+    puts "Inside a class method: #{self}"
+  end
+end
+
+Tweet.find("rubybits")      # Inside a class method
+<a href="/2015/07/12/self-class-eval-and-instance-eval/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-12'>
+12 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/12/struct-and-method/">Struct and Method</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+It is not the load that breaks you down. It’s the way you carry it. - Lou Holtz
+
+
+在本篇要介紹的是 Dynamic Classes 以及 Methods，首先先介紹的是 Struct，
+
+Struct
+
+Struct 在 Ruby 裡，就功能上來說是等價於 initialize 的方法，
+class Tweet
+  attr_accessor :user, :status
+
+  def initialize(user
+<a href="/2015/07/12/struct-and-method/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-12'>
+12 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/10/scope-in-rails/">Scope in Rails</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself. - Hermann Hesse
+
+
+Class Method and Scope
+
+在 Rails 裡，我們可能會需要從資料庫去撈出特定的資料，舉例來說，
+# app/controllers/posts_controller.rb
+class PostsController &lt; ApplicationController
+<a href="/2015/07/10/scope-in-rails/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-10'>
+10 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/05/proc-and-lambda/">Proc and Lambda</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+It’s not about where your starting point is, but your end goal and the journey that will get you there. - Unknown
+
+
+Proc and Lambda
+
+今天要延續上一篇 所講的，首先先來談談什麼是 Proc，上一篇我們說了 block 要怎麼用，但是如果我們對於一個 block 我們可能希望能在我們希望它被呼叫的時候呼叫，所以我們就把 block 的概念以物件的方式來實作，而 Proc
+<a href="/2015/07/05/proc-and-lambda/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-05'>
+05 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/03/model-and-poro/">Model and PORO</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Decide that you want it more than you are afraid of it. - Unknown
+
+
+今天要開始寫 Rails Pattern，在 Code School 的這堂課其實我當初也是一直很有興趣
+，先前就有先看過一次，可是當時對於 Ruby 和 Rails 的概念也不像現在這般的深刻，雖然進步的過程有點緩慢，但是卻是確實的看見這一切的顯現，不過當然目前的實力還是比起我所想像的程度還有一段距離，所以要繼續寫下去讓觀念更加扎實。
+
+Model
+
+在我剛
+<a href="/2015/07/03/model-and-poro/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-03'>
+03 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/01/the-block/">The Block</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The future depends on what we do in the present. - Mahatma Gandhi
+
+
+在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block
+
+Block
+
+在 Ruby 的語法中有個非常常用的方法 each，
+words = ['Hello', 'world', 'I am', 'Wellson']
+words.each do |word|
+  backward_word
+<a href="/2015/07/01/the-block/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-01'>
+01 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/28/module-concept/">Module Concept</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Choose a job you love and you will never have to work a day of your life. - Confucius
+
+
+Module
+
+接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，首先 Module 不能被繼承，像是這樣，
+module Speaker
+  def quack
+    ...
+  end
+end
+
+class MakeSound &lt; Speaker
+  ...
+end
+<a href="/2015/06/28/module-concept/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-28'>
+28 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/17/class-concept/">Class Concept</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou
+
+
+Class
+
+在 Ruby 這個萬物皆物件的程式語言中，我們實作上當然也最好 follow 物件導向的概念，首先先談談封裝 (Encapsulation)，實務上封裝想要達到的結果就是一個 class 不應該知道太多其他 class
+<a href="/2015/06/17/class-concept/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-17'>
+17 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/12/optional-argument/">Optional Argument</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale
+
+
+Optional Arguments
+
+當我們要傳入 method 的 argument 可能不是每個都是必要的，可能有些事是情況傳入的，如果說定義死的話就是必定需要傳入的，那在呼叫 method 的狀況可能是這樣，method(arg1,
+<a href="/2015/06/12/optional-argument/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-12'>
+12 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/11/control-flow/">Control Flow</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown
+
+
+Rails 要學得好，Ruby 才是 Rails 開發者的根基，而且其實有很多用 Ruby 寫成的應用也常常讓我覺得很有趣，只是有很多比較深入的用法如果平常沒有接觸，有些技巧性的寫法就會覺得實在跟魔法沒兩樣，但是又很難參透其中的道理，所以今天要來談的就是比較深入一點的 Ruby
+<a href="/2015/06/11/control-flow/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-06-11'>
+11 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/04/etag-in-rails4/">Etag in Rails4</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Start where you are. Use what you can. Do what you can. - Arthur Ashe
+
+
+ETag
+
+接下來要介紹的是遠通的 ETag，ETag 的目的是用來辨識當前的頁面是否有所改變，流程大概是這樣，
+
+
+
+Client 第一次拜訪 Rails App
+
+
+render  body
+Create ETag headers['ETag'] = Digest::MD5.hexdigest(body)
+
+將 Etag 和 Body 包在一起
+
+
+Client
+
+<a href="/2015/06/04/etag-in-rails4/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-06-04'>
+04 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/02/session-and-flash-type-in-rails4/">Session and Flash Type in Rails4</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou
+
+
+Filter
+
+在 rails3 有 before_filter 幫我們處理一些我們可能每次在執行某些 function 的時候會有些先行條件要完成，但是語意上可能會顯得不是那麼直觀，所以在 rails4 就改成為 before_action，但是值得一提的是 rails4
+<a href="/2015/06/02/session-and-flash-type-in-rails4/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-06-02'>
+02 June 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/31/security-in-rails-part1/">Security in Rails (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen
+
+
+這是第一篇開始對於 Rails Guides 所做的筆記記錄，也不一定是按照著順序寫，最近對於 Security 有點興趣而且也在這方面的機制不是很了解，所以就先從這篇開始看起。
+
+Session
+
+HTTP 是 stateless
+<a href="/2015/05/31/security-in-rails-part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>, <a href='/tag/rails-guides/'>rails guides</a>
+<time class='post-date' datetime='2015-05-31'>
+31 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/31/1984/">1984</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Big Brother is watching you - George Orwell, 1984
+
+
+
+
+一個半月前和幾個久不見面的老朋友一起吃飯，很開心第一次的見到朋友的老公，想不到他們夫妻倆竟然送了我一套反烏托邦經典小說 (1984, 美麗新世界, 我們)，而且還收到另一個朋友送 V 怪客的口罩(豈不是系列產品?)，非常感動，當下就下定決心，我不只看完每一本書都會寫下一篇心得，還要寫在自己架起來的 Blog，我想表達我真的很重視並且開心地收到這些禮物，以及對方把我放在心上。
+
+話雖如此，
+<a href="/2015/05/31/1984/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>, <a href='/tag/book/'>book</a>
+<time class='post-date' datetime='2015-05-31'>
+31 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/30/strong-parameter/">Strong Parameter</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+One man or woman with courage is a majority. - Andrew Jackson
+
+
+Strong Parameters
+
+Stong parameters 是在 rails4 關注比較大的更新，在一般 form 的 submit 後，可能會有不懷好意的使用者夾帶送出不應該有的多餘參數，雖然說在 rails3 有 attr_accessible 這個白名單的設計，但是如果發生了夾帶多餘參數的事情時，會造成系統出現 Can't mass-assign protected
+<a href="/2015/05/30/strong-parameter/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-30'>
+30 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/27/setup-vagrant-for-rails-development/">Setup Vagrant for Rails Development</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The price of greatness is responsibility. - Winston Churchill
+
+
+Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 Chef，進一步了解 Opsworks，這是個一連串的學習鏈，首先今天就來記錄一下我架設 Vagrant 的過程。
+
+首先先來介紹一下 Vagrant 是什麼，Vagrant 是一個可以在本機的 Virtual Mechine 架設另一個開發環境，簡單來說就是一個平行宇宙的精神時光屋，所以只要
+<a href="/2015/05/27/setup-vagrant-for-rails-development/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/devops/'>devops</a>, <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-27'>
+27 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/27/scope-in-rails4/">Scope in Rails4</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+If you don’t like where you are, change it. You’re not a tree. - Jim Rohn
+
+
+這幾次在寫 Code School 學習筆記的時候，通常都會自己開個專案進去根據他所說的去做點實驗，其實一方面也是幫助自己記憶，只是有時候會卡關，想不通為什麼可以這樣用，所以後來覺得去看官方的 Rails Guide 其實是蠻好的幫助，而且裡面的解釋也是相當的淺顯易懂，是非常適合練習閱讀以及了解核心概念的方法，所以之後每個禮拜都會寫一篇 Guide
+<a href="/2015/05/27/scope-in-rails4/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-27'>
+27 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/24/routes-and-finder/">Routes and Finder</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+As you think, so shall you become. - unknown
+
+
+Hello Hello，今天依舊不原創的我，要紀錄一下的一樣在 Code School 的課後筆記，首先先用 rails new 一個新 project，接著使用 scaffold 這個 rails 的懶人包工具，他會將基本的 CRUD 都生出來，有些人會新手不應該習慣使用 scaffold 這個工具應該自己從頭到尾都好好的把怎麼寫 CRUD 給記熟，我也是這麼認為，但是學了一段時間之後可以回來再看看
+<a href="/2015/05/24/routes-and-finder/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-24'>
+24 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/18/societal-collapse/">崩潰的社會</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Life is divided into the horrible and the miserable. - Woody Allen
+
+
+小時候其實蠻喜歡看政論節目，尤其是口條很好的名嘴電爆某個不停跳針護航的名嘴，就會有種大快人心，正義又再次獲得勝利的感覺，但是就我有印象高中開始看政論節目以來，十年了，依然相同。
+
+隨著年紀的增長，看的東西多了，也慢慢地學會該怎麼去思考，當然不是說自己就變得能看事情看得深入，或是看出別人看不見的東西，只是我總覺得我所身處的社會，漸漸地走向崩潰，為什麼這麼說呢？
+<a href="/2015/05/18/societal-collapse/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>
+<time class='post-date' datetime='2015-05-18'>
+18 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/16/basic-jquery-part2/">Basic jQuery (2)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+The world is moving so fast that the man who says it can’t be done is generally interrupted by someone doing it. - Elbert Hubbard
+
+
+Acting on Interaction
+
+在上一篇我們有提到 jQuery 有一個行為叫做 listen，這就是聽有沒有什麼事件發生了呢? on就是其中一種，
+// jQuery Object Methods
+$('button'
+<a href="/2015/05/16/basic-jquery-part2/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2015-05-16'>
+16 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/14/basic-jquery/">Basic jQuery</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Fear does not prevent death. It prevents life. - Naguib Mahfouz
+
+
+今天要記錄一些基礎的 jQuery 基本常識，基本到我本來還真的不會…首先先來看看 jQuery 到底可以做到哪些事呢？
+
+
+
+
+
+
+
+
+
+
+find
+找到 HTML 裡的 element
+
+
+change
+改變 HTML 裡的 element
+
+
+listen
+聽使用者做了什麼，並做出相對的回應
+
+
+animate
+對 content 做特效
+
+
+talk
+透過網路
+
+
+
+<a href="/2015/05/14/basic-jquery/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/javascript/'>javascript</a>
+<time class='post-date' datetime='2015-05-14'>
+14 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/08/rails-api-part6/">Rails API (6)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Everything around you that you call life was made up by people, and you can change it - Steve Jobs
+
+
+這是這個 API 系列文的最後一篇，最後要談的是 Authentication，前一陣子有機會接觸 Doorkeeper 覺得 Oauth 這根本是外星知識阿!! 而且就算看了網路上以鴨七介紹的最為仔細的系列文，依然看不懂，不過真的是自己的基礎不夠，所以之後會再一次的深入研究，會再記錄下來。
+
+
+<a href="/2015/05/08/rails-api-part6/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-08'>
+08 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/07/rails-api-part5/">Rails API (5)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+API Versioning
+
+隨著時間的推進，系統架構也會逐漸地成長，所以可能我們在新增一些功能的時候給新客戶的時候，會對於舊客戶有所影響，這時候比較好的做法就是把兩者切開，舊客戶使用 v1，新客戶使用 v2，這時候 namespace 就剛好能夠解決這個問題
+# config/routes.rb
+namespace :v1 do
+  resources :recipes    # http://apo.myrecipe.com/v1/recipes
+end
+
+namespace :v2 do
+<a href="/2015/05/07/rails-api-part5/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-07'>
+07 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/06/rails-api-part4/">Rails API (4)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Look up at the stars and not down at your feet. Try to make sense of what you see, and wonder about what makes the universe exist. Be curious. - Stephen Hawking
+
+
+POST
+
+談完了如何讀取資料，接下來談的是如何新增資料，在 HTTP verb 當中，新增資料所使用的是 POST，而新增成功的 status code 201 - Created
+<a href="/2015/05/06/rails-api-part4/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/06/rails-api-part3/">Rails API (3)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+There is nothing impossible to him who will try. - Alexander the Great
+
+
+Content Negotiation
+
+API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟什麼樣格式的資料，在 Rails 便提供了這樣的功能，
+# config/routes.rb
+  resouces :recipes
+
+# http://api.myrecipe.com/recipes.json
+<a href="/2015/05/06/rails-api-part3/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/06/rails-api-part2/">Rails API (2)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the will, they soon become inevitable. - Nelson Mandela
+
+
+Resource
+
+在上一篇裡面使用到 Resouces，在 Rails 裡面 Resource 我覺得是蠻神奇的，這樣就可以自動產生出預設的 HTTP verb，可是到底 Resource
+<a href="/2015/05/06/rails-api-part2/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/05/rails-api-part1/">Rails API (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+You take your life in your own hands, and what happens? A terrible thing, no one to blame. - Erica Jong
+
+
+對於 API 的製作一直是我的軟肋，不對啊事實上什麼都是軟肋啊!!!(抱頭哭喊) 不過這樣一直懞懞懂懂下去好像也不是辦法，最近在看 Code School 的 Rails API 課程覺得收穫良多，於是來記錄一下幾個蠻重要的部分，但是由於這個課程屬於比較進階的，所以會以一邊寫 Testing
+<a href="/2015/05/05/rails-api-part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-05'>
+05 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/02/game-theory/">Game Theory</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+用賽局的形式，描述複數主體間發生利害關係的方法 - 川西諭
+
+
+
+
+在這個連假抽空看了 所有問題，都是一場賽局 這本書，作者非常淺顯易懂的舉例以及說明，向讀者解釋了許多賽局理論的核心概念，在閱讀本書的過程之中，我常常會不經意的與過去的記憶有所連結，再配合書中的想法來從不同的角度來去理解過去的記憶，覺得十分有意思。
+
+書中提及了學習賽局理論的三個主要目的，也是本書的中心思想
+
+
+掌握賽局（問題）的整體樣貌（分析能力）
+預測即將發生的未來（預測能力）
+找到適當的解決方法
+
+
+然而在分析賽局時，其中
+<a href="/2015/05/02/game-theory/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>, <a href='/tag/book/'>book</a>
+<time class='post-date' datetime='2015-05-02'>
+02 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/04/29/pattern/">Pattern</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+我認為每一個獨立事件都具有一種 pattern。
+
+
+不知道是從什麼時候知道 專案管理生活思維 這個 blog，當初因為發現在這個 blog 裏頭有許多對於感情相關很精闢的文章，進而又多看了很多在裡面很其他很有趣想法的文章，其中對於他們對於 「局」這個題目印象深刻，在這裡的局可以我認為可以廣義的理解成賽局。
+
+
+賽局：具有競爭或對抗性質的行為稱為博弈行為。在這類行為中，參加鬥爭或競爭的各方各自具有不同的目標或利益。為了達到各自的目標和利益，各方必須考慮對手的各種可能的行動方案，并力圖選取對自己
+
+<a href="/2015/04/29/pattern/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>, <a href='/tag/game-theory/'>Game theory</a>
+<time class='post-date' datetime='2015-04-29'>
+29 April 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/04/26/middleman-and-github-pages-part2/">Middleman And Github Pages (2)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。
+
+2. Deploy to Github Page
+
+Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Middleman + Github 的 Solution，所以就沒有特別去研究其他的方式，不過之後會對於 Rails 專案的紀錄比較多種 deploy 組合的方式。
+
+首先先在 Gemfile 內加入
+gem 'middleman
+<a href="/2015/04/26/middleman-and-github-pages-part2/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/github/'>github</a>, <a href='/tag/electives/'>electives</a>
+<time class='post-date' datetime='2015-04-26'>
+26 April 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/04/26/middleman-and-github-pages/">Middleman and Github Pages (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以後就可以用這個來記錄自己在 Programming 上或是在生活上的一些學習歷程以及心得。
+
+事實上在個人 blog platform 市面上有許多選擇，像是 Pixnet, Google Blogger 或是蠻
+<a href="/2015/04/26/middleman-and-github-pages/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='Author image' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/github/'>github</a>, <a href='/tag/electives/'>electives</a>
+<time class='post-date' datetime='2015-04-26'>
+26 April 2015
+</time>
+</footer>
+</article>
+

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Self、Class_eval and Instance_eval</title>
+<meta content=' Life shrinks or expands in proportion to one&amp;rsquo;s courage. - Anaïs Nin Self 在 Ruby 的世界裡 self 這個保留字代表當前物件的意思， class Tweet def self.find(keywo...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Self、Class_eval and Instance_eval' property='og:title'>
+<meta content=' Life shrinks or expands in proportion to one&amp;rsquo;s courage. - Anaïs Nin Self 在 Ruby 的世界裡 self 這個保留字代表當前物件的意思， class Tweet def self.find(keywo...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/12/self-class-eval-and-instance-eval/' property='og:url'>
+<meta content='2015-07-12' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Self、Class_eval and Instance_eval' name='twitter:title'>
+<meta content=' Life shrinks or expands in proportion to one&amp;rsquo;s courage. - Anaïs Nin Self 在 Ruby 的世界裡 self 這個保留字代表當前物件的意思， class Tweet def self.find(keywo...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/12/self-class-eval-and-instance-eval/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Self、Class_eval and Instance_eval</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-12'>
+12 July 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Life shrinks or expands in proportion to one&rsquo;s courage. - Anaïs Nin</p>
+</blockquote>
+
+<h4>Self</h4>
+
+<p>在 Ruby 的世界裡 self 這個保留字代表當前物件的意思，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">find</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"Inside a class method: </span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Tweet</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"rubybits"</span><span class="p">)</span>      <span class="c1"># Inside a class method: Tweet</span>
+</code></pre>
+
+<p>這就是定義為 class method 的方法之一，其實 <code>self.find</code> 就是 <code>Tweet.find</code>，這是同樣意思，只是在實務上我們並不會用這種方式。</p>
+
+<p>我們在定義方法的時候，如果沒有明確的指定 receiver，也就是呼叫該方法的物件，那就會自動以 self 去找，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:status</span>       <span class="c1"># Tweet class object 呼叫</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+    <span class="vi">@status</span> <span class="o">=</span> <span class="n">status</span>
+    <span class="n">set_up_some_things</span>        <span class="c1"># Tweet instance 呼叫</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">set_up_some_things</span>
+    <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h4>CLASS_EVAL</h4>
+
+<p><code>class_eval</code> 也是一個相當神奇的東西，<code>eval</code> 是取值的意思，這是由 Module 類別所定義的方法，可以直接對程式碼取值，在 <code>class_eval</code> 內的程式碼，self 就是呼叫該方法的 class，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:status</span><span class="p">,</span> <span class="ss">:created_at</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+    <span class="vi">@status</span> <span class="o">=</span> <span class="n">status</span>
+    <span class="vi">@created_at</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Tweet</span><span class="p">.</span><span class="nf">class_eval</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">hello</span>
+    <span class="nb">puts</span> <span class="s2">"Hello World"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">put_time</span>
+    <span class="nb">puts</span> <span class="n">created_at</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"blogging"</span><span class="p">)</span>
+<span class="no">Tweet</span><span class="p">.</span><span class="nf">hello</span>           <span class="c1"># Hello World</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">put_time</span>        <span class="c1"># 2015-07-16 10:33:23 +0800</span>
+</code></pre>
+
+<p>我們可以看到，在 block 裡面基本上和 class 直接定義 instance method 和 class method 相同，大致上瞭解了 <code>class_eval</code> 之後，我們就可以直接來嘗試寫寫看一個 Method Logger 的功能，首先我們定義了一個 Tweet class 以及一個 <code>say_hi</code> method，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nf">say_hi</span>
+    <span class="nb">puts</span> <span class="s2">"Hi"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="no">MethodLogger</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">logger</span><span class="p">.</span><span class="nf">log_method</span><span class="p">(</span><span class="no">Tweet</span><span class="p">,</span> <span class="ss">:say_hi</span><span class="p">)</span>
+</code></pre>
+
+<p>那 MethodLogger 是怎麼運作呢？我們寫一個 pseudo code</p>
+<pre class="highlight plaintext"><code>logmethod 要帶一個 class 以及 mehtod name
+以 class_eval 在 class 內執行程式碼
+  以 alias_method 保存 original 的 method
+  以 define_method 重新定義新的方法
+    log method call
+    用 send 方法呼叫 original method
+</code></pre>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">MethodLogger</span>
+  <span class="k">def</span> <span class="nf">log_method</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
+    <span class="n">klass</span><span class="p">.</span><span class="nf">class_eval</span> <span class="k">do</span>
+      <span class="kp">alias_method</span> <span class="s2">"</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">_original"</span><span class="p">,</span> <span class="n">method_name</span>
+      <span class="n">define_method</span> <span class="n">method_name</span> <span class="k">do</span> <span class="o">|*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="o">|</span>
+        <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="si">}</span><span class="s2">: Called </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">"</span>
+        <span class="nb">send</span> <span class="s2">"</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">_original"</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這邊的做法其實有點難理解，前面我們提到 class_eval 會依照呼叫該方法的 class 把 self 傳進去，然後就直接執行 block 內的程式，所以他把原先的程式做了一些修改，然後呼叫，這個過程有點難懂，可能要好好實作感受一下。</p>
+
+<h4>INSTATNCE_EVAL</h4>
+
+<p><code>instatnce_eval</code> 也是跟 <code>class_eval</code> 很類似，由 Object 類別所定義，從名字上我們就可以想像，這個 receiver 就必須是個 instance，所以我們也可以在 new 出一個新物件的時候，藉由 <code>instance_eval</code> 賦值，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">:status</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="nb">instance_eval</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="k">if</span> <span class="nb">block_given?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">status</span> <span class="o">=</span> <span class="s2">"I was set in the initialize block!"</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">user</span> <span class="o">=</span> <span class="s2">"Wellson"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>但是除此之外 <code>instance_eval</code> 也有個讓人很容易混淆的用法，首先 <code>instance_eval</code> receiver 必須是 instance，那在 <code>instance_eval</code> 中所定義的方法就稱之為 Singleton mehtod (單體方法)，因為 Class 也是一個物件，所以其實我們也可以藉由使用 <code>instance_eval</code> 來新增 class method，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Aclass</span>
+<span class="k">end</span>
+
+<span class="no">Aclass</span><span class="p">.</span><span class="nf">instance_eval</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">method1</span>
+    <span class="nb">puts</span> <span class="s1">'this is a singleton method of class AClass'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Self、Class_eval and Instance_eval&amp;amp;url=http://wellsonjain.github.io/2015/07/12/self-class-eval-and-instance-eval/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/12/self-class-eval-and-instance-eval/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/12/self-class-eval-and-instance-eval/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/12/struct-and-method/'>
+<section class='post'>
+<h2>Struct and Method</h2>
+<p>It is not the load that breaks you down. It&rsquo;s the way you carry it. - Lou Holtz 在本篇要介紹的是&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/17/concerns-in-rails/'>
+<section class='post'>
+<h2>Concerns in Rails</h2>
+<p>Muddy water is best cleared by leaving it alone. - Alan Watts Model Concerns 接下來是要介紹在 rails4 之後，非常重要的重構技巧，就是將重複的程式，抽出來後放在 concerns 這個資料夾底下，這其實跟我們之前所提到的&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

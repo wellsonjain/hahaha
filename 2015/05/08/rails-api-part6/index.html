@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Rails API (6)</title>
+<meta content=' Everything around you that you call life was made up by people, and you can change it - Steve Jobs 這是這個 API 系列文的最後一篇，最後要談的是 Authentication，前一陣子...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Rails API (6)' property='og:title'>
+<meta content=' Everything around you that you call life was made up by people, and you can change it - Steve Jobs 這是這個 API 系列文的最後一篇，最後要談的是 Authentication，前一陣子...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/08/rails-api-part6/' property='og:url'>
+<meta content='2015-05-08' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Rails API (6)' name='twitter:title'>
+<meta content=' Everything around you that you call life was made up by people, and you can change it - Steve Jobs 這是這個 API 系列文的最後一篇，最後要談的是 Authentication，前一陣子...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/08/rails-api-part6/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Rails API (6)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-08'>
+08 May 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Everything around you that you call life was made up by people, and you can change it - Steve Jobs</p>
+</blockquote>
+
+<p>這是這個 API 系列文的最後一篇，最後要談的是 Authentication，前一陣子有機會接觸 <a href="https://github.com/doorkeeper-gem/doorkeeper" rel="nofollow">Doorkeeper</a> 覺得 Oauth 這根本是外星知識阿!! 而且就算看了網路上以鴨七介紹的最為仔細的<a href="http://blog.yorkxin.org/posts/2013/09/30/oauth2-1-introduction/" rel="nofollow">系列文</a>，依然看不懂，不過真的是自己的基礎不夠，所以之後會再一次的深入研究，會再記錄下來。</p>
+
+<p>回到主題，當我們設計 API 的時候當然不一定會希望所有人都可以進來存取資料，這樣可能會導致重要的資料被更改，所以我們會 <code>進行一個加密的動作</code>，也就是我把它鎖起來，沒有鑰匙就當然打不開，在這邊會介紹兩種 Authentication 的方式</p>
+
+<ul>
+<li>Basic Auth</li>
+<li>Token Base Auth</li>
+</ul>
+
+<p>首先是 Basic Auth，在介紹 Auth 之前我們先要了解 Credentials(憑證) 也就是所謂的鑰匙，必須在使用 Authorization Header 的 Http request 裡被提供，像是這樣，</p>
+<pre class="highlight plaintext"><code>  GET /Recipes HTTP/1.1
+  Host: localhost:3000
+  Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+</code></pre>
+
+<p>在 Basic Auth 裡所使用的加密技術是 <code>Base64 encoded</code>，我們可以直接在 <code>irb</code> 裡面使用 library，</p>
+<pre class="highlight plaintext"><code>  $ irb
+  $ irb &gt; require 'base64'
+    =&gt; true
+  $ irb &gt; Base64.encode64('foo:secret')
+    =&gt; "Zm9vOnNlY3JldA==\n"
+</code></pre>
+
+<p>接下來我們來寫一段測試</p>
+<pre class="highlight ruby"><code><span class="c1"># test/integration/listing_recipes.rb</span>
+<span class="k">class</span> <span class="nc">ListingRecipesTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span> <span class="o">!</span>
+  <span class="n">setup</span> <span class="p">{</span> <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">username: </span><span class="s1">'foo'</span><span class="p">,</span> <span class="ss">password: </span><span class="s1">'secret'</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="nb">test</span> <span class="s1">'valid username and password'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span><span class="p">,</span> <span class="p">{},</span><span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Basic Zm9vOnNlY3JldA=='</span><span class="p">}</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'missing credentials'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{}</span>
+    <span class="n">assert_equal</span> <span class="mi">401</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">RecipesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">recipes</span> <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">all</span>
+    <span class="n">render</span> <span class="ss">json: </span><span class="n">recipes</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">200</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+    <span class="k">def</span> <span class="nf">authenticate</span>
+      <span class="n">authenticate_or_request_with_http_basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+        <span class="no">User</span><span class="p">.</span><span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>上面的測試這樣寫其實有點醜，所以我們其實可以把加密的部分放到 test_helper 裡面，</p>
+<pre class="highlight ruby"><code><span class="c1"># test/test_helper.rb</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s2">"RAILS_ENV"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"test"</span>
+<span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s1">'../../config/environment'</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s1">'rails/test_help'</span>
+
+<span class="k">class</span> <span class="nc">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">.</span><span class="nf">check_pending!</span>
+  <span class="n">fixtures</span> <span class="ss">:all</span>
+
+  <span class="k">def</span> <span class="nf">encode_credentials</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="no">ActionController</span><span class="o">::</span><span class="no">HttpAuthentication</span><span class="o">::</span><span class="no">Basic</span><span class="p">.</span><span class="nf">encode_credentials</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>剛剛的測試我們就可以寫成這樣，</p>
+<pre class="highlight ruby"><code><span class="c1"># test/integration/listing_recipes.rb</span>
+<span class="k">class</span> <span class="nc">ListingRecipesTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span> <span class="o">!</span>
+  <span class="n">setup</span> <span class="p">{</span> <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">username: </span><span class="s1">'foo'</span><span class="p">,</span> <span class="ss">password: </span><span class="s1">'secret'</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="nb">test</span> <span class="s1">'valid username and password'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span><span class="p">,</span> <span class="p">{},</span><span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="n">encode_credentials</span><span class="p">(</span><span class="vi">@user</span><span class="p">.</span><span class="nf">username</span><span class="p">,</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">password</span><span class="p">)}</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
+</code></pre>
+
+<p>如果沒有 Authorized，HTTP response head 將會有 <code>WWW-Authenticate</code></p>
+<pre class="highlight plaintext"><code>HTTP/1.1 401 Unauthorized 
+WWW-Authenticate: Basic realm="Application"
+Content-Type: text/html; charset=utf-8
+</code></pre>
+
+<blockquote>
+<p>Basic 表示為使用 HTTP Basic Authentication</p>
+
+<p>realm = &ldquo;Application&rdquo; 表示我們的 resource 是在 Application 這個範圍內的</p>
+</blockquote>
+
+<p><code>Realm</code> 很有意思，他可以讓我們去切割出不同的被保護區域，所以就可以設計出一套個人化的授權，在我們前面所使用的 helper <code>authenticate_or_request_with_http_basic</code> 事實上就有可以帶入 Realm 的參數，</p>
+<pre class="highlight ruby"><code><span class="n">authenticate_or_request_with_http_basic</span><span class="p">(</span><span class="s1">'Recipes'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+  <span class="no">User</span><span class="p">.</span><span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>但是使用 <code>authenticate_or_request_with_http_basic</code> 的話，Response 都會是 <code>text/html</code>，可是我們設計的 API，應該預期所有的回應都必須要是 json，所以我們可以使用另外一個 helper</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">RecipesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">protected</span>
+    <span class="k">def</span> <span class="nf">authenticate</span>
+      <span class="n">authenticate_basic_auth</span> <span class="o">||</span> <span class="n">render_unauthorized</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">authenticate_basic_auth</span>
+      <span class="n">authenticate_with_http_basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">|</span>
+        <span class="no">User</span><span class="p">.</span><span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">render_unauthorized</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'WWW-Authenticate'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Basic realm="Recipes"'</span>
+
+      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="s1">'Bad Credential'</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">401</span> <span class="p">}</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">xml</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">xml: </span><span class="s1">'Bad Credential'</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">401</span> <span class="p">}</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>但是，事實上 Basic Auth 並不安全，因為我們只要用 Sniffer 就可以竊取到憑證，只要在用 Ruby 內建的 Decode 就可以得到權限進行存取，所以接下來，要分享的是另外一種 <code>Token Base Auth</code></p>
+
+<p>基本上 Token Base Auth 在實作上與 Basic Auth 其實差不多，但是 Token Base 卻有了更多好處</p>
+
+<ul>
+<li>更加方便，我們可以在不影響 user account 的狀況下，expire 或是重新 generate 新的 token。</li>
+<li>更加安全，因為並不影響 user account，就算受到影響也僅限於 API 的存取。</li>
+<li>一個 user 可以有多個 token，可以在多個不同的 API 取得權限存取。</li>
+<li>每個 token 就可以有更好的控制，可以有不同的規則可以設計。</li>
+</ul>
+<pre class="highlight plaintext"><code>GET /recipes HTTP/1.1
+Host: localhost:3000
+Authorization: Token token=16d7d6089b8fe0c5e19bfe10bb156832
+</code></pre>
+
+<p>上面就是使用 Token base 的 Header</p>
+
+<p>接下來我們一樣繼續寫測試，</p>
+<pre class="highlight ruby"><code><span class="c1"># test/integration/listing_recipes_test.rb</span>
+
+<span class="k">class</span> <span class="nc">ListingRecipesTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span>
+  <span class="n">setup</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">token_header</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+    <span class="no">ActionController</span><span class="o">::</span><span class="no">HttpAuthentication</span><span class="o">::</span><span class="no">Token</span><span class="p">.</span><span class="nf">encode_credentials</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'valid authentication with token'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span> <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="n">token_header</span><span class="p">(</span><span class="vi">@user</span><span class="p">.</span><span class="nf">auth_token</span><span class="p">)}</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+    <span class="n">assert_equal</span> <span class="no">Mime</span><span class="o">::</span><span class="no">JSON</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">content_type</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'invalid authentication'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/episodes'</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span> <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="vi">@auth_header</span> <span class="o">+</span> <span class="s1">'fake'</span> <span class="p">}</span>
+    <span class="n">assert_equal</span> <span class="mi">401</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="c1"># app/models/user.rb</span>
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">before_create</span> <span class="ss">:set_auth_token</span>
+
+  <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">set_auth_token</span>
+      <span class="k">return</span> <span class="k">if</span> <span class="n">auth_token</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">auth_token</span> <span class="o">=</span> <span class="n">generate_auth_token</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">generate_auth_token</span>
+      <span class="kp">loop</span> <span class="k">do</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">hex</span>
+        <span class="k">break</span> <span class="k">if</span> <span class="n">not</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">exists?</span><span class="p">(</span><span class="ss">auth_token: </span><span class="n">token</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>在 Rails 裡面當然也有提供 token 的 method <code>authenticate_or_request_with_http_token</code>，但是與之前一樣的問題，這個 method 最後只會 response <code>text/html</code>，所以我們一樣將它換成</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">RecipesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+   <span class="n">before_action</span> <span class="ss">:authenticate</span>
+   <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+   <span class="nf">protected</span>
+      <span class="k">def</span> <span class="nf">authenticate</span>
+        <span class="n">authenticate_token</span> <span class="o">||</span> <span class="n">render_unauthorized</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">authenticate_token</span>
+        <span class="n">authenticate_with_http_token</span> <span class="k">do</span> <span class="o">|</span><span class="n">token</span><span class="p">,</span> <span class="n">options</span><span class="o">|</span>
+          <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">auth_token: </span><span class="n">token</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">render_unauthorized</span>
+        <span class="nb">self</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'WWW-Authenticate'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Token realm="Recipes"'</span>
+
+        <span class="n">respond_to</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+          <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="s2">"Bad credencial"</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">401</span><span class="p">}</span>
+          <span class="nb">format</span><span class="p">.</span><span class="nf">xml</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">xml: </span><span class="s2">"Bad credencial"</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">401</span><span class="p">}</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+</code></pre>
+
+<p>這樣一個具有基本架構的 API 就算是完成了!! 這個系列文也總算是告個段落了&hellip;已累&hellip;</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Rails API (6)&amp;amp;url=http://wellsonjain.github.io/2015/05/08/rails-api-part6/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/08/rails-api-part6/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/08/rails-api-part6/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/07/rails-api-part5/'>
+<section class='post'>
+<h2>Rails API (5)</h2>
+<p>API Versioning 隨著時間的推進，系統架構也會逐漸地成長，所以可能我們在新增一些功能的時候給新客戶的時候，會對於舊客戶有所影響，這時候比較好的做法就是把兩者切開，舊客戶使用 v1，新客戶使用 v2，這時候 namespace 就剛好能夠解決這個問題 # config/routes.rb namespace :v1 do resources :recipes # http://apo.myrecipe.com/v1/recipes end namespace :v2&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/14/basic-jquery/'>
+<section class='post'>
+<h2>Basic jQuery</h2>
+<p>Fear does not prevent death. It prevents life. - Naguib Mahfouz 今天要記錄一些基礎的 jQuery 基本常識，基本到我本來還真的不會&hellip;首先先來看看 jQuery 到底可以做到哪些事呢？ find 找到 HTML&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

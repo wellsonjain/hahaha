@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: Game theory</title>
+  <subtitle>Posts tagged with Game theory</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/game-theory/feed.xml" rel="self"/>
+  <updated>2015-04-30T03:10:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Pattern</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/04/29/pattern/"/>
+    <id>http://wellsonjain.github.io/2015/04/29/pattern/</id>
+    <published>2015-04-30T03:10:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+我認為每一個獨立事件都具有一種 pattern。
+
+
+不知道是從什麼時候知道 專案管理生活思維 這個 blog，當初因為發現在這個 blog 裏頭有許多對於感情相關很精闢的文章，進而又多看了很多在裡面很其他很有趣想法的文章，其中對於他們對於 「局」這個題目印象深刻，在這裡的局可以我認為可以廣義的理解成賽局。
+
+
+賽局：具有競爭或對抗性質的行為稱為博弈行為。在這類行為中，參加鬥爭或競爭的各方各自具有不同的目標或利益。為了達到各自的目標和利益，各方必須考慮對手的各種可能的行動方案，并力圖選取對自己
+</summary>
+  </entry>
+</feed>

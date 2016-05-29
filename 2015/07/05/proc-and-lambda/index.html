@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Proc and Lambda</title>
+<meta content=' It&amp;rsquo;s not about where your starting point is, but your end goal and the journey that will get you there. - Unknown Proc and Lambda 今天要延續上一...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Proc and Lambda' property='og:title'>
+<meta content=' It&amp;rsquo;s not about where your starting point is, but your end goal and the journey that will get you there. - Unknown Proc and Lambda 今天要延續上一...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/05/proc-and-lambda/' property='og:url'>
+<meta content='2015-07-05' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Proc and Lambda' name='twitter:title'>
+<meta content=' It&amp;rsquo;s not about where your starting point is, but your end goal and the journey that will get you there. - Unknown Proc and Lambda 今天要延續上一...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/05/proc-and-lambda/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Proc and Lambda</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-05'>
+05 July 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>It&rsquo;s not about where your starting point is, but your end goal and the journey that will get you there. - Unknown</p>
+</blockquote>
+
+<h4>Proc and Lambda</h4>
+
+<p>今天要延續<a href="http://wellsonjain.github.io/2015/07/01/deeper-ruby-programming-part5/" rel="nofollow">上一篇</a> 所講的，首先先來談談什麼是 Proc，上一篇我們說了 block 要怎麼用，但是如果我們對於一個 block 我們可能希望能在我們希望它被呼叫的時候呼叫，所以我們就把 block 的概念以物件的方式來實作，而 Proc 就是這樣一個概念，</p>
+<pre class="highlight ruby"><code><span class="n">my_proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"tweet"</span> <span class="p">}</span>
+<span class="n">my_proc</span><span class="p">.</span><span class="nf">call</span>    <span class="c1"># =&gt; tweet</span>
+</code></pre>
+
+<p>那 lambda 又是什麼呢，基本上兩個是相同的東西，所以上面的程式也能寫成這樣，</p>
+<pre class="highlight ruby"><code><span class="n">my_proc</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"tweet"</span> <span class="p">}</span>
+<span class="c1"># my_proc = -&gt; { puts "tweet" }   spabby lambda</span>
+<span class="n">my_proc</span><span class="p">.</span><span class="nf">call</span>    <span class="c1"># =&gt; tweet</span>
+</code></pre>
+
+<h4>Block to Lambda and Lambda to Block</h4>
+
+<p>在先前的文章裡頭提到的 block，我們可以藉由 yield 執行在 block 內定義的 code，那如果是 Lambda 的話要怎麼去定義他呢？</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="n">success</span><span class="p">,</span><span class="n">error</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">authenticate?</span><span class="p">(</span><span class="vi">@user</span><span class="p">,</span> <span class="vi">@password</span><span class="p">)</span>
+      <span class="c1"># submit the tweet</span>
+      <span class="n">success</span><span class="p">.</span><span class="nf">call</span>
+    <span class="k">else</span>
+      <span class="n">error</span><span class="p">.</span><span class="nf">call</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'Ruby Bits!'</span><span class="p">)</span>
+<span class="n">success</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"Sent!"</span> <span class="p">}</span>
+<span class="n">error</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="k">raise</span> <span class="s1">'Auth Error'</span> <span class="p">}</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">success</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+</code></pre>
+
+<p>其實也是相當直覺的做法，我們 new 了兩個 lambda 出來，接著就直接在參數內帶進去，那如果是反過來的話我們一開始就有 lambda，又要怎麼轉過去呢？</p>
+<pre class="highlight ruby"><code><span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"First tweet"</span><span class="p">,</span> <span class="s2">"Second tweet"</span><span class="p">]</span>
+<span class="n">printer</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">tweet</span> <span class="p">}</span>
+<span class="n">tweets</span><span class="p">.</span><span class="nf">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">printer</span><span class="p">)</span>
+</code></pre>
+
+<p>這邊的 <code>&amp;</code> 相當關鍵，這就是讓 proc 與 block 可以互相轉換的方式，但是為什麼會有這樣的需求，我們以我們在 ruby 裡常用的 <code>each</code> 來說，</p>
+<pre class="highlight ruby"><code><span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Taiwan"</span><span class="p">,</span> <span class="s2">"Australia"</span><span class="p">,</span> <span class="s2">"Japan"</span><span class="p">]</span>
+<span class="n">countries</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">country</span><span class="o">|</span>
+  <span class="n">country</span><span class="p">.</span><span class="nf">upcase!</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>在 each 後面能夠接收的只有 block 但是 block 是沒有辦法被 assign 給 variable ，所以我們就可以藉由將它轉換成 Proc 的方式讓他可以被 assign，</p>
+
+<h4>Difference between Proc &amp; Lambda</h4>
+
+<p>雖然說 lambda 的原型其實就是 Proc 但是這兩者之間卻還是有一些些微的的差別，像是 lambda 會去檢查參數的個數，但是 Proc 不會，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+  <span class="n">one</span><span class="p">,</span> <span class="n">two</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+  <span class="n">code</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">two</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">args</span><span class="p">(</span><span class="no">Proc</span><span class="p">.</span><span class="nf">new</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Give me a </span><span class="si">#{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and a </span><span class="si">#{</span><span class="n">b</span><span class="si">}</span><span class="s2"> and a </span><span class="si">#{</span><span class="n">c</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2">"</span><span class="p">})</span>
+<span class="c1"># =&gt; Give me a 1 and a 2 and a NilClass</span>
+<span class="n">args</span><span class="p">(</span><span class="nb">lambda</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Give me a </span><span class="si">#{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and a </span><span class="si">#{</span><span class="n">b</span><span class="si">}</span><span class="s2"> and a </span><span class="si">#{</span><span class="n">c</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2">"</span><span class="p">})</span>
+<span class="c1"># *.rb:8: ArgumentError: wrong number of arguments (2 for 3) (ArgumentError)</span>
+</code></pre>
+
+<p>接著就是這兩者之間有 return 的不同，這樣說好像有點抽象，舉例來說，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">proc_return</span>
+  <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"Proc.new"</span><span class="p">}.</span><span class="nf">call</span>
+  <span class="k">return</span> <span class="s2">"proc_return method finished"</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">lambda_return</span>
+  <span class="nb">lambda</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"lambda"</span> <span class="p">}.</span><span class="nf">call</span>
+  <span class="k">return</span> <span class="s2">"lambda_return method finished"</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">proc_return</span>        <span class="c1"># Proc.new</span>
+<span class="nb">puts</span> <span class="n">lambda_return</span>      <span class="c1"># lambda_return method finished</span>
+</code></pre>
+
+<p>可以看到這兩個之間的 output 有不同，但是為什麼會這樣呢？ 其實我們雖然 lambda 的原型來自 Proc，但是 lambda 在 Ruby 設計的哲學上來說是一個匿名方法 (method 就是具名方法)，所以在 lambda 裡面 return 後就會回到當初呼叫他的地方然後繼續執行下去，但是 Proc 並不是一個 method，就只是嵌入一小段程式碼 (code snippets)，他不是一個方法，所以說它會直接在 return 的地方 return，所以 proc_return 就連程式都還沒讀取完就直接 return 結束。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Proc and Lambda&amp;amp;url=http://wellsonjain.github.io/2015/07/05/proc-and-lambda/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/05/proc-and-lambda/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/05/proc-and-lambda/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/03/model-and-poro/'>
+<section class='post'>
+<h2>Model and PORO</h2>
+<p>Decide that you want it more than you are afraid of it. - Unknown 今天要開始寫 Rails Pattern，在 Code School&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/10/scope-in-rails/'>
+<section class='post'>
+<h2>Scope in Rails</h2>
+<p>Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself.&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Game Theory</title>
+<meta content=' 用賽局的形式，描述複數主體間發生利害關係的方法 - 川西諭 在這個連假抽空看了 所有問題，都是一場賽局 這本書，作者非常淺顯易懂的舉例以及說明，向讀者解釋了許多賽局理論的核心概念，在閱讀本書的過程之中，我常常會不經意的與過去的記憶有所連結，再配合書中的想法來從不同的角度來去理解過去的記...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Game Theory' property='og:title'>
+<meta content=' 用賽局的形式，描述複數主體間發生利害關係的方法 - 川西諭 在這個連假抽空看了 所有問題，都是一場賽局 這本書，作者非常淺顯易懂的舉例以及說明，向讀者解釋了許多賽局理論的核心概念，在閱讀本書的過程之中，我常常會不經意的與過去的記憶有所連結，再配合書中的想法來從不同的角度來去理解過去的記...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/02/game-theory/' property='og:url'>
+<meta content='2015-05-02' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Game Theory' name='twitter:title'>
+<meta content=' 用賽局的形式，描述複數主體間發生利害關係的方法 - 川西諭 在這個連假抽空看了 所有問題，都是一場賽局 這本書，作者非常淺顯易懂的舉例以及說明，向讀者解釋了許多賽局理論的核心概念，在閱讀本書的過程之中，我常常會不經意的與過去的記憶有所連結，再配合書中的想法來從不同的角度來去理解過去的記...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/02/game-theory/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Game Theory</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-02'>
+02 May 2015
+</time>
+on <a href='/tag/thought/'>thought</a>, <a href='/tag/book/'>book</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>用賽局的形式，描述複數主體間發生利害關係的方法 - 川西諭</p>
+</blockquote>
+
+<p><img src="/images/2015-05/getImage.jpeg" alt="game theory" /></p>
+
+<p>在這個連假抽空看了 <a href="http://www.taaze.tw/sing.html?pid=11100693133" rel="nofollow">所有問題，都是一場賽局</a> 這本書，作者非常淺顯易懂的舉例以及說明，向讀者解釋了許多賽局理論的核心概念，在閱讀本書的過程之中，我常常會不經意的與過去的記憶有所連結，再配合書中的想法來從不同的角度來去理解過去的記憶，覺得十分有意思。</p>
+
+<p>書中提及了學習賽局理論的三個主要目的，也是本書的中心思想</p>
+
+<ul>
+<li>掌握賽局（問題）的整體樣貌（分析能力）</li>
+<li>預測即將發生的未來（預測能力）</li>
+<li>找到適當的解決方法</li>
+</ul>
+
+<p>然而在分析賽局時，其中最為關鍵的便是找出 <a href="http://zh.wikipedia.org/zh-tw/%E7%B4%8D%E4%BB%80%E5%9D%87%E8%A1%A1%E9%BB%9E" rel="nofollow">奈許均衡(Nash Equilibrium)</a>
+簡而言之，便是找出對雙方而言 <strong>最合理</strong> 的最佳解。在閱讀本書的過程當中，我覺得因為賽局的主體，做出了合理以及合乎邏輯決定，才能讓賽局的推導能夠有最佳的結果，如果其中有人選擇了並非最好的行動，則就不是處於奈許均衡，而這樣的狀態也無法持續，我想這是可以理解的，因為正常人應該都會選擇對自己最有利的選擇，而人性，也是讓這賽局能夠有合理推測的原因。</p>
+
+<p>首先作者先從賽局理論中最為有名的 <a href="http://zh.wikipedia.org/zh-tw/%E5%9B%9A%E5%BE%92%E5%9B%B0%E5%A2%83" rel="nofollow">囚犯困境</a> 的選擇中來了解奈許均衡</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th>囚犯 B</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td><font color="red">沈默</font></td>
+<td><font color="red">認罪</font></td>
+</tr>
+<tr>
+<td>囚犯 A</td>
+<td>沈默</td>
+<td>-1, <font color="red">-1</font></td>
+<td>-3, <font color="red">0</font></td>
+</tr>
+<tr>
+<td></td>
+<td>認罪</td>
+<td>0, <font color="red">-3</font></td>
+<td>-2, <font color="red">-2</font></td>
+</tr>
+</tbody></table>
+
+<p>從 A 的角度來看：</p>
+
+<ul>
+<li>  (B: 沈默) -&gt; [(A 沈默 -&gt; A:-1), (A 認罪 -&gt; A:0)] =&gt; A 認罪是最佳解</li>
+<li>  (B: 認罪) -&gt; [(A 沈默 -&gt; A:-3), (A 認罪 -&gt; A:-2)] =&gt; A 認罪是最佳解</li>
+</ul>
+
+<p>從 B 的角度來看：</p>
+
+<ul>
+<li>  (A: 沈默) -&gt; [(B 沈默 -&gt; A:-1), (B 認罪 -&gt; A:0)] =&gt; B 認罪是最佳解</li>
+<li>  (A: 認罪) -&gt; [(B 沈默 -&gt; A:-3), (B 認罪 -&gt; A:-2)] =&gt; B 認罪是最佳解</li>
+</ul>
+
+<p>藉由畫出矩陣的方式，我們可以推導出雙方都認罪是在這次的賽局當中的奈許均衡點，同時也是最佳解。藉由找出奈許均衡點，就可以推導出在這場賽局之中預期的結果，而其中的關鍵便是不只以自我的角度來看問題，也要以別人的角度來看問題。</p>
+
+<p>在書中除了提及了多種賽局</p>
+
+<ul>
+<li>囚犯困境</li>
+<li>協調賽局</li>
+<li>膽小鬼賽局</li>
+<li>猜銅板賽局</li>
+<li>霍特林賽局</li>
+<li>動態賽局</li>
+</ul>
+
+<p>跟著作者的角度慢慢地去理解每個賽局背後的意義，當我們了解賽局，而也找到奈許均衡，但是卻發現這樣的結果不見得是我們所樂見的，這時候就必須想辦法去改變賽局結構，但是在現實生活中當然不是總是能遇到這麼簡單好懂的狀況，甚至賽局也不是一次性的結束，那是一個動態的狀態，隨著當下的決定而去改變接下來的下一個賽局走向，在書中也提及了藉由反向歸納，來找出最好的結果，這樣的過程相當有趣，因為在每次的理性思考背後就能理解這樣的決定到底會帶我們到哪裡，而且又會影響到誰？我很好奇這樣的賽局，丟到市場上的話我們會如何理解這樣的理論？</p>
+
+<p>但是無論如何這樣思考實驗的過程中，對我來說都是很新穎的體驗以及顯著的改變我的理性思考模式。</p>
+
+<p>(圖片來源 <a href="http://www.taaze.tw/sing.html?pid=11100693133" rel="nofollow">http://www.taaze.tw/sing.html?pid=11100693133</a>)</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Game Theory&amp;amp;url=http://wellsonjain.github.io/2015/05/02/game-theory/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/02/game-theory/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/02/game-theory/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/04/29/pattern/'>
+<section class='post'>
+<h2>Pattern</h2>
+<p>我認為每一個獨立事件都具有一種 pattern。 不知道是從什麼時候知道 專案管理生活思維 這個 blog，當初因為發現在這個 blog 裏頭有許多對於感情相關很精闢的文章，進而又多看了很多在裡面很其他很有趣想法的文章，其中對於他們對於 「局」這個題目印象深刻，在這裡的局可以我認為可以廣義的理解成賽局。 賽局：具有競爭或對抗性質的行為稱為博弈行為。在這類行為中，參加鬥爭或競爭的各方各自具有不同的目標或利益。為了達到各自的目標和利益，各方必須考慮對手的各種可能的行動方案，并力圖選取對自己最為有利或最為合理的方案。 - Wikipedia 這個題目其實有點特別，其實也可以理解成對於整個局勢的理解，局勢可以是對於全球局勢，或是產業的局勢，從大局到小局都可以套用，我將它理解為一種政治角力的觀察。那這些與這篇文章的題目又有什麼關係呢? 誠如我開頭破題所說的，我認為每一個獨立事件都具有一種 pattern，每個人所設計的程式有一定的 pattern，而那些大師級的開發者可能有些相似的 pattern，所以演化出 design pattern&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/05/rails-api-part1/'>
+<section class='post'>
+<h2>Rails API (1)</h2>
+<p>You take your life in your own hands, and what happens? A terrible thing, no one to blame. -&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

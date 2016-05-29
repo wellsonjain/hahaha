@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Regular Expression Tutorial (1)</title>
+<meta content=' Stop managing your time. Start managing your focus. - Robin Sharma 之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Regular Expression Tutorial (1)' property='og:title'>
+<meta content=' Stop managing your time. Start managing your focus. - Robin Sharma 之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/' property='og:url'>
+<meta content='2015-08-03' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Regular Expression Tutorial (1)' name='twitter:title'>
+<meta content=' Stop managing your time. Start managing your focus. - Robin Sharma 之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Regular Expression Tutorial (1)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-08-03'>
+03 August 2015
+</time>
+on <a href='/tag/regex/'>regex</a>, <a href='/tag/electives/'>electives</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Stop managing your time. Start managing your focus. - Robin Sharma</p>
+</blockquote>
+
+<p>之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個<a href="http://campus.codeschool.com/courses/breaking-the-ice-with-regular-expressions/contents" rel="nofollow">新的課程</a>，馬上就開來看，覺得對於初學的人來說真的是相當有幫助，今天就來稍微筆記一下看完整個課程的幾個重要的地方。</p>
+
+<h4>The String Story</h4>
+
+<p>首先先介紹一下 Regular Expression，又稱作 regex (以下內容都會以 regex 代稱)，是拿來用於檢驗字串是否符合某些規則，regex 在很多程式語言內都被廣泛地運用，舉例來說，像是我們希望一段傳進來的字串符合手機號碼的 pattern <code>0912345678</code>，但是可能使用者可能習慣輸入 <code>0912-345-678</code>，如果我們希望去檢驗這樣的 pattern 難道我們必須要用 if-else 然後要設計出好幾種狀況，這樣會讓整個 code 寫得很糟糕，所以這時候就是使用 regex 的最佳時機了，</p>
+
+<p>那我們先來看 regex 的格式，</p>
+<pre class="highlight ruby"><code><span class="sr">/0911|0912/</span>
+</code></pre>
+
+<p>由兩個反斜線 <code>/</code> 夾起來，裡面的內容就是我們預期比較的字串是否符合的 pattern，我們這裡定義的意思是他是否有符合 <code>0911</code> 或是 <code>0912</code>，使用一條 Vertical bar <code>|</code> 來表示 OR。</p>
+
+<p>從上面的例子我們可以看得出來，他就是一個字一個字的去比對，但是假設我們有一長串的字串，我們不可能每個字都包含進去，所以我們需要更通用性的方式來套用到多種格式，舉例來說，</p>
+<pre class="highlight ruby"><code><span class="sr">/ruby|javascript|html/</span>
+</code></pre>
+
+<p>如果我們要把各種一個一個加上去好像不太合理，所以接著我們就用更為通用的來實作，</p>
+<pre class="highlight ruby"><code><span class="sr">/[a-z]+/</span>
+</code></pre>
+
+<p>看起來好像有點奇妙，[a-z] 所代表的意思就是一個 a-z 的集合，<code>+</code> 所代表的意思就是重複他的前一個字元多次，因為我們前面是一個集合，所以就是重複一個集合多次，那就可以組合出任意的字串，但是我們可能有時候也有大小寫的區分，我們可以有兩種方式去寫，一就是在集合裡面再去新增其他的元素，但是還有更方便的方法，就是在最後一個 <code>/</code> 之後面再加上一個我們稱之為 modifier <code>i</code>，<code>i</code> 代表的意思是 insensitive，也就是不分大小寫，不過因為我們也可能會需要空格，像是名字，所以我們在最後一個例子裡面用 <code>\s</code> 代表著 space 的意思，在我們的集合裡面把 space 這個集合給放進去。</p>
+<pre class="highlight ruby"><code><span class="sr">/[a-zA-Z]+/</span>
+<span class="sr">/[a-z]+/i</span>
+<span class="sr">/[a-z\s]+/i</span>
+</code></pre>
+
+<p>但是如果像是地址之類的輸入狀況，也有需要輸入數字的可能，那這樣又該怎麼去實作他呢？在這邊我們一樣有兩種做法，一是把數字集合也放進去集合裡面，另一個就是使用通用字符 <code>\w</code>，</p>
+<pre class="highlight ruby"><code><span class="sr">/[a-z0-9\s]+/i</span>
+<span class="sr">/[\w\s]+/</span>
+</code></pre>
+
+<p>我們看到 <code>\w</code> 甚至連 modifier 都不需要，他代表著 [a-zA-Z0-9] 還有 <code>_</code>。</p>
+
+<h4>Crew Emails</h4>
+
+<p>接著我們來看一下 email 的格式，這也是相當常見的驗證格式，我們都知道 email 大多就是 hello@world.com 類似這樣的的格式，所以我們可以結合上面所講的，組出一個這樣的 pattern，<code>/\w+@\w+.\w+/</code>，這樣看起來好像蠻合理的，但是這裡面有個很嚴重的問題，就是 <code>.</code> 這個字符在 regex 裡面是屬於通用字符 (除了 \n)，也就是他可以代表任何字符，所以這時候我們就必須用到跳脫字元 <code>\.</code>，</p>
+<pre class="highlight ruby"><code><span class="sr">/w+@w+\.(com|net|org|edu)/i</span>
+</code></pre>
+
+<p>因為可能有很多種 domain 所以我們就把所有可能的 domain 包起來，但是這樣其實有個很容易會讓很 miss 調的問題，就是如果我們的字串是 <code>hello@world.company</code> 這樣也是會符合，因為我們並沒有明確說是否有結尾，所以這邊就要再介紹一下開頭與結尾該怎麼在 regex 表示，<code>^</code> 代表著開頭，<code>$</code> 代表結尾所以我們就可以把上面的 regex 給改成這樣，</p>
+<pre class="highlight ruby"><code><span class="sr">/^w+@w+\.(com|net|org|edu)$/i</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Regular Expression Tutorial (1)&amp;amp;url=http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/25/domain-specific-language/'>
+<section class='post'>
+<h2>Domain Specific Language</h2>
+<p>Failure is just practice for success. - Unknown 終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為是了 XD，這個程度應該只是入門到中階的程度而已，常常去翻 Ruby 程式設計這本書，就很常覺得在裡面說提到的概念才是真正的精華所在，而精華也是最難以讀通的地方啊&hellip;不過在經過這些更為扎實的基礎學習之後，的確對於正確觀念的形成是有相當大的幫助的，我會繼續寫下去的!!! DSL&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/08/31/regular-expression-tutorial-part2/'>
+<section class='post'>
+<h2>Regular Expression Tutorial (2)</h2>
+<p>Sometimes life hits you in the head with a brick. Don&rsquo;t lose faith. - Steve Jobs Confirmative 表示 &ldquo;OK&rdquo;&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

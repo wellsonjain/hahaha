@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Basic Javascript Object</title>
+<meta content=' You got this. Make it happen. - Danielle LaPorte What is Object? Object is a &amp;ldquo;container&amp;rdquo; of multiple related data, call properties....' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Basic Javascript Object' property='og:title'>
+<meta content=' You got this. Make it happen. - Danielle LaPorte What is Object? Object is a &amp;ldquo;container&amp;rdquo; of multiple related data, call properties....' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/03/25/basic-javascript-object/' property='og:url'>
+<meta content='2016-03-25' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Basic Javascript Object' name='twitter:title'>
+<meta content=' You got this. Make it happen. - Danielle LaPorte What is Object? Object is a &amp;ldquo;container&amp;rdquo; of multiple related data, call properties....' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/03/25/basic-javascript-object/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Basic Javascript Object</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-03-25'>
+25 March 2016
+</time>
+on <a href='/tag/javascript/'>javascript</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>You got this. Make it happen. - Danielle LaPorte</p>
+</blockquote>
+
+<p>What is <code>Object</code>? <code>Object</code> is a &ldquo;container&rdquo; of multiple related data, call <code>properties</code>. Like a <code>Book</code> may have the properties, which is <code>title</code>, <code>author</code>, <code>publisher</code>, <code>numChapters</code>, <code>numPages</code>, <code>illustrator</code>.</p>
+
+<p>In javascript, the properties can refer to numbers, strings, arrays, functions, and even other objects!</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">myBox</span> <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
+<span class="c1">// A set of curly brackets says to make a new object...in this case, however, it’s an empty one with no properties.</span>
+
+<span class="nx">myBox</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="na">width</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="na">length</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">volume</span><span class="p">:</span> <span class="mi">480</span><span class="p">,</span>
+    <span class="na">material</span><span class="p">:</span> <span class="s2">"cardboard"</span><span class="p">,</span>
+    <span class="na">contents</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Great Expectations"</span><span class="p">,</span> <span class="s2">"The Remains of the Day"</span><span class="p">,</span> <span class="s2">"Peter Pan"</span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>We can also initialize the <code>content</code> property through using array variable.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">booksArray</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Great Expectations"</span><span class="p">,</span> <span class="s2">"The Remains of the Day"</span><span class="p">,</span> <span class="s2">"Peter Pan"</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">myBox</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="na">width</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="na">length</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">volume</span><span class="p">:</span> <span class="mi">480</span><span class="p">,</span>
+    <span class="na">material</span><span class="p">:</span> <span class="s2">"cardboard"</span><span class="p">,</span>
+    <span class="na">contents</span><span class="p">:</span> <span class="nx">booksArray</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>And the dot operator allows modification of properties, even using methods. After an object has been created, properties can continue to be added. Besides, we can also use &ldquo;String&rdquo; as a key, but it can&rsquo;t use dot operator</p>
+<pre class="highlight javascript"><code> <span class="nx">myBox</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="nx">myBox</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">myBox</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="nx">myBox</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+ <span class="c1">// Since we’re only referring to booksArray, pushing to myBox.contents (or using any Array method) will just modify booksArray!</span>
+ <span class="nx">myBox</span><span class="p">.</span><span class="nx">contents</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"On The Road"</span><span class="p">);</span>
+
+<span class="nx">myBox</span><span class="p">.</span><span class="nx">destination1</span> <span class="o">=</span> <span class="s2">"Orlando"</span><span class="p">;</span>
+<span class="nx">myBox</span><span class="p">.</span><span class="nx">destination2</span> <span class="o">=</span> <span class="s2">"Miami"</span><span class="p">;</span>
+
+<span class="nx">myBox</span><span class="p">[</span><span class="s2">"# of stops"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>//  myBox
+
+height: 6
+width: 12
+length: 10
+volume: 720
+material: "cardboard"
+contents: booksArray
+weight: 24
+destination1: "Orlando"
+destination2: "Miami"
+</code></pre>
+
+<p>Now, we are changing our contents to individual objects. We’ll build a function that creates Book objects and adds them to our Box</p>
+
+<p>First, we’ll delete our contents property with the delete keyword.</p>
+<pre class="highlight javascript"><code><span class="k">delete</span> <span class="nx">myBox</span><span class="p">.</span><span class="nx">contents</span><span class="p">;</span>
+<span class="c1">// -&gt; true</span>
+<span class="c1">// We’ve only deleted the property name and the reference, but not the original booksArray outside the Box.</span>
+<span class="k">delete</span> <span class="nx">myBox</span><span class="p">.</span><span class="nx">nonexistentProperty</span><span class="p">;</span>
+<span class="c1">// -&gt; true</span>
+<span class="c1">// delete will return true each time, regardless of whether the property existed or not!</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">addBook</span> <span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">writer</span><span class="p">){</span>
+  <span class="nx">box</span><span class="p">[</span><span class="s2">"# of Books"</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+  <span class="nx">box</span><span class="p">[</span><span class="s2">"book"</span> <span class="o">+</span> <span class="nx">box</span><span class="p">[</span><span class="s2">"# of Books"</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="na">title</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span> <span class="na">author</span><span class="p">:</span> <span class="nx">writer</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">myBox</span><span class="p">.</span><span class="nx">book1</span><span class="p">.</span><span class="nx">title</span> <span class="p">);</span>
+</code></pre>
+
+<p>An Aquarium Object filled with other objects, first build some add/remove functionality for creatures and environment toys</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">aquarium</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">Nemo</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"clownfish"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">3.7</span> <span class="p">},</span>
+    <span class="na">Marlin</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"clownfish"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">4.1</span> <span class="p">},</span>
+    <span class="na">Dory</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"blue tang"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">6.2</span> <span class="p">},</span>
+    <span class="na">Peach</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"echinoderm"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"starfish"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">5.3</span> <span class="p">},</span>
+    <span class="s2">"Coral Castle"</span><span class="p">:</span> <span class="p">{</span> <span class="nl">type</span><span class="p">:</span> <span class="s2">"environment"</span><span class="p">,</span> <span class="na">material</span><span class="p">:</span> <span class="s2">"coquina"</span><span class="p">,</span> <span class="na">moves</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+    <span class="s2">"Dragon Statue"</span><span class="err">:</span> <span class="p">{</span> <span class="nl">type</span><span class="p">:</span> <span class="s2">"environment"</span><span class="p">,</span> <span class="nx">material</span><span class="err">:</span> <span class="s2">"plastic"</span><span class="p">,</span> <span class="nx">moves</span><span class="err">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">addCritter</span><span class="p">(</span> <span class="nx">container</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">species</span><span class="p">,</span> <span class="nx">length</span> <span class="p">){</span>
+  <span class="nx">container</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nx">type</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="nx">species</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="nx">length</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">addToy</span><span class="p">(</span> <span class="nx">container</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">material</span><span class="p">,</span> <span class="nx">moves</span> <span class="p">){</span>
+  <span class="nx">container</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nx">type</span><span class="p">,</span> <span class="na">material</span><span class="p">:</span> <span class="nx">material</span><span class="p">,</span> <span class="na">moves</span><span class="p">:</span> <span class="nx">moves</span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Properties can also be FUNCTIONs, and an object’s function properties are often called its “methods”.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">aquarium</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">Nemo</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"clownfish"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">3.7</span> <span class="p">},</span>
+    <span class="na">Marlin</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"clownfish"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">4.1</span> <span class="p">},</span>
+    <span class="na">Dory</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"blue tang"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">6.2</span> <span class="p">},</span>
+    <span class="na">Peach</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="s2">"echinoderm"</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="s2">"starfish"</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mf">5.3</span> <span class="p">},</span>
+    <span class="s2">"Coral Castle"</span><span class="p">:</span> <span class="p">{</span> <span class="nl">type</span><span class="p">:</span> <span class="s2">"environment"</span><span class="p">,</span> <span class="na">material</span><span class="p">:</span> <span class="s2">"coquina"</span><span class="p">,</span> <span class="na">moves</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span>
+    <span class="s2">"Dragon Statue"</span><span class="err">:</span> <span class="p">{</span> <span class="nl">type</span><span class="p">:</span> <span class="s2">"environment"</span><span class="p">,</span> <span class="nx">material</span><span class="err">:</span> <span class="s2">"plastic"</span><span class="p">,</span> <span class="nx">moves</span><span class="err">:</span> <span class="kc">false</span> <span class="p">},</span>
+
+    <span class="c1">//  Our container parameter now disappears, since we are making the function BELONG TO that very container.</span>
+    <span class="nx">addCritter</span><span class="err">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">species</span><span class="p">,</span> <span class="nx">length</span> <span class="p">){</span>
+        <span class="c1">// When called with this, addCritter says: Hey, aquarium! Make a new property called name and assign to it a new Object with these properties!</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nx">type</span><span class="p">,</span> <span class="na">species</span><span class="p">:</span> <span class="nx">species</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="nx">length</span><span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">aquarium</span><span class="p">.</span><span class="nx">addCritter</span><span class="p">(</span><span class="s2">"Bubbles"</span><span class="p">,</span> <span class="s2">"fish"</span><span class="p">,</span> <span class="s2">"yellow tang"</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">);</span>
+</code></pre>
+
+<p>And then, let’s build another method that removes any object from our aquarium.</p>
+<pre class="highlight javascript"><code><span class="nx">aquarium</span><span class="p">.</span><span class="nx">takeOut</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">name</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="k">delete</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nx">temp</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">fishOutOfWater</span> <span class="o">=</span> <span class="nx">aquarium</span><span class="p">.</span><span class="nx">takeOut</span><span class="p">(</span><span class="s2">"Marlin"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">fishOutOfWater</span> <span class="p">);</span>
+<span class="c1">//-&gt;  Object {type: "fish", species: "clownfish", length: 4.1, name: "Marlin"}</span>
+</code></pre>
+
+<p>Now, what if we wanted to know how many fish our tank has at any given time?</p>
+<pre class="highlight javascript"><code><span class="nx">aquarium</span><span class="p">.</span><span class="nx">countFish</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">numFish</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// The in keyword looks “in” the Object to its right and finds each enumerable property in turn. Think of it like accessing each index of an Array.</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="k">this</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">"fish"</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">numFish</span><span class="o">++</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">numFish</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Basic Javascript Object&amp;amp;url=http://wellsonjain.github.io/2016/03/25/basic-javascript-object/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/03/25/basic-javascript-object/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/03/25/basic-javascript-object/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/03/18/demystifying-javascript-closures-callbacks-iifes/'>
+<section class='post'>
+<h2>Demystifying Javascript Closures Callbacks IIFEs</h2>
+<p>Don&rsquo;t let the noise of others&rsquo; opinions drown out your own inner voice. Have the courage to follow your&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

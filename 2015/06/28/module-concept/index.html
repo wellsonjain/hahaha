@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Module Concept</title>
+<meta content=' Choose a job you love and you will never have to work a day of your life. - Confucius Module 接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Module Concept' property='og:title'>
+<meta content=' Choose a job you love and you will never have to work a day of your life. - Confucius Module 接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/06/28/module-concept/' property='og:url'>
+<meta content='2015-06-28' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Module Concept' name='twitter:title'>
+<meta content=' Choose a job you love and you will never have to work a day of your life. - Confucius Module 接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/06/28/module-concept/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Module Concept</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-06-28'>
+28 June 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Choose a job you love and you will never have to work a day of your life. - Confucius</p>
+</blockquote>
+
+<h4>Module</h4>
+
+<p>接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，首先 Module 不能被繼承，像是這樣，</p>
+<pre class="highlight ruby"><code><span class="k">module</span> <span class="nn">Speaker</span>
+  <span class="k">def</span> <span class="nf">quack</span>
+    <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MakeSound</span> <span class="o">&lt;</span> <span class="no">Speaker</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
+</code></pre>
+
+<p>這樣是會出事的，會出現 <code>superclass must be a Class</code> 這樣的錯誤訊息，除此之外也不能被 new 出物件來，因為在 Module 的原始方法就沒有定義 new 的方法，那麼通常 Module 使用的方法是什麼呢？</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Post</span>
+  <span class="k">def</span> <span class="nf">share_on_facebook</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Image</span>
+  <span class="k">def</span> <span class="nf">share_on_facebook</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nf">share_on_facebook</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這三個 class 都具有相同的方法，這樣的寫法就有太多的重複，看起來就不夠 DRY，這時候有兩個選擇，一是將這些相同的行為都拉出來，自成一個 class，再讓這些 class 繼承，但是這樣的作法可能會有潛在的風險。</p>
+
+<p>首先，在 Ruby 的世界裡，所有的 class 都只能繼承自單一 class，所以如果繼承了這個自成的 class 會限制了這個 class 之後的繼承，再來就是如果在繼承的 class 之中的方法並不適用於上述其中一個 class 那就必須要再額外去處理這個例外狀況，這樣並不是個好的做法，所以在這個時候使用 Module 就是很好的時機，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Post</span>
+  <span class="kp">include</span> <span class="no">Shareable</span>
+  <span class="kp">include</span> <span class="no">Favoritable</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Image</span>
+  <span class="kp">include</span> <span class="no">Shareable</span>
+  <span class="kp">include</span> <span class="no">Favoritable</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="kp">include</span> <span class="no">Shareable</span>
+<span class="k">end</span>
+
+<span class="c1">########################</span>
+
+<span class="k">module</span> <span class="nn">Shareable</span>
+  <span class="k">def</span> <span class="nf">share_on_facebook</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nn">Favoritable</span>
+  <span class="k">def</span> <span class="nf">add_to_delicious</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Module 的原理我們可以用瀏覽器來類比一下，Module 就像是我們在瀏覽器上面安裝的 plug-in，但是我和你的瀏覽器安裝的 plug-in 可能不一定會相同，因為需求不見得相同，所以這就可以寫出相當優雅的做法，來分類到底該 class 真正需要的 Module 是什麼？</p>
+
+<p>那麼到底 class 是怎麼使用 Module 的呢？在我們上面的原始碼可以看見用 <code>include</code> 來外掛 Module，除此之外還可以使用 <code>extend</code> 來外掛 Module，那這兩者之間的差別在哪裡呢？我們從程式碼來看兩者之間的不同，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="kp">extend</span> <span class="no">Searchable</span>
+<span class="k">end</span>
+
+<span class="no">Tweet</span><span class="p">.</span><span class="nf">find_all_from</span><span class="p">(</span><span class="s1">'@wellsonjain'</span><span class="p">)</span>
+
+<span class="c1">######################################</span>
+
+<span class="k">class</span> <span class="nc">Image</span>
+  <span class="kp">include</span> <span class="no">ImageUtils</span>
+<span class="k">end</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">image</span>
+<span class="n">image</span><span class="p">.</span><span class="nf">preview</span>
+</code></pre>
+
+<p><code>extend</code> 就是讓 Module 的 method 定義為 class method，而 <code>include</code> 則是 instance method。</p>
+
+<p>再深入一點來談 Module 的 Hook，如果說我們在 Module 上面做一點變化，像是在 Module 裡面再掛一個 Module 這是可行的，也就是說也可以這樣寫</p>
+<pre class="highlight ruby"><code><span class="k">module</span> <span class="nn">ImageUtils</span>
+  <span class="k">def</span> <span class="nf">preview</span>
+    <span class="nb">puts</span> <span class="s2">"I am previewing."</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">module</span> <span class="nn">Twitter</span>
+    <span class="k">def</span> <span class="nf">fetch_from_twitter</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+      <span class="nb">puts</span> <span class="s2">"I am </span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MyImage</span>
+  <span class="kp">include</span> <span class="no">ImageUtils</span>
+  <span class="kp">extend</span> <span class="no">ImageUtils</span><span class="o">::</span><span class="no">Twitter</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們在 class 裏頭用了 extend 來把 Twitter 這個 module 給外掛成 class method，當然我們也可以讓 class 只要 <code>include ImageUtils</code> 就可以達到一樣的效果，但是那就必須要在 module 裡面動一點手腳，</p>
+<pre class="highlight ruby"><code><span class="k">module</span> <span class="nn">ImageUtils</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">base</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="no">Twitter</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">preview</span>
+    <span class="nb">puts</span> <span class="s2">"I am previewing."</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">module</span> <span class="nn">Twitter</span>
+    <span class="k">def</span> <span class="nf">fetch_from_twitter</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+      <span class="nb">puts</span> <span class="s2">"I am </span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MyImage</span>
+  <span class="kp">include</span> <span class="no">ImageUtils</span>
+<span class="k">end</span>
+</code></pre>
+
+<p><code>self.included</code> 會在 module 被包進去一個 class 的時候被 Ruby 呼叫起來，base 就是指這個被包進去的 class，就可以直接的增強這個 Module 的功能。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Module Concept&amp;amp;url=http://wellsonjain.github.io/2015/06/28/module-concept/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/06/28/module-concept/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/06/28/module-concept/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/06/17/class-concept/'>
+<section class='post'>
+<h2>Class Concept</h2>
+<p>People will forget what you said, people will forget what you did, but people will never forget how you&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/01/the-block/'>
+<section class='post'>
+<h2>The Block</h2>
+<p>The future depends on what we do in the present. - Mahatma Gandhi 在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

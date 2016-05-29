@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: middleman</title>
+  <subtitle>Posts tagged with middleman</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/middleman/feed.xml" rel="self"/>
+  <updated>2015-04-26T17:40:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Middleman And Github Pages (2)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/"/>
+    <id>http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/</id>
+    <published>2015-04-26T17:40:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。
+
+2. Deploy to Github Page
+
+Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Middleman + Github 的 Solution，所以就沒有特別去研究其他的方式，不過之後會對於 Rails 專案的紀錄比較多種 deploy 組合的方式。
+
+首先先在 Gemfile 內加入
+gem 'middleman</summary>
+  </entry>
+  <entry>
+    <title>Middleman and Github Pages (1)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/"/>
+    <id>http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/</id>
+    <published>2015-04-26T16:06:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以後就可以用這個來記錄自己在 Programming 上或是在生活上的一些學習歷程以及心得。
+
+事實上在個人 blog platform 市面上有許多選擇，像是 Pixnet, Google Blogger 或是蠻</summary>
+  </entry>
+</feed>

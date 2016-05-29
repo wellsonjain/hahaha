@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Decorator</title>
+<meta content=' If you hear a voice within you say &amp;lsquo;you cannot paint,&amp;rsquo; then by all means paint and that voice will be silenced. - Vincent Van Gogh ...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Decorator' property='og:title'>
+<meta content=' If you hear a voice within you say &amp;lsquo;you cannot paint,&amp;rsquo; then by all means paint and that voice will be silenced. - Vincent Van Gogh ...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/20/decorator/' property='og:url'>
+<meta content='2015-07-20' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Decorator' name='twitter:title'>
+<meta content=' If you hear a voice within you say &amp;lsquo;you cannot paint,&amp;rsquo; then by all means paint and that voice will be silenced. - Vincent Van Gogh ...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/20/decorator/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Decorator</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-20'>
+20 July 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>If you hear a voice within you say &lsquo;you cannot paint,&rsquo; then by all means paint and that voice will be silenced. - Vincent Van Gogh</p>
+</blockquote>
+
+<h4>Decorators</h4>
+
+<p>如果不是看了 Rails Pattern 這堂課還真的是不知道有 decorator 這個東西，本篇文章就要來好好介紹一下，那麼先來說明一下什麼是 decorator，這是 Design pattern 的一種，我們可以藉由把一些行為加進去某些 class 裡，這樣就不會影響到原本的 class，舉例來說，我們可能在 view 的上面需要去向 Model layer 取值，但是這樣可能會弄髒 model，因為 model 裡面他可能不需要這些 logic，可是這麼一說的話突然又會聯想到 Rails 也是有提供 view helper，但是 view helper 在實作上並沒有讓人很 OO 的感覺，所以這就是 decorator 他所提供的價值。</p>
+
+<p>首先我們先來看個例子，</p>
+<pre class="highlight ruby"><code><span class="c1"># app/models/post.rb</span>
+<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">is_front_page?</span>
+    <span class="n">published_at</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="c1">#￼app/controllers/posts_controller.rb</span>
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight erb"><code># app/views/posts/show.html.erb
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">is_front_page?</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">image_tag</span><span class="p">(</span><span class="vi">@post</span><span class="p">.</span><span class="nf">image</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre>
+
+<p>這邊就是我們前面所說的，我們在 model 裡面要為了 view 的 logic 去定義不屬於 model layer 的方法，所以這時候就可以來實作 decorator</p>
+<pre class="highlight ruby"><code><span class="c1"># app/models/post.rb</span>
+<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="k">end</span>
+
+<span class="c1"># app/controllers/posts_controller.rb</span>
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@post_decorator</span> <span class="o">=</span> <span class="no">PostDecotaror</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># app/decorators/post_decorator.rb</span>
+<span class="k">class</span> <span class="nc">PostDecorator</span>
+  <span class="kp">attr_reader</span> <span class="ss">:post</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="n">post</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">is_front_page?</span>
+    <span class="n">post</span><span class="p">.</span><span class="nf">published_at</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們新增了一個 decorators 的 directory，將相關的 view decorator 放進去，那在 view 的部分就會變成，</p>
+<pre class="highlight erb"><code># app/views/posts/show.html.erb
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@post_decorator</span><span class="p">.</span><span class="nf">is_front_page?</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">image_tag</span><span class="p">(</span><span class="vi">@post_decorator</span><span class="p">.</span><span class="nf">image</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+#￼undefined method `image' for #<span class="nt">&lt;PostDecorator:0x007fc8ce4ace98&gt;</span>
+```￼
+這邊出現了一個問題，因為畢竟 decorator 並沒有原本 post 的資料，那這樣該怎麼辦呢？這時候就可以使用我們在前面 deeper ruby 所提到的 method missing，
+
+```ruby
+# app/decorators/post_decorator.rb
+class PostDecorator
+  ...
+  def method_missing(method_name, *args, <span class="err">&amp;</span>block)
+    post.send(method_name, *args, <span class="err">&amp;</span>block)
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    post.respond_to?(method_name, include_private) || super
+  end
+end
+</code></pre>
+
+<p>在定義 method missing 的時候，請記得同時也必須再定義 <code>respond_to_missing</code>，這是因為如果沒有定義的話，就不會往前去尋找他的 ancestors chain。</p>
+
+<p>從上面的例子我們可以做個小結論，所謂的 Decorator 有以下的特性，</p>
+
+<ol>
+<li>Transparent to clients.</li>
+<li>&ldquo;Wrap&rdquo; another object.</li>
+<li>Delegate most methods to the wrapped object.</li>
+<li>Provide one or two methods of their own.</li>
+</ol>
+
+<p>第一點我推敲了很久，看了一些文章之後有個粗略的概念，我認為要結合第三點來一起看，以上面的例子來說，PostDecorator 在 view 上被封裝為 decorator，但是使用上可以把他視為是 Post，所以我們可以 call <code>@post_decorator.image</code> 這就是 transparent 的概念。</p>
+
+<p>接下來我們來看看 Rails 裡面 Helper 的例子，</p>
+<pre class="highlight ruby"><code><span class="c1"># app/helpers/posts_helper.rb</span>
+<span class="k">module</span> <span class="nn">PostsHelper</span>
+  <span class="k">def</span> <span class="nf">publication_date</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+    <span class="n">post</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span> <span class="s1">'%Y-%m-%d'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight erb"><code># app/views/posts/show.html.erb
+<span class="nt">&lt;span&gt;</span><span class="cp">&lt;%=</span> <span class="n">publication_date</span> <span class="vi">@post</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
+</code></pre>
+
+<p>在 View 裡面我們就無從得知這應該是屬於 Post 的方法，會讓這整體看起來很不物件導向的感覺，甚至我們如果傳進去的參數不是 @post 而是 @user 一樣也可以被執行。</p>
+
+<p>接著我們用 Decorator 來實作，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">PostDecorator</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+  <span class="nf">def</span> <span class="n">publication_date</span>
+    <span class="n">post</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span> <span class="s1">'%Y-%m-%d'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">respond_to_missing?</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">include_private</span> <span class="o">=</span> <span class="kp">false</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight erb"><code># app/views/posts/show.html.erb
+<span class="nt">&lt;span&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@post_decorator</span><span class="p">.</span><span class="nf">publication_date</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
+</code></pre>
+
+<p>這樣我們即使是在前端，也可以以更物件導向的方式來實作。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Decorator&amp;amp;url=http://wellsonjain.github.io/2015/07/20/decorator/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/20/decorator/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/20/decorator/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/17/method-missing-and-delegate/'>
+<section class='post'>
+<h2>Method Missing and Delegate</h2>
+<p>To be beautiful means to be yourself. You don&rsquo;t need to be accepted by others. You need to be&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/25/domain-specific-language/'>
+<section class='post'>
+<h2>Domain Specific Language</h2>
+<p>Failure is just practice for success. - Unknown 終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為是了 XD，這個程度應該只是入門到中階的程度而已，常常去翻 Ruby 程式設計這本書，就很常覺得在裡面說提到的概念才是真正的精華所在，而精華也是最難以讀通的地方啊&hellip;不過在經過這些更為扎實的基礎學習之後，的確對於正確觀念的形成是有相當大的幫助的，我會繼續寫下去的!!! DSL&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Rails API (3)</title>
+<meta content=' There is nothing impossible to him who will try. - Alexander the Great Content Negotiation API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Rails API (3)' property='og:title'>
+<meta content=' There is nothing impossible to him who will try. - Alexander the Great Content Negotiation API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/06/rails-api-part3/' property='og:url'>
+<meta content='2015-05-06' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Rails API (3)' name='twitter:title'>
+<meta content=' There is nothing impossible to him who will try. - Alexander the Great Content Negotiation API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/06/rails-api-part3/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Rails API (3)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>There is nothing impossible to him who will try. - Alexander the Great</p>
+</blockquote>
+
+<h4>Content Negotiation</h4>
+
+<p>API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟什麼樣格式的資料，在 Rails 便提供了這樣的功能，</p>
+<pre class="highlight ruby"><code><span class="c1"># config/routes.rb</span>
+  <span class="n">resouces</span> <span class="ss">:recipes</span>
+
+<span class="c1"># http://api.myrecipe.com/recipes.json</span>
+<span class="c1"># http://api.myrecipe.com/recipes.xml</span>
+</code></pre>
+<pre class="highlight plaintext"><code>      recipes GET    /recipes(.:format)             recipes#index
+              POST   /recipes(.:format)             recipes#create
+   new_recipe GET    /recipes/new(.:format)         recipes#new
+  edit_recipe GET    /recipes/:id/edit(.:format)    recipes#edit
+       recipe GET    /recipes/:id(.:format)         recipes#show
+              PATCH  /recipes/:id(.:format)         recipes#update
+              PUT    /recipes/:id(.:format)         recipes#update
+              DELETE /recipes/:id(.:format)         recipes#destroy
+</code></pre>
+
+<p>接著一樣繼續寫測試程式，</p>
+<pre class="highlight ruby"><code><span class="c1"># test/integration/listing_recipes_test.rb</span>
+<span class="k">class</span> <span class="nc">ListingRecipesTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span>
+  <span class="nb">test</span> <span class="s1">'returns recipes in JSON'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span> <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="no">Mime</span><span class="o">::</span><span class="no">JSON</span> <span class="p">}</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+    <span class="n">assert_equal</span> <span class="no">Mime</span><span class="o">::</span><span class="no">JSON</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">content_type</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'returns recipes in XML'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span> <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="no">Mime</span><span class="o">::</span><span class="no">XML</span> <span class="p">}</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+    <span class="n">assert_equal</span> <span class="no">Mime</span><span class="o">::</span><span class="no">XML</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">content_type</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/api/recipes_controller.rb</span>
+<span class="k">module</span> <span class="nn">API</span><span class="err">￼</span>
+  <span class="k">class</span> <span class="nc">RecipesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+    <span class="k">def</span> <span class="nf">index</span>
+      <span class="n">recipes</span> <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">all</span>
+
+      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">html</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="n">recipes</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">200</span> <span class="p">}</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">xml</span>  <span class="p">{</span> <span class="n">render</span> <span class="ss">xml: </span><span class="n">recipes</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">200</span> <span class="p">}</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>藉由 Rails 的 helper method <code>respond_to</code>，可以產生出很多種不同的格式，Rails 會根據 request 的不同而選擇不同的格式，我們可以藉由上一篇提到的 <code>curl</code> 指令來測試</p>
+<pre class="highlight plaintext"><code>$ curl -IH "Accept: application/json"  http://localhost:3000/recipes
+
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+
+$ curl -IH "Accept: application/xml"  http://localhost:3000/recipes
+
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/xml; charset=utf-8
+</code></pre>
+
+<p>我們可以輕易地看出其中的不同，表示 it works!! (已哭)</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Rails API (3)&amp;amp;url=http://wellsonjain.github.io/2015/05/06/rails-api-part3/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/06/rails-api-part3/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/06/rails-api-part3/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/06/rails-api-part2/'>
+<section class='post'>
+<h2>Rails API (2)</h2>
+<p>So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/06/rails-api-part4/'>
+<section class='post'>
+<h2>Rails API (4)</h2>
+<p>Look up at the stars and not down at your feet. Try to make sense of what you see,&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

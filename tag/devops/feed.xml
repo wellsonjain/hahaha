@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: devops</title>
+  <subtitle>Posts tagged with devops</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/devops/feed.xml" rel="self"/>
+  <updated>2015-05-28T00:07:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Setup Vagrant for Rails Development</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/"/>
+    <id>http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/</id>
+    <published>2015-05-28T00:07:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+The price of greatness is responsibility. - Winston Churchill
+
+
+Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 Chef，進一步了解 Opsworks，這是個一連串的學習鏈，首先今天就來記錄一下我架設 Vagrant 的過程。
+
+首先先來介紹一下 Vagrant 是什麼，Vagrant 是一個可以在本機的 Virtual Mechine 架設另一個開發環境，簡單來說就是一個平行宇宙的精神時光屋，所以只要</summary>
+  </entry>
+</feed>

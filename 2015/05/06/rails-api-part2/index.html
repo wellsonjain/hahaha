@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Rails API (2)</title>
+<meta content=' So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the will, they soon become inevitable. - Ne...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Rails API (2)' property='og:title'>
+<meta content=' So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the will, they soon become inevitable. - Ne...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/06/rails-api-part2/' property='og:url'>
+<meta content='2015-05-06' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Rails API (2)' name='twitter:title'>
+<meta content=' So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the will, they soon become inevitable. - Ne...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/06/rails-api-part2/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Rails API (2)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the will, they soon become inevitable. - Nelson Mandela</p>
+</blockquote>
+
+<h4>Resource</h4>
+
+<p>在上一篇裡面使用到 Resouces，在 Rails 裡面 Resource 我覺得是蠻神奇的，這樣就可以自動產生出預設的 HTTP verb，可是到底 Resource 是什麼？其實 Resource 是一種概念性的東西</p>
+
+<ul>
+<li>播放清單</li>
+<li>一道菜的食譜</li>
+<li>一首歌</li>
+</ul>
+
+<p>這些都可以在 Website 裡被視作 Resource，也就是我們在上一篇所提到的 <font color=orange>things</font> 然後我們再來想要對這些 Resource 做什麼動作。</p>
+
+<h4>Get method</h4>
+
+<p>首先先來談談該&quot;怎麼進行一個讀取的動作&quot;，在 HTTP verb 裡面就是 GET，</p>
+<pre class="highlight ruby"><code><span class="c1"># config/routes.rb</span>
+<span class="n">namespace</span> <span class="ss">:api</span><span class="p">,</span> <span class="ss">path: </span><span class="s1">'/'</span><span class="p">,</span> <span class="ss">constraint: </span><span class="p">{</span> <span class="ss">subdomain: </span><span class="s1">'api'</span> <span class="p">}</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:recipes</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="c1"># test/integration/listing_recipes_test.rb</span>
+<span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">ListingRecipesTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span>
+  <span class="n">setup</span> <span class="p">{</span> <span class="n">host!</span> <span class="s1">'api.example.com'</span> <span class="p">}</span>
+  <span class="nb">test</span> <span class="s1">'return list of all recipes'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>  <span class="c1"># 200 - Success status</span>
+    <span class="n">refute_empty</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>講個秘訣：在進行開發之前都先從寫一個測試開始，以確定程式執行的結果是正確的。</p>
+</blockquote>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/api/recipes_controller.rb</span>
+<span class="k">module</span> <span class="nn">API</span><span class="err">￼</span>
+  <span class="k">class</span> <span class="nc">RecipesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+    <span class="k">def</span> <span class="nf">index</span>
+      <span class="n">recipes</span> <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">all</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="n">recipes</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">200</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>接下來再繼續做點變化，有時候我們不會只是要找出所有的資料，可能會給一些關鍵字然後再從中去過濾出比較少量的資料，在 API 的使用上面我們可能會在網址後面增加參數，像是 <code>/recipes?category=taiwanese</code>，在<code>?</code>後面的都是一個參數，並且帶過去給該 action 再做後續的處理，接著我們再繼續新增測試範圍。</p>
+<pre class="highlight ruby"><code><span class="c1"># test/integration/listing_recipes_test.rb</span>
+<span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">ListingRecipesTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span>
+  <span class="n">setup</span> <span class="p">{</span> <span class="n">host!</span> <span class="s1">'api.example.com'</span> <span class="p">}</span>
+
+  <span class="nb">test</span> <span class="s1">'return list of all recipes'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/recipes'</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>  <span class="c1"># 200 - Success status</span>
+    <span class="n">refute_empty</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'return recipes filtered by category'</span>
+    <span class="n">taiwan_food</span> <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"Stinky tofu"</span><span class="p">,</span> <span class="ss">category: </span><span class="s2">"taiwanese"</span><span class="p">)</span>
+    <span class="n">japan_food</span> <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"Sushi"</span><span class="p">,</span> <span class="ss">category: </span><span class="s2">"japanese"</span><span class="p">)</span>
+
+    <span class="n">get</span> <span class="s1">'recipese?category=taiwanese'</span>
+    <span class="n">assert_equal</span> <span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">status</span>
+
+    <span class="c1">#parse response 回來的 content, symbolize_name 則會將字串 symbolize</span>
+    <span class="n">recipes</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">,</span> <span class="ss">symbolize_name: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">recipes</span><span class="p">.</span><span class="nf">collect</span> <span class="p">{</span> <span class="o">|</span><span class="n">recipe</span><span class="o">|</span> <span class="n">recipe</span><span class="p">[</span><span class="ss">:title</span><span class="p">]</span> <span class="p">}</span>
+    <span class="n">assert_includes</span> <span class="n">title</span><span class="p">,</span> <span class="s1">'Stinky tofu'</span>
+    <span class="n">refute_includes</span> <span class="n">title</span><span class="p">,</span> <span class="s1">'Sushi'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/api/recipes_controller.rb</span>
+<span class="k">module</span> <span class="nn">API</span><span class="err">￼</span>
+  <span class="k">class</span> <span class="nc">RecipesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+    <span class="k">def</span> <span class="nf">index</span>
+      <span class="n">recipes</span> <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">all</span>
+      <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="ss">:category</span><span class="p">]</span>
+        <span class="n">recipes</span> <span class="o">=</span> <span class="n">recipes</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">category: </span><span class="n">params</span><span class="p">[</span><span class="ss">:category</span><span class="p">])</span>
+      <span class="k">end</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="n">recipes</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">200</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>如果想再實際測試一下的話我們可以使用 <code>curl</code> 這個指令來做，</p>
+<pre class="highlight plaintext"><code>$ curl localhost:3000/recipes
+</code></pre>
+
+<p>就可以看到 request 回來的 json。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Rails API (2)&amp;amp;url=http://wellsonjain.github.io/2015/05/06/rails-api-part2/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/06/rails-api-part2/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/06/rails-api-part2/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/05/rails-api-part1/'>
+<section class='post'>
+<h2>Rails API (1)</h2>
+<p>You take your life in your own hands, and what happens? A terrible thing, no one to blame. -&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/06/rails-api-part3/'>
+<section class='post'>
+<h2>Rails API (3)</h2>
+<p>There is nothing impossible to him who will try. - Alexander the Great Content Negotiation API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟什麼樣格式的資料，在 Rails 便提供了這樣的功能，&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

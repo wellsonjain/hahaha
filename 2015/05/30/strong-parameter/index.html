@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Strong Parameter</title>
+<meta content=' One man or woman with courage is a majority. - Andrew Jackson Strong Parameters Stong parameters 是在 rails4 關注比較大的更新，在一般 form 的 submit 後，可能會有不懷好...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Strong Parameter' property='og:title'>
+<meta content=' One man or woman with courage is a majority. - Andrew Jackson Strong Parameters Stong parameters 是在 rails4 關注比較大的更新，在一般 form 的 submit 後，可能會有不懷好...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/30/strong-parameter/' property='og:url'>
+<meta content='2015-05-30' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Strong Parameter' name='twitter:title'>
+<meta content=' One man or woman with courage is a majority. - Andrew Jackson Strong Parameters Stong parameters 是在 rails4 關注比較大的更新，在一般 form 的 submit 後，可能會有不懷好...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/30/strong-parameter/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Strong Parameter</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-30'>
+30 May 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>One man or woman with courage is a majority. - Andrew Jackson</p>
+</blockquote>
+
+<h4>Strong Parameters</h4>
+
+<p>Stong parameters 是在 rails4 關注比較大的更新，在一般 form 的 submit 後，可能會有不懷好意的使用者夾帶送出不應該有的多餘參數，雖然說在 rails3 有 <code>attr_accessible</code> 這個白名單的設計，但是如果發生了夾帶多餘參數的事情時，會造成系統出現 <code>Can&#39;t mass-assign protected attributes:</code> 這樣的錯誤，所以在 rails4 就做出了 strong parameter 的更新。</p>
+
+<p>先前白名單會是在 Model 裡面被定義，而現在則是拉到 Controller 裡面去做，</p>
+<pre class="highlight ruby"><code>  <span class="n">user_params</span> <span class="o">=</span> <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</code></pre>
+
+<p>require 的意思就是，如果我們仔細去看 params 裡面所帶的參數，必須一定要有 require 這個 key 值，如果沒有則一樣會出現錯誤 <code>ActionController::ParameterMissing: param not found: user</code>。</p>
+
+<p>而 permit 的功能就是白名單的角色，如果說在白名單裡面沒有的參數或是參數的型態不正確就會被濾掉，而在 default 的設定中這些被濾掉的參數還是會被記錄在 log 裡面，如果覺得還是覺得需要產生例外錯誤訊息，也可以在 config 裡面做設定，</p>
+<pre class="highlight ruby"><code><span class="c1"># config/application.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">action_controller</span><span class="p">.</span><span class="nf">action_on_unpermitted_parameters</span> <span class="o">=</span> <span class="ss">:raise</span>
+</code></pre>
+
+<p>至於如果還是想在 model 裡面設定白名單的話，則是要可以加一個 gem <code>protected_attributes</code></p>
+
+<h4>Authenticity Token</h4>
+
+<p>在 Rails 中，非 GET 的 HTTP request 都會要求帶一個 Token 才能夠存取，像是 form 表單就會自動生成一個 token，但是在 rails4 如果是用 ajax 的形式，則預設會把這個地方給取消，因為我們可以在 layout 的地方就定義 &lt;%= csrf<em>meta</em>tag %&gt;，就是讓 javascript 來讀取驗證碼用的，所以當我們在做 ajax 的時候，其實 js 已經在 layout 找到 token 所以在 rails4 就把它給簡化了。</p>
+
+<p>但也是有可能發生 client 端並不支援 Javascript，這時候就無法驗證 token 的情況發生，這時候我們只要做，</p>
+<pre class="highlight erb"><code><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@some_model</span><span class="p">,</span> <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:authenticity_token</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre>
+
+<p>雖然我們是有需要驗證 token，不過如果在開放 API 的時候我們可能會需要取消它，所以可以做像是，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">protect_from_forgery</span>
+  <span class="n">skip_before_action</span> <span class="ss">:verify_authenticity_token</span><span class="p">,</span> <span class="ss">if: :json_request?</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">json_request?</span>
+    <span class="n">request</span><span class="p">.</span><span class="nf">format</span><span class="p">.</span><span class="nf">json?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>關於在 Application controller 我們在驗證 token 的時候，能夠有幾種工具來做</p>
+<pre class="highlight ruby"><code><span class="c1"># 會出現 exception: ActionController::InvalidAuthenticityToken</span>
+<span class="n">protect_from_forgery</span> <span class="ss">with: :exception</span>
+
+<span class="c1"># Empty session</span>
+<span class="n">protect_from_forgery</span> <span class="ss">with: :null_session</span>
+
+<span class="c1"># New session (並且把舊的清掉)</span>
+<span class="n">protect_from_forgery</span> <span class="ss">with: :reset_session</span>
+
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Strong Parameter&amp;amp;url=http://wellsonjain.github.io/2015/05/30/strong-parameter/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/30/strong-parameter/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/30/strong-parameter/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/27/setup-vagrant-for-rails-development/'>
+<section class='post'>
+<h2>Setup Vagrant for Rails Development</h2>
+<p>The price of greatness is responsibility. - Winston Churchill Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 Chef，進一步了解 Opsworks，這是個一連串的學習鏈，首先今天就來記錄一下我架設 Vagrant 的過程。 首先先來介紹一下 Vagrant 是什麼，Vagrant 是一個可以在本機的&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/31/1984/'>
+<section class='post'>
+<h2>1984</h2>
+<p>Big Brother is watching you - George Orwell, 1984 一個半月前和幾個久不見面的老朋友一起吃飯，很開心第一次的見到朋友的老公，想不到他們夫妻倆竟然送了我一套反烏托邦經典小說 (1984, 美麗新世界, 我們)，而且還收到另一個朋友送 V 怪客的口罩(豈不是系列產品?)，非常感動，當下就下定決心，我不只看完每一本書都會寫下一篇心得，還要寫在自己架起來的 Blog，我想表達我真的很重視並且開心地收到這些禮物，以及對方把我放在心上。 話雖如此，這段時間還是很龜速地看這本書，花了我一個半月才看完這本書，一方面是因為有很多時間都在記錄一些學習上的心得，一方面也是這本書的步調相當沈重，以至於這篇心得一直放到現在才寫出來，看完至今依舊情緒激動，而且在閱讀本書的過程一直覺得 V 怪客應該是以這本書當作劇本的藍圖，一查果然沒錯，是&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

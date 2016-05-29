@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: electives</title>
+  <subtitle>Posts tagged with electives</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/electives/feed.xml" rel="self"/>
+  <updated>2015-04-26T17:40:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Middleman And Github Pages (2)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/"/>
+    <id>http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/</id>
+    <published>2015-04-26T17:40:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。
+
+2. Deploy to Github Page
+
+Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Middleman + Github 的 Solution，所以就沒有特別去研究其他的方式，不過之後會對於 Rails 專案的紀錄比較多種 deploy 組合的方式。
+
+首先先在 Gemfile 內加入
+gem 'middleman</summary>
+  </entry>
+  <entry>
+    <title>Middleman and Github Pages (1)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/"/>
+    <id>http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/</id>
+    <published>2015-04-26T16:06:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以後就可以用這個來記錄自己在 Programming 上或是在生活上的一些學習歷程以及心得。
+
+事實上在個人 blog platform 市面上有許多選擇，像是 Pixnet, Google Blogger 或是蠻</summary>
+  </entry>
+  <entry>
+    <title>Regular Expression Tutorial (1)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/"/>
+    <id>http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/</id>
+    <published>2015-08-03T23:03:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Stop managing your time. Start managing your focus. - Robin Sharma
+
+
+之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的是相當有幫助，今天就來稍微筆記一下看完整個課程的幾個重要的地方。
+
+The String Story
+
+首先先介紹一下 Regular Expression，又稱作 regex (以下內容都會以 regex </summary>
+  </entry>
+  <entry>
+    <title>Regular Expression Tutorial (2)</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/"/>
+    <id>http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/</id>
+    <published>2015-08-31T11:48:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Sometimes life hits you in the head with a brick. Don’t lose faith. - Steve Jobs
+
+
+Confirmative
+
+表示 “OK” 有很多種說法，像是 OKay, Okie Dokie，之類的很多種，以上面三種來看，假如只接受前兩種但是不接受最後一種的話，那該怎麼做呢？首先我們先限定 OK 這個字串，然後再把第二種的 pattern 加入，那就會變成，
+/\bok(ay)?\b/i
+
+
+這邊出現了兩個新的 character</summary>
+  </entry>
+</feed>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序</title>
+  <subtitle>Make things in elegance.</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/feed.xml" rel="self"/>
+  <updated>2016-03-25T23:45:00+11:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Basic Javascript Object</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/25/basic-javascript-object/"/>
+    <id>http://wellsonjain.github.io/2016/03/25/basic-javascript-object/</id>
+    <published>2016-03-25T23:45:00+11:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+You got this. Make it happen. - Danielle LaPorte
+
+
+What is Object? Object is a “container” of multiple related data, call properties. Like a Book may have the properties, which is title, author, publisher, numChapters, numPages, illustrator.
+
+In javascript</summary>
+  </entry>
+  <entry>
+    <title>Demystifying Javascript Closures Callbacks IIFEs</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/demystifying-javascript-closures-callbacks-iifes/"/>
+    <id>http://wellsonjain.github.io/2016/03/18/demystifying-javascript-closures-callbacks-iifes/</id>
+    <published>2016-03-18T14:23:00+11:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Don’t let the noise of others’ opinions drown out your own inner voice. Have the courage to follow your own heart and intuition. - Steve Jobs
+
+
+Translated from: Demystifying JavaScript Closures, Callbacks and IIFEs
+
+我們已經了解了 Scope 和 Hoist，今天我們就來探討三個現</summary>
+  </entry>
+  <entry>
+    <title>Demystifying Javascript Variable Scope Hoisting</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/"/>
+    <id>http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/</id>
+    <published>2016-03-18T14:22:00+11:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Today I will do what others won’t, so tomorrow I can do what others can’t. - Jerry Rice
+
+
+Translated from: Demystifying JavaScript Variable Scope and Hoisting
+
+每個構建都需要建立在強大的基礎建設上，而在 JavaScript 中了解 variable 的 scope 是建立堅固基礎的關鍵之一。本文將解釋 JavaScript 的 scope</summary>
+  </entry>
+  <entry>
+    <title>Back to Basics Javascript Hoisting</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/back-to-basics-javascript-hoisting/"/>
+    <id>http://wellsonjain.github.io/2016/03/18/back-to-basics-javascript-hoisting/</id>
+    <published>2016-03-18T14:21:00+11:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou
+
+
+Translated from: Back to Basics: JavaScript Hoisting
+
+Variable declarations 是任何 programming language 最基本的概念之一。然而，JavaScript 有一個很奇怪概</summary>
+  </entry>
+  <entry>
+    <title>Basic Javascipt Closure</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/"/>
+    <id>http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/</id>
+    <published>2016-03-02T22:57:00+11:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh
+We mentioned about function:
+
+function buildTicket (allRides, passRides, pick){
+  if (passRides[0] == pick) {
+    var pass = allRides.</summary>
+  </entry>
+  <entry>
+    <title>Basic Javascript</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/02/basic-javascript/"/>
+    <id>http://wellsonjain.github.io/2016/03/02/basic-javascript/</id>
+    <published>2016-03-02T22:28:00+11:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes
+The basic function structure
+
+
+Here is basic function structure:
+function sumOfCubes (a, b) {
+  // do some stuff
+
+  return // something (or nothing</summary>
+  </entry>
+</feed>

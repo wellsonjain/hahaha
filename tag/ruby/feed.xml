@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: ruby</title>
+  <subtitle>Posts tagged with ruby</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/ruby/feed.xml" rel="self"/>
+  <updated>2015-06-11T23:17:00+10:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Control Flow</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/06/11/control-flow/"/>
+    <id>http://wellsonjain.github.io/2015/06/11/control-flow/</id>
+    <published>2015-06-11T23:17:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown
+
+
+Rails 要學得好，Ruby 才是 Rails 開發者的根基，而且其實有很多用 Ruby 寫成的應用也常常讓我覺得很有趣，只是有很多比較深入的用法如果平常沒有接觸，有些技巧性的寫法就會覺得實在跟魔法沒兩樣，但是又很難參透其中的道理，所以今天要來談的就是比較深入一點的 Ruby</summary>
+  </entry>
+  <entry>
+    <title>Optional Argument</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/06/12/optional-argument/"/>
+    <id>http://wellsonjain.github.io/2015/06/12/optional-argument/</id>
+    <published>2015-06-12T23:07:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale
+
+
+Optional Arguments
+
+當我們要傳入 method 的 argument 可能不是每個都是必要的，可能有些事是情況傳入的，如果說定義死的話就是必定需要傳入的，那在呼叫 method 的狀況可能是這樣，method(arg1,</summary>
+  </entry>
+  <entry>
+    <title>Class Concept</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/06/17/class-concept/"/>
+    <id>http://wellsonjain.github.io/2015/06/17/class-concept/</id>
+    <published>2015-06-17T10:28:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+People will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou
+
+
+Class
+
+在 Ruby 這個萬物皆物件的程式語言中，我們實作上當然也最好 follow 物件導向的概念，首先先談談封裝 (Encapsulation)，實務上封裝想要達到的結果就是一個 class 不應該知道太多其他 class</summary>
+  </entry>
+  <entry>
+    <title>Module Concept</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/06/28/module-concept/"/>
+    <id>http://wellsonjain.github.io/2015/06/28/module-concept/</id>
+    <published>2015-06-28T16:00:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Choose a job you love and you will never have to work a day of your life. - Confucius
+
+
+Module
+
+接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，首先 Module 不能被繼承，像是這樣，
+module Speaker
+  def quack
+    ...
+  end
+end
+
+class MakeSound &amp;lt; Speaker
+  ...
+end</summary>
+  </entry>
+  <entry>
+    <title>The Block</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/07/01/the-block/"/>
+    <id>http://wellsonjain.github.io/2015/07/01/the-block/</id>
+    <published>2015-07-01T18:00:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+The future depends on what we do in the present. - Mahatma Gandhi
+
+
+在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block
+
+Block
+
+在 Ruby 的語法中有個非常常用的方法 each，
+words = ['Hello', 'world', 'I am', 'Wellson']
+words.each do |word|
+  backward_word</summary>
+  </entry>
+  <entry>
+    <title>Proc and Lambda</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2015/07/05/proc-and-lambda/"/>
+    <id>http://wellsonjain.github.io/2015/07/05/proc-and-lambda/</id>
+    <published>2015-07-05T14:58:00+10:00</published>
+    <updated>2016-05-29T22:43:50+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+It’s not about where your starting point is, but your end goal and the journey that will get you there. - Unknown
+
+
+Proc and Lambda
+
+今天要延續上一篇 所講的，首先先來談談什麼是 Proc，上一篇我們說了 block 要怎麼用，但是如果我們對於一個 block 我們可能希望能在我們希望它被呼叫的時候呼叫，所以我們就把 block 的概念以物件的方式來實作，而 Proc</summary>
+  </entry>
+</feed>

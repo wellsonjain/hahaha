@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Middleman and Github Pages (1)</title>
+<meta content='事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Middleman and Github Pages (1)' property='og:title'>
+<meta content='事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/' property='og:url'>
+<meta content='2015-04-26' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Middleman and Github Pages (1)' name='twitter:title'>
+<meta content='事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Middleman and Github Pages (1)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-04-26'>
+26 April 2015
+</time>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/github/'>github</a>, <a href='/tag/electives/'>electives</a>
+</section>
+</header>
+<section class='post-content'><p>事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 <a href="https://hexo.io/zh-tw/" rel="nofollow">Hexo</a> 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 <a href="https://middlemanapp.com" rel="nofollow">Middleman</a>，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以後就可以用這個來記錄自己在 Programming 上或是在生活上的一些學習歷程以及心得。</p>
+
+<p>事實上在個人 blog platform 市面上有許多選擇，像是 <a href="https://www.pixnet.net/" rel="nofollow">Pixnet</a>, <a href="https://www.blogger.com/" rel="nofollow">Google Blogger</a> 或是蠻潮的微網誌 <a href="https://www.tumblr.com/" rel="nofollow">Tumblr</a>，還有為技術文章而生的 <a href="logdown.com/" rel="nofollow">Logdown</a>，雖然或多或少其中都有符合我需求的元素，但是自己組出一個，就像是自己用樂高做出一個鋼鐵人，那種成就感是難以言喻的，而且在使用上有我個人非常喜歡用 markdown 來撰寫文章，能讓文章看起來更加 organized，所以最後我選擇自己找工具組裝 my personal blog。</p>
+
+<p>第一篇就先來記錄一下架 Blog 的過程，一共有三個部分</p>
+
+<ol>
+<li>Install Middleman and Relavant</li>
+<li>Deploy to Github Pages</li>
+<li>Disqus plug-in</li>
+</ol>
+
+<h4>1. Install Middleman and Relavant</h4>
+
+<blockquote>
+<p><a href="https://middlemanapp.com" rel="nofollow">Middleman</a> 在官方的文件上也詳列了步驟細節，非常建議藉由文件來瞭解安裝的細節。</p>
+</blockquote>
+
+<p>首要之急當然就是必須先安裝 Gem，但是事實上 middleman 的目的是建造一個靜態網頁所開發出來的 gem，所以要使用 blog 的 template 我們還必須安裝 <code>middleman-blog</code> 這個 gem</p>
+<pre class="highlight plaintext"><code>$ gem install middleman
+$ gem install middleman-blog
+</code></pre>
+
+<p>安裝完成之後在想要的資料夾目錄下，輸入</p>
+<pre class="highlight plaintext"><code>$ middleman init MY_BLOG_PROJECT --template=blog
+</code></pre>
+
+<p>即可以立馬擁有一個超級陽春的<del>陽春麵</del> blogger，但是身為一個前端也不太熟的小菜鳥，要從頭到尾刻出一個很 Fancy 的 blog 簡直難如上青天啊!!! 只能說是天無絕人之路，後來在 <a href="https://www.facebook.com/groups/RailsRookie/" rel="nofollow">Ruby on Rails 新手村</a> 認識的朋友幫我找到了一個在介面看起來相當漂亮的 template，<a href="https://github.com/danielbayerlein/middleman-casper" rel="nofollow">middleman-casper</a>，於是乎讓我更快的慢慢完成(大概隔了三個月才開始用&hellip;)這個 blog</p>
+
+<p>使用的方法其實很簡單，首先先建立 <code>~/.middleman</code> 這個檔案目錄，接著在該檔案目錄下，輸入指令</p>
+<pre class="highlight plaintext"><code>$ git clone https://github.com/danielbayerlein/middleman-casper.git ~/.middleman/casper
+</code></pre>
+
+<p>接著移動到在本機上想要建立這個 blog 的目錄下，<del>至於剛剛那碗陽春麵就把它給刪掉吧</del>，執行</p>
+<pre class="highlight plaintext"><code>$ middleman init MY_BLOG_PROJECT --template=casper
+</code></pre>
+
+<p>進到 blog 目錄後，執行 <code>bundle install</code>，接下來只是在 <code>config.rb</code> 內做一些微調或者是設定一些基本資訊，一個在本機上的 blog 就基本上完成了。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Middleman and Github Pages (1)&amp;amp;url=http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover prev read-next-story' href='/2015/04/26/middleman-and-github-pages-part2/'>
+<section class='post'>
+<h2>Middleman And Github Pages (2)</h2>
+<p>接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。 2. Deploy to Github Page Middleman 提供了許多 deploy 方式的&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

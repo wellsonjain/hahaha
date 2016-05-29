@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序</title>
+<meta content='Make things in elegance.' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='website' property='og:type'>
+<meta content='Make things in elegance.' property='og:description'>
+<meta content='http://wellsonjain.github.io/page/5/' property='og:url'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Make things in elegance.' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/page/5/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='archive-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover'>
+<nav class='main-nav overlay clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+<div class='vertical'>
+<div class='main-header-content inner'>
+<h1 class='page-title'>規矩與秩序</h1>
+<h2 class='page-description'>Make things in elegance.</h2>
+</div>
+</div>
+<a class='scroll-down icon-arrow-left' data-offset='-45' href='#content'>
+<span class='hidden'>Scroll Down</span>
+</a>
+</header>
+<main class='content' id='content' role='main'>
+<div class='extra-pagination inner'>
+<nav class='pagination' role='pagination'>
+<a href="/page/4/" class="newer-posts">← Newer Posts</a>
+<span class='page-number'>Page 5 of 5</span>
+</nav>
+
+</div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/06/rails-api-part3/">Rails API (3)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+There is nothing impossible to him who will try. - Alexander the Great
+
+
+Content Negotiation
+
+API 基本上會介接許多種裝置，可能是電腦也可能是手機，因為無法預期是由誰來呼叫，所以必須先設計好要回丟什麼樣格式的資料，在 Rails 便提供了這樣的功能，
+# config/routes.rb
+  resouces :recipes
+
+# http://api.myrecipe.com/recipes.json
+<a href="/2015/05/06/rails-api-part3/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/06/rails-api-part2/">Rails API (2)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+So many of our dreams at first seem impossible. Then they seem improbable. And then, when we summon the will, they soon become inevitable. - Nelson Mandela
+
+
+Resource
+
+在上一篇裡面使用到 Resouces，在 Rails 裡面 Resource 我覺得是蠻神奇的，這樣就可以自動產生出預設的 HTTP verb，可是到底 Resource
+<a href="/2015/05/06/rails-api-part2/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-06'>
+06 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/05/rails-api-part1/">Rails API (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+You take your life in your own hands, and what happens? A terrible thing, no one to blame. - Erica Jong
+
+
+對於 API 的製作一直是我的軟肋，不對啊事實上什麼都是軟肋啊!!!(抱頭哭喊) 不過這樣一直懞懞懂懂下去好像也不是辦法，最近在看 Code School 的 Rails API 課程覺得收穫良多，於是來記錄一下幾個蠻重要的部分，但是由於這個課程屬於比較進階的，所以會以一邊寫 Testing
+<a href="/2015/05/05/rails-api-part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-05-05'>
+05 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/02/game-theory/">Game Theory</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+用賽局的形式，描述複數主體間發生利害關係的方法 - 川西諭
+
+
+
+
+在這個連假抽空看了 所有問題，都是一場賽局 這本書，作者非常淺顯易懂的舉例以及說明，向讀者解釋了許多賽局理論的核心概念，在閱讀本書的過程之中，我常常會不經意的與過去的記憶有所連結，再配合書中的想法來從不同的角度來去理解過去的記憶，覺得十分有意思。
+
+書中提及了學習賽局理論的三個主要目的，也是本書的中心思想
+
+
+掌握賽局（問題）的整體樣貌（分析能力）
+預測即將發生的未來（預測能力）
+找到適當的解決方法
+
+
+然而在分析賽局時，其中
+<a href="/2015/05/02/game-theory/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>, <a href='/tag/book/'>book</a>
+<time class='post-date' datetime='2015-05-02'>
+02 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/04/29/pattern/">Pattern</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+我認為每一個獨立事件都具有一種 pattern。
+
+
+不知道是從什麼時候知道 專案管理生活思維 這個 blog，當初因為發現在這個 blog 裏頭有許多對於感情相關很精闢的文章，進而又多看了很多在裡面很其他很有趣想法的文章，其中對於他們對於 「局」這個題目印象深刻，在這裡的局可以我認為可以廣義的理解成賽局。
+
+
+賽局：具有競爭或對抗性質的行為稱為博弈行為。在這類行為中，參加鬥爭或競爭的各方各自具有不同的目標或利益。為了達到各自的目標和利益，各方必須考慮對手的各種可能的行動方案，并力圖選取對自己
+
+<a href="/2015/04/29/pattern/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/thought/'>thought</a>, <a href='/tag/game-theory/'>Game theory</a>
+<time class='post-date' datetime='2015-04-29'>
+29 April 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/04/26/middleman-and-github-pages-part2/">Middleman And Github Pages (2)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+接下來就要介紹到如何將 blog 部署到 Github Page 上，Github Pages 也是為了滿足 deploy 至靜態網站的需求。
+
+2. Deploy to Github Page
+
+Middleman 提供了許多 deploy 方式的 gem，不過因為一開始我就是以 Middleman + Github 的 Solution，所以就沒有特別去研究其他的方式，不過之後會對於 Rails 專案的紀錄比較多種 deploy 組合的方式。
+
+首先先在 Gemfile 內加入
+gem 'middleman
+<a href="/2015/04/26/middleman-and-github-pages-part2/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/github/'>github</a>, <a href='/tag/electives/'>electives</a>
+<time class='post-date' datetime='2015-04-26'>
+26 April 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/04/26/middleman-and-github-pages/">Middleman and Github Pages (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+事實上要說要架自己的 blog 也說了好一段時間了，先前一度嘗試用 Hexo 來當 bloger，但是自己畢竟對 node.js 還不太熟，之後選擇使用 Middleman，因為 Ruby 對我來說還是比較熟悉的語言，而且搭配許多 Gem，終於架出了一個自己比較喜歡的 blog 模組，以後就可以用這個來記錄自己在 Programming 上或是在生活上的一些學習歷程以及心得。
+
+事實上在個人 blog platform 市面上有許多選擇，像是 Pixnet, Google Blogger 或是蠻
+<a href="/2015/04/26/middleman-and-github-pages/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/middleman/'>middleman</a>, <a href='/tag/github/'>github</a>, <a href='/tag/electives/'>electives</a>
+<time class='post-date' datetime='2015-04-26'>
+26 April 2015
+</time>
+</footer>
+</article>
+<nav class='pagination' role='pagination'>
+<a href="/page/4/" class="newer-posts">← Newer Posts</a>
+<span class='page-number'>Page 5 of 5</span>
+</nav>
+
+
+</main>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

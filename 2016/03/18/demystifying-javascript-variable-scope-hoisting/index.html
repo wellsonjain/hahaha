@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Demystifying Javascript Variable Scope Hoisting</title>
+<meta content=' Today I will do what others won&amp;rsquo;t, so tomorrow I can do what others can&amp;rsquo;t. - Jerry Rice Translated from: Demystifying JavaScript Va...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Demystifying Javascript Variable Scope Hoisting' property='og:title'>
+<meta content=' Today I will do what others won&amp;rsquo;t, so tomorrow I can do what others can&amp;rsquo;t. - Jerry Rice Translated from: Demystifying JavaScript Va...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/' property='og:url'>
+<meta content='2016-03-18' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Demystifying Javascript Variable Scope Hoisting' name='twitter:title'>
+<meta content=' Today I will do what others won&amp;rsquo;t, so tomorrow I can do what others can&amp;rsquo;t. - Jerry Rice Translated from: Demystifying JavaScript Va...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Demystifying Javascript Variable Scope Hoisting</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-03-18'>
+18 March 2016
+</time>
+on <a href='/tag/javascript/'>javascript</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Today I will do what others won&rsquo;t, so tomorrow I can do what others can&rsquo;t. - Jerry Rice</p>
+</blockquote>
+
+<p>Translated from: <a href="http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/" rel="nofollow">Demystifying JavaScript Variable Scope and Hoisting</a></p>
+
+<p>每個構建都需要建立在強大的基礎建設上，而在 JavaScript 中了解 variable 的 scope 是建立堅固基礎的關鍵之一。本文將解釋 JavaScript 的 scope 界定系統是如何 work 的。</p>
+
+<h3>Variable Scope</h3>
+
+<p>想要有效地使用 JavaScript 工作，你必需了解的第一件事情就是 variable scope 的概念，一個 variable scope 是由 variable declaration 的位置所控制，以及定義程式裡有哪些部份的特定變數是可以被存取的。</p>
+
+<p>Scoping rule 從一個語言到另一個語言各不相同。 JavaScript有兩個 scope - <code>global</code> 和 <code>local</code>，一個 function 外 declare 任何變數都屬於 global，因此在程式的任何地方都能進行存取。每個 function 都有自己的 scope，然而在該 function 內 declare  的任何 variable 只有該 function 以及底下 nested function 可以存取。因為在 JavaScript 中 local scope 由 function 創建的，它也被稱為 <em>function scope</em>。當我們把一個 function 放到另一個 function 裡面，就創造了 nested function。</p>
+
+<p>目前，JavaScript 與其他大部分語言不同的是，並不支援 block level scoping，這意味著 declare 一個 variable 在 block 結構裡 像是 for loop，並不會限制該 variable 只能在 loop 內被存取。取而代之的是， variable 是整個 function 都能被存取。而在 ECMAScript6 透過 let 支援 block level scoping。</p>
+
+<p>為了把概念說清楚，我們用一個簡單的比喻。在我們的世界裡各國都有邊界，這些邊界內的一切都屬於國家的範圍，在每一個國家有很多城市，他們每個人都有自己的城市的範圍。這些國家和城市就像 JavaScript 函數 - 他們有他們的 local scope。而這同樣也適用於大陸。儘管它們版圖很大，它們也可以被定義為 locales。在另一方面，海洋不能被定義為具有 local scope，因為它實際上包了所有的 local 對象 - 大陸，國家和城市 - 因此，它的範圍被定義為全球性的。接下來讓我們想像這個例子：</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">locales</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">europe</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>          <span class="c1">// The Europe continent's local scope</span>
+    <span class="kd">var</span> <span class="nx">myFriend</span> <span class="o">=</span> <span class="s2">"Monique"</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">france</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>   <span class="c1">// The France country's local scope</span>
+      <span class="kd">var</span> <span class="nx">paris</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  <span class="c1">// The Paris city's local scope</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myFriend</span><span class="p">);</span>
+      <span class="p">};</span>
+
+      <span class="nx">paris</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="nx">france</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">locales</span><span class="p">.</span><span class="nx">europe</span><span class="p">();</span>
+</code></pre>
+
+<p><a href="http://jsbin.com/lewufuroqi/1/edit?js,console,output" rel="nofollow">Try out the example in JS Bin</a></p>
+
+<p>現在我們瞭解了 local 和 global 的範圍，以及它們是如何被創建，接下來將要解釋 JavaScript 是如何使用它們來找到特定的 variable。</p>
+
+<p>回到剛剛的例子，假設我想找到我的一個朋友，她的名字是 Monique，我知道她住在巴黎，所以我從那裡開始我的搜索。當我找不到她在巴黎，我去一個級別，擴大我在所有法國搜索。但同樣，她是不存在。接下來，我會通過另一個層面再次擴大我的搜索。最後，我發現她在意大利，這是在歐洲的 local scope。</p>
+
+<p>在前面的例子中我的朋友 Monique 由 <code>myFriend</code> 表示。在最後一行，我們 invoke <code>europe()</code> function，該 function invoke <code>france()</code> ，最後在 <code>paris()</code> function 被 invoke 時，開始搜索。 JavaScript interpreter 從當前執行的範圍，直到找該 variable。如果在任何範圍都沒找到 variable，則會拋出一個 Exception。</p>
+
+<p>這種類行的查找稱為 <a href="https://en.wikipedia.org/wiki/Scope_%28computer_science%29#Lexical_scoping" rel="nofollow">lexical (static) scope</a>。程式的靜態結構決定 variable 範圍。一個 variable 的範圍是由它在 source code 的位置以及 nested function 在其外部範圍 declare 的 variavble 所定義。無論 function 是哪裡被呼叫，它的 lexical scope 只 depend 這個 function 是在哪裡被 declare。</p>
+
+<p>在 JavaScript 中，具有相同名稱的 variable 可以在 nested scope 的多層被指定。在這種情況下，local variable 會比 global variable 獲得優先權。如果 declare 一個 local variable，以及具有相同名稱的 global variable，當在 function 內部使用它，則 local variable 將優先考慮。這種類型的行為稱為 <em>shadowing</em>。</p>
+
+<p>JavaScript interpreter 就是在這樣的機制下，試圖找到一個特定的 variable，它開始於內層 scope ，並繼續下去，直到找到第一個匹配，無論外層是否有一樣名字的其他變量。讓我們看一個例子：</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="s2">"I'm global"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">testScope</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="s2">"I'm local"</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">test</span><span class="p">);</span>     
+<span class="p">}</span>
+
+<span class="nx">testScope</span><span class="p">();</span>           <span class="c1">// output: I'm local</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">);</span>     <span class="c1">// output: I'm global</span>
+</code></pre>
+
+<p><a href="http://jsbin.com/lewufuroqi/2/edit?js,console,output" rel="nofollow">Try out the example in JS Bin</a></p>
+
+<p>如同上面看到的，即使 local variable 和 global variable 的名稱相同，在執行 <code>testScope()</code> 也不會將他 override，只不過這也不完全是這樣。</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="s2">"I'm global"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">testScope</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">test</span> <span class="o">=</span> <span class="s2">"I'm local"</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">);</span>     
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">);</span>     <span class="c1">// output: I'm global</span>
+
+<span class="nx">testScope</span><span class="p">();</span>           <span class="c1">// output: I'm local</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">);</span>     <span class="c1">// output: I'm local (the global variable is reassigned)</span>
+</code></pre>
+
+<p><a href="jsbin.com/lewufuroqi/3/edit?js,console,output" rel="nofollow">Try out the example in JS Bin</a></p>
+
+<p>這次雖然名字相同，但是原本的值卻被覆蓋掉了。當我們去執行 <code>testScope()</code> 將裡面的 global variable 重新賦值了，這是因為如果在 local variable 沒有以 <code>var</code> 這個 key word 來 declare 的話，就變成 global variable 了。用 <code>var</code>  key word 來 declare 任何 variable 是一個 local variable 被認為是 best practice。</p>
+
+<p>Note – 上述的例子，如果在 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode" rel="nofollow">strict mode</a>, 會出現 error, 如果你在 assign 值給 variable 沒有事先 declare 的話。</p>
+
+<h3>Hoisting</h3>
+
+<p>JavaScript interpreter 在背後執行很多事情，其中一個被稱為 <code>Hoist</code>。如果你不知道這個“隱藏”的行為，可能會造成很多混亂。思考 JavaScript variable 的行為的最好辦法就是始終想像他們是由兩部分組成：一個 declaration 和一個 assignment：</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">state</span><span class="p">;</span>             <span class="c1">// variable declaration</span>
+<span class="nx">state</span> <span class="o">=</span> <span class="s2">"ready"</span><span class="p">;</span>       <span class="c1">// variable definition (assignment)</span>
+
+<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="s2">"ready"</span><span class="p">;</span>   <span class="c1">// declaration plus definition</span>
+</code></pre>
+
+<p>在上面的 code，我們首先 declare variable <code>state</code>，然後我們 assign 值 <code>ready</code> 。code 的最後一行，我們看到，這兩個步驟可以結合起來。不過，你需要牢記的是，儘管它們看起來像一個語句，在實踐中，JavaScript engine 將是作為兩個單獨的語句，就像在 example 中的前兩行。</p>
+
+<p>我們已經知道，一個 scope 內 declare 的任何 variable 都屬於該 scope。但是，我們還不知道的是，不管 local variable 是在哪個特定的範圍內被 declare ，所有的 variable declare 都會移到其 scope 的頂部（global 或 local）。這就是所謂的 <code>Hoist</code>，作為 variable declaration  hoist 到的 scope 的頂部。請注意，僅有 declaration 被 hoist 。任何 assignment 都會被留在原地。讓我們看一個例子：</p>
+<pre class="highlight javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>   <span class="c1">// output: undefined</span>
+<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="s2">"ready"</span><span class="p">;</span>
+</code></pre>
+
+<p>正如你看到，當我們 log 出 state 的值，輸出是 <code>undefined</code>，因為我們在實際賦值之前引用它。你可能會預期會拋出 <code>ReferenceError</code> 因為 <code>state</code> 還沒有被 declare。但你不知道的是，該 variable 背後已經做了 declaration。下面是 code 將藉由通過 JavaScript engine 來解釋：</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">state</span><span class="p">;</span>           <span class="c1">// moved to the top</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>   
+<span class="nx">state</span> <span class="o">=</span> <span class="s2">"ready"</span><span class="p">;</span>     <span class="c1">// left in place</span>
+</code></pre>
+
+<p>Hoist 也會影響 function 的 declaration。但在此之前，我們看一些例子，讓我們先了解 function declaration 和 function expression 之間的差異。</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">showState</span><span class="p">()</span> <span class="p">{}</span>          <span class="c1">// function declaration</span>
+<span class="kd">var</span> <span class="nx">showState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>   <span class="c1">// function expression</span>
+</code></pre>
+
+<p>區分 function expression 和 function declaration 最簡單的方法是檢查語句中 <code>function</code> 的位置。如果 function 是在 statement 的最前面，那麼它就是一個 function declaration。否則，它是一個 function expression。</p>
+
+<p>function declaration 會被完全 hoist。這意味著整個 function 的 body 被移動到頂部。這使你可以在 declaration 之前調用一個 function ：</p>
+<pre class="highlight javascript"><code><span class="nx">showState</span><span class="p">();</span>            <span class="c1">// output: Ready</span>
+
+<span class="kd">function</span> <span class="nx">showState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">showState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Idle"</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>前面的 code 之所以能 work 是因為 JavaScript engine 移動 <code>showState()</code> function 的 declaration，其所有的內容，範圍的開始。該 code 是這樣被解譯：</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">showState</span><span class="p">()</span> <span class="p">{</span>     <span class="c1">// moved to the top (function declaration)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">showState</span><span class="p">;</span>            <span class="c1">// moved to the top (variable declaration)</span>
+
+<span class="nx">showState</span><span class="p">();</span>  
+
+<span class="nx">showState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>   <span class="c1">// left in place (variable assignment)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Idle"</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>你可能已經注意到了，只能在 function declaration hoist ，但 function expression 不是。當一個 function 被分配給一個 variable，和 variable hoist 規則一樣（僅 declaration 被移動，而 assignment 留在原處）。</p>
+
+<p>在上面的 code 中我們看到 function declaration 優先於 variable declaration。但是在接下來的例子中，我們會看到，當我們有 function declaration 與 variable declaration，後者優先。</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">showState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Idle"</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">showState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">showState</span><span class="p">();</span>            <span class="c1">// output: Idle</span>
+</code></pre>
+
+<p>這一次，我們在 code 的最後一行呼叫 <code>showState()</code> 改變了這個狀況。現在，我們得到了 <code>Idle</code>。下面是它的 JavaScript interpreter 解譯：</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">showState</span><span class="p">(){</span>        <span class="c1">// moved to the top (function declaration)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ready"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">showState</span><span class="p">;</span>               <span class="c1">// moved to the top (variable declaration)</span>
+
+<span class="nx">showState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>      <span class="c1">// left in place (variable assignment)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Idle"</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">showState</span><span class="p">();</span>
+</code></pre>
+
+<p>要記住的事情</p>
+
+<ul>
+<li>所有 declaration，function 和 variable，在執行 code 的任何部分之前被 hoist 到含有範圍的頂部。</li>
+<li>function 首先 hoist，然後 variable。</li>
+<li>function declaration 優先於 variable declaration，但不蓋過 variable assignment。</li>
+</ul>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Demystifying Javascript Variable Scope Hoisting&amp;amp;url=http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/03/18/back-to-basics-javascript-hoisting/'>
+<section class='post'>
+<h2>Back to Basics Javascript Hoisting</h2>
+<p>You may not control all the events that happen to you, but you can decide not to be reduced&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2016/03/18/demystifying-javascript-closures-callbacks-iifes/'>
+<section class='post'>
+<h2>Demystifying Javascript Closures Callbacks IIFEs</h2>
+<p>Don&rsquo;t let the noise of others&rsquo; opinions drown out your own inner voice. Have the courage to follow your&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

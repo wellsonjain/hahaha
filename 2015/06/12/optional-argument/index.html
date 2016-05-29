@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Optional Argument</title>
+<meta content=' Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale Optional Argumen...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Optional Argument' property='og:title'>
+<meta content=' Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale Optional Argumen...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/06/12/optional-argument/' property='og:url'>
+<meta content='2015-06-12' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Optional Argument' name='twitter:title'>
+<meta content=' Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale Optional Argumen...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/06/12/optional-argument/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Optional Argument</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-06-12'>
+12 June 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale</p>
+</blockquote>
+
+<h4>Optional Arguments</h4>
+
+<p>當我們要傳入 method 的 argument 可能不是每個都是必要的，可能有些事是情況傳入的，如果說定義死的話就是必定需要傳入的，那在呼叫 method 的狀況可能是這樣，<code>method(arg1, nil, nil)</code>，這樣會對於使用上不是很大的彈性，所以我們可以先行預設給值，像是這樣，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">arg3</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
+</code></pre>
+
+<p>這樣在呼叫這個方法的時候，其實就可以不必放進去多餘的 argument，<code>method(arg1)</code>，這樣就可以了，但是這樣也並不是完全解決問題，如果一個 method 同時需要傳入多個 arguments，像是 <code>method(arg1, 234, 0.345, 333344)</code>，不過當然實務上可能不會有這麼極端的狀況 (畢竟這樣寫很不專業啊)，但是這樣畢竟可讀性和彈性都很低，所以再更好一點的做法就是傳入 Hash，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">master_recipe</span><span class="p">(</span><span class="n">chef</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+  <span class="n">recipe</span>             <span class="o">=</span> <span class="no">Recipe</span><span class="p">.</span><span class="nf">new</span>
+  <span class="n">recipe</span><span class="p">.</span><span class="nf">chef</span>        <span class="o">=</span> <span class="n">chef</span>
+  <span class="n">recipe</span><span class="p">.</span><span class="nf">ingredients</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="ss">:ingredients</span><span class="p">]</span>
+  <span class="n">recipe</span><span class="p">.</span><span class="nf">season</span>      <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="ss">:seation</span><span class="p">]</span>
+  <span class="n">recipe</span><span class="p">.</span><span class="nf">comment_id</span>  <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="ss">:comment_id</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這樣在傳入 arguments 時，就可以藉由 hash key 來提高可讀性，甚至可以不用擔心參數傳入的先後，而且後續再擴充也很方便，這應該是 method 設計上是比較優雅的做法。</p>
+
+<p>然而在 ruby 2.0 版本以上提供了更加牛逼的方法，你可以使用 <code>**options</code> 定義 argument，就會傳入 Hash
+，如果是 <code>*options</code> 就會傳入一個 Array。</p>
+
+<h4>Classes</h4>
+
+<p>講完 method 的定義我們再往上講一個層級，也就是 Class，讓我們更方便的管理我們物件的行為，有時候有些屬性我們設定為可以被使用者讀寫 (像是使用者姓名) 但是有時候我們又希望可以讓使用者唯讀就可以，在這裡就要介紹一下 <code>attr_accessor</code>，這個 method 可以直接為屬性產生 setter 和 getter，</p>
+<pre class="highlight ruby"><code><span class="kp">attr_accessor</span> <span class="ss">:status</span>
+
+<span class="c1"># -&gt;</span>
+<span class="c1"># setter</span>
+<span class="k">def</span> <span class="nf">status</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+  <span class="vi">@status</span> <span class="o">=</span> <span class="n">value</span>
+<span class="k">end</span>
+<span class="c1"># getter</span>
+<span class="k">def</span> <span class="nf">status</span>
+  <span class="vi">@status</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>所以如果在某些的 attribute 我們要做到限制的話，就可以使用 <code>attr_reader</code>，就會限制到只有 getter，如果說要使用到 setter 的話就會發生錯誤。</p>
+
+<p>最後來提一下 Self，如果我們在 method 裡面做了 <code>self.status</code> 代表的意思就是 current 由該 class new 出來的 instance 的 status，但是如果是像是定義 <code>def self.method</code>，那就是 class method 必須由該 class 才能呼叫。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Optional Argument&amp;amp;url=http://wellsonjain.github.io/2015/06/12/optional-argument/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/06/12/optional-argument/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/06/12/optional-argument/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/06/11/control-flow/'>
+<section class='post'>
+<h2>Control Flow</h2>
+<p>The secret of change is to focus all of your energy, not on fighting the old but on building&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/06/17/class-concept/'>
+<section class='post'>
+<h2>Class Concept</h2>
+<p>People will forget what you said, people will forget what you did, but people will never forget how you&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

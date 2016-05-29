@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Control Flow</title>
+<meta content=' The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown Rails 要學得好，Ruby 才是 Rails 開發者的根基...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Control Flow' property='og:title'>
+<meta content=' The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown Rails 要學得好，Ruby 才是 Rails 開發者的根基...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/06/11/control-flow/' property='og:url'>
+<meta content='2015-06-11' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Control Flow' name='twitter:title'>
+<meta content=' The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown Rails 要學得好，Ruby 才是 Rails 開發者的根基...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/06/11/control-flow/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Control Flow</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-06-11'>
+11 June 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown</p>
+</blockquote>
+
+<p>Rails 要學得好，Ruby 才是 Rails 開發者的根基，而且其實有很多用 Ruby 寫成的應用也常常讓我覺得很有趣，只是有很多比較深入的用法如果平常沒有接觸，有些技巧性的寫法就會覺得實在跟魔法沒兩樣，但是又很難參透其中的道理，所以今天要來談的就是比較深入一點的 Ruby 奇淫技巧。</p>
+
+<h4>Control flow</h4>
+
+<p>先來點簡單的暖身一下，大家知道在 ruby 的 Control flow (if-else) 裏頭 <code>0</code>, <code>&quot;&quot;</code>, <code>[]</code> 這三個我們以為被當作 false 的 condition 事實上都是 true，<code>nil</code> 才是 false，於是乎像是，</p>
+<pre class="highlight ruby"><code><span class="k">if</span> <span class="n">not</span> <span class="nb">name</span><span class="p">.</span><span class="nf">length</span>
+  <span class="nb">warn</span> <span class="s2">"Name is required"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>裏頭的警告訊息是不會發生的，而且事實上在判斷是裡面也只有一個操作，其實可以寫得更精簡，</p>
+<pre class="highlight ruby"><code><span class="nb">warn</span> <span class="s2">"Name is too short"</span> <span class="k">if</span> <span class="n">not</span> <span class="nb">name</span> <span class="o">&gt;</span> <span class="mi">8</span>
+</code></pre>
+
+<p>同樣在判斷式的精簡上面，如果條件允許，也可以把兩個 if 用 &amp;&amp; 合併起來</p>
+<pre class="highlight ruby"><code><span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="p">.</span><span class="nf">sign_in?</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
+</code></pre>
+
+<p>這樣當第一個為 false 就不會再去做第二個判斷處理。</p>
+
+<h4>Short Circuit</h4>
+
+<p>接下來我們再更深入的討論 controll flow，其中的 <code>||</code> 代表邏輯閘中的 OR，在 ruby 的邏輯判斷中，只要有一者為真就為真，如果賦值的話，前者有值則 assign 前者的值，如無則 assign 後者的值，用解釋好像有點饒口，不過這樣就可以做一些很棒的設計，</p>
+<pre class="highlight ruby"><code><span class="c1"># 如果這個 chef.recipe 為空，則回傳給他一個空陣列</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">chef</span><span class="p">.</span><span class="nf">recipe</span> <span class="o">||</span> <span class="p">[]</span>
+</code></pre>
+
+<p>或者可以給予初始值，</p>
+<pre class="highlight ruby"><code><span class="c1"># 這樣寫雖然很易讀，但是這就是要給予一個預設值，我們可以寫得更優雅</span>
+<span class="n">options</span><span class="p">[</span><span class="ss">:country</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'us'</span> <span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="ss">:country</span><span class="p">].</span><span class="nf">nil?</span>
+<span class="n">options</span><span class="p">[</span><span class="ss">:privacy</span><span class="p">]</span> <span class="o">=</span> <span class="kp">true</span> <span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="ss">:privacy</span><span class="p">].</span><span class="nf">nil?</span>
+<span class="n">options</span><span class="p">[</span><span class="ss">:geotag</span><span class="p">]</span>  <span class="o">=</span> <span class="kp">true</span> <span class="k">if</span> <span class="n">options</span><span class="p">[</span><span class="ss">:geotag</span><span class="p">].</span><span class="nf">nil?</span>
+
+<span class="c1">########################################################</span>
+
+<span class="n">options</span><span class="p">[</span><span class="ss">:country</span><span class="p">]</span> <span class="o">||=</span> <span class="s1">'us'</span>
+<span class="n">options</span><span class="p">[</span><span class="ss">:privacy</span><span class="p">]</span> <span class="o">||=</span> <span class="kp">true</span>
+<span class="n">options</span><span class="p">[</span><span class="ss">:geotag</span><span class="p">]</span>  <span class="o">||=</span> <span class="kp">true</span>
+</code></pre>
+
+<p><code>||=</code> 就像是 <code>+=</code> 一樣，<code>a = a || b</code> 的意思，剛開始看的時候還想說這到底為什麼可以這樣寫，聯想力不夠有點哀傷</p>
+
+<h4>Condition Return Value</h4>
+
+<p>這也是有點神奇的語法，就是 assign if statement 的值，</p>
+<pre class="highlight ruby"><code><span class="n">option</span><span class="p">[</span><span class="ss">:path</span><span class="p">]</span> <span class="o">=</span> <span class="k">if</span> <span class="n">last_name</span>
+  <span class="s2">"/</span><span class="si">#{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">list_name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">else</span>
+  <span class="s2">"/</span><span class="si">#{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>其實這是因為，ruby 會 return 最後一行的值，所以在最後一行 assign 值再回傳其實沒有必要，所以也可以在 method 裡面寫這樣，其實不只是 if statement，像是 case when 這種流程控制都是相同的道理，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">list_url</span><span class="p">(</span><span class="n">user_name</span><span class="p">,</span> <span class="n">list_name</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">list_name</span>
+    <span class="s2">"https://twitter.com/</span><span class="si">#{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">list_name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">else</span>
+    <span class="s2">"https://twitter.com/</span><span class="si">#{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Control Flow&amp;amp;url=http://wellsonjain.github.io/2015/06/11/control-flow/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/06/11/control-flow/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/06/11/control-flow/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/06/04/etag-in-rails4/'>
+<section class='post'>
+<h2>Etag in Rails4</h2>
+<p>Start where you are. Use what you can. Do what you can. - Arthur Ashe ETag 接下來要介紹的是遠通的 ETag，ETag 的目的是用來辨識當前的頁面是否有所改變，流程大概是這樣，&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/06/12/optional-argument/'>
+<section class='post'>
+<h2>Optional Argument</h2>
+<p>Never give up on a dream just because of the time it will take to accomplish it. The time&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

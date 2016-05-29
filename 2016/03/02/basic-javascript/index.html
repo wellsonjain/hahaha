@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Basic Javascript</title>
+<meta content=' The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes The basic function structure Here is bas...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Basic Javascript' property='og:title'>
+<meta content=' The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes The basic function structure Here is bas...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/03/02/basic-javascript/' property='og:url'>
+<meta content='2016-03-02' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Basic Javascript' name='twitter:title'>
+<meta content=' The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes The basic function structure Here is bas...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/03/02/basic-javascript/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Basic Javascript</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-03-02'>
+02 March 2016
+</time>
+on <a href='/tag/javascript/'>javascript</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes
+The basic function structure</p>
+</blockquote>
+
+<p>Here is basic function structure:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">sumOfCubes</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do some stuff</span>
+
+  <span class="k">return</span> <span class="c1">// something (or nothing) from the process</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Building function within code execution rather than at program load time</p>
+<pre class="highlight javascript"><code><span class="c1">// Build in memory immediately when the program loads</span>
+<span class="kd">function</span> <span class="nx">diffOfSquare</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="o">*</span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Function builds ONLY when this line of code is reached</span>
+<span class="kd">var</span> <span class="nx">diff</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">diffOfSquare</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="o">*</span><span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>Since we used the variable name, the function name is optional</p>
+<pre class="highlight javascript"><code><span class="c1">// It's called Anonymous functions</span>
+<span class="nx">diff</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="o">*</span><span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+
+<p>And a variable that holds a function can be passed into other functions and we could declare flexibility in choosing which functionality to build</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">greeting</span><span class="p">;</span>
+<span class="c1">// ...Some code set newCustomer to true or false...</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">newCustomer</span><span class="p">){</span>
+  <span class="nx">greeting</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Thanks for visiting the Badlands!\n"</span> <span class="o">+</span>
+        <span class="s2">"We hope your stay is...better than most."</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">greeting</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Welcome back to the Badlands!\n"</span> <span class="o">+</span>
+      <span class="s2">"Guess they aren't so bad huh?"</span><span class="p">);</span>  
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">closeTerminal</span><span class="p">(</span><span class="nx">greeting</span><span class="p">);</span>
+
+<span class="c1">// greeting will send into function as an argueemnt, and will be called when it's executed</span>
+<span class="kd">function</span> <span class="nx">closeTermial</span><span class="p">(</span> <span class="nx">message</span> <span class="p">){</span>
+  <span class="p">...</span>
+  <span class="nx">message</span><span class="p">();</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="c1">// You can checkout the greeting function with console.log()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span><span class="p">)</span>
+
+<span class="c1">// it will return the current state of the function, to know your process.</span>
+
+</code></pre>
+
+<p>Function expression with array and map</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">arrayCell</span><span class="p">)</span> <span class="p">{</span>
+                              <span class="k">return</span> <span class="nx">arrayCell</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+                            <span class="p">}</span> <span class="p">);</span>
+
+<span class="c1">// Short functions are often built in one line for clarity and simplicity.</span>
+<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">arrayCell</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">arrayCell</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="p">}</span> <span class="p">);</span>
+</code></pre>
+
+<p>Besides, the function can be argument, we can also use function as return value. Something like this</p>
+<pre class="highlight javascript"><code><span class="c1">// Return function from a function</span>
+<span class="kd">function</span> <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="nx">itsme</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>For example, now we want to build a ticket system which have an array as a queue for Fast Pass delivery</p>
+<pre class="highlight javascript"><code>
+<span class="kd">var</span> <span class="nx">parkRides</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="s2">"Birch Bumpers"</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="s2">"Pines Plunge"</span><span class="p">,</span> <span class="mi">55</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="s2">"Cedar Coaster"</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="s2">"Ferris Wheel of Firs"</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>  <span class="p">];</span>
+<span class="kd">var</span> <span class="nx">fastPassQueue</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"Cedar Coaster"</span><span class="p">,</span> <span class="s2">"Pines Plunge"</span><span class="p">,</span> <span class="s2">"Birch Bumpers"</span><span class="p">,</span> <span class="s2">"Pines Plunge"</span> <span class="p">];</span>
+</code></pre>
+
+<p>In array, we can use <code>push()</code> to add cell to the back of array, and use <code>shift()</code> will return the cell that it removes from the front of the array.</p>
+
+<p>And here is our ticket function,</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">buildTicket</span> <span class="p">(</span><span class="nx">allRides</span><span class="p">,</span> <span class="nx">passRides</span><span class="p">,</span> <span class="nx">pick</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">passRides</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nx">pick</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nx">allRides</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"Quick! You've got a Fast Pass to"</span> <span class="o">+</span> <span class="nx">pass</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">)</span> <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">allRides</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">allRides</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nx">pick</span><span class="p">){</span>
+        <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"A ticket is printing for "</span> <span class="o">+</span> <span class="nx">pick</span> <span class="o">+</span> <span class="s2">"!\n"</span> <span class="o">+</span> <span class="s2">"Your wait time is about "</span> <span class="o">+</span> <span class="nx">allRides</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" minutes."</span><span class="p">);</span> <span class="p">};</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">wantsRide</span> <span class="o">=</span> <span class="s2">"Birch Bumpers"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">ticket</span> <span class="o">=</span> <span class="nx">buildTicket</span><span class="p">(</span> <span class="nx">parkRides</span><span class="p">,</span> <span class="nx">fastPassQueue</span><span class="p">,</span> <span class="nx">wantsRide</span> <span class="p">);</span>
+<span class="nx">ticket</span><span class="p">();</span> <span class="c1">// To call the function contained in the ticket variable, we need a set of parentheses and a semicolon.</span>
+</code></pre>
+
+<p>We will get the message <code>A ticket is printing for Birch Bumpers! Your wait time is about 40 minutes.</code></p>
+
+<p>But what if we remove the ticket and just call the buildTicket function? Turns out it will return the whole function expression. We need more to call if we want to use an immediately-invoked function</p>
+<pre class="highlight javascript"><code><span class="nx">buildTicket</span><span class="p">(</span> <span class="nx">parkRides</span><span class="p">,</span> <span class="nx">fastPassQueue</span><span class="p">,</span> <span class="nx">wantsRide</span> <span class="p">)();</span>
+<span class="c1">// We give parameter parentheses and a semicolon</span>
+<span class="c1">//   gives the instruction to execute the function!</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Basic Javascript&amp;amp;url=http://wellsonjain.github.io/2016/03/02/basic-javascript/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/03/02/basic-javascript/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/03/02/basic-javascript/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/11/17/ruby5-episode-598/'>
+<section class='post'>
+<h2>Ruby5 Episode 598</h2>
+<p>It&rsquo;s time to start living the life you&rsquo;ve only imagined. - Unknown 原文出處 Episode #598 How Ruby Interprets and&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2016/03/02/basic-javascipt-closure/'>
+<section class='post'>
+<h2>Basic Javascipt Closure</h2>
+<p>Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh We mentioned&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

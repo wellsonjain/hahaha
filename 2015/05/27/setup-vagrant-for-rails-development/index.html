@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Setup Vagrant for Rails Development</title>
+<meta content=' The price of greatness is responsibility. - Winston Churchill Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 Chef，進一步了解 Opsworks，這是個一連串的學習鏈，首先今天就來記錄一下我架...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Setup Vagrant for Rails Development' property='og:title'>
+<meta content=' The price of greatness is responsibility. - Winston Churchill Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 Chef，進一步了解 Opsworks，這是個一連串的學習鏈，首先今天就來記錄一下我架...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/' property='og:url'>
+<meta content='2015-05-27' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Setup Vagrant for Rails Development' name='twitter:title'>
+<meta content=' The price of greatness is responsibility. - Winston Churchill Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 Chef，進一步了解 Opsworks，這是個一連串的學習鏈，首先今天就來記錄一下我架...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Setup Vagrant for Rails Development</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-27'>
+27 May 2015
+</time>
+on <a href='/tag/devops/'>devops</a>, <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>The price of greatness is responsibility. - Winston Churchill</p>
+</blockquote>
+
+<p><a href="http://www.vagrantup.com/" rel="nofollow">Vagrant</a> 一直是我很想好好搞懂的東西，因為搞懂了這個才能接著繼續了解 <a href="https://www.chef.io/chef/" rel="nofollow">Chef</a>，進一步了解 <a href="http://aws.amazon.com/opsworks/" rel="nofollow">Opsworks</a>，這是個一連串的學習鏈，首先今天就來記錄一下我架設 Vagrant 的過程。</p>
+
+<p>首先先來介紹一下 Vagrant 是什麼，Vagrant 是一個可以在本機的 Virtual Mechine 架設另一個開發環境，簡單來說就是一個平行宇宙的精神時光屋，所以只要 OS 版本以及其他相關 package 的版本一致，那麼就算一起工作的夥伴，每個人的電腦版本內容不同，只要在 Virtual Machine 上都可以模擬出相同的環境。</p>
+
+<blockquote>
+<p><strong>講個秘訣</strong>：在開發的過程當中要力求環境版本相同以減少溝通成本，不然環境十個人十個不同你以為在測相容性測試嗎?</p>
+</blockquote>
+
+<p>至於 Chef 則是在我們架設精神時光屋的時候，可能會需要的套件，因為一個 Vagrant 架起來可能裡面什麼套件都沒有相當陽春，所以 Chef 在這時候就起了一個相當牛逼的功效。</p>
+
+<h4>Setting Up Vagrant</h4>
+
+<p><em>確保電腦有 2G 的 &ldquo;Free&rdquo; RAM</em>，因為雖說是 run 在 Virtual Mechine 上，但是依然是會 run 一整個 OS，所以無論如何都是需要一些基本的硬體規格。</p>
+
+<p>首先要做的事情有兩個，</p>
+
+<ol>
+<li><a href="http://www.vagrantup.com/downloads.html" rel="nofollow">Install Vagrant</a></li>
+<li><a href="https://www.virtualbox.org/wiki/Downloads" rel="nofollow">Install VirtualBox</a></li>
+</ol>
+
+<p>VirtualBox 就是我們 run VM 的地方，安裝好上面的兩個軟體之後，接著我們要在 terminal 裡面做一些事情，</p>
+<pre class="highlight plaintext"><code>  $ vagrant plugin install vagrant-vbguest
+  $ vagrant plugin install vagrant-librarian-chef-nochef
+</code></pre>
+
+<p><code>vagrant-vbguest</code> 會自動的安裝 VirtualBox Guest Additions 在我們的 guest system。
+<code>vagrant-librarian-chef-nochef</code> 則是讓我們在啟動 vagrant 的時候可以也自動啟動 chef。</p>
+
+<p>上面兩件事情都做完之後，我們就在 terminal 中移動到我們的 rails 資料夾下，執行 <code>vagrant init</code> 來初始化 vagrant，然後再做 <code>touch Cheffile</code>，這就跟 Gemfile 一樣，我們在裡面註明我們需要哪些 package，然後我們要做的就是在 Cheffile 裡面放入下面的設定，</p>
+<pre class="highlight sql"><code><span class="n">site</span> <span class="nv">"http://community.opscode.com/api/v1"</span>
+
+<span class="n">cookbook</span> <span class="s1">'apt'</span>
+<span class="n">cookbook</span> <span class="s1">'build-essential'</span>
+<span class="n">cookbook</span> <span class="s1">'mysql'</span><span class="p">,</span> <span class="s1">'5.5.3'</span>
+<span class="n">cookbook</span> <span class="s1">'ruby_build'</span>
+<span class="n">cookbook</span> <span class="s1">'nodejs'</span>
+<span class="n">cookbook</span> <span class="s1">'rbenv'</span><span class="p">,</span> <span class="n">git</span><span class="p">:</span> <span class="s1">'https://github.com/aminin/chef-rbenv'</span>
+<span class="n">cookbook</span> <span class="s1">'vim'</span>
+</code></pre>
+
+<p>接著就是設定我們在初始化 vagrant 之後所生出來的 <code>Vagrantfile</code>，把下面的設定貼上去就好，不過如果你想了解細節的話，初始化的內容裡註解都寫得相當詳細，</p>
+<pre class="highlight ruby"><code><span class="c1"># -*- mode: ruby -*-</span>
+<span class="c1"># vi: set ft=ruby :</span>
+
+<span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">"2"</span>
+
+<span class="no">Vagrant</span><span class="p">.</span><span class="nf">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="c1"># Use Ubuntu 14.04 Trusty Tahr 64-bit as our operating system</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">box</span> <span class="o">=</span> <span class="s2">"ubuntu/trusty64"</span>
+
+  <span class="c1"># Configurate the virtual machine to use 2GB of RAM</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">provider</span> <span class="ss">:virtualbox</span> <span class="k">do</span> <span class="o">|</span><span class="n">vb</span><span class="o">|</span>
+    <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--memory"</span><span class="p">,</span> <span class="s2">"2048"</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Forward the Rails server default port to the host</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">network</span> <span class="ss">:forwarded_port</span><span class="p">,</span> <span class="ss">guest: </span><span class="mi">3000</span><span class="p">,</span> <span class="ss">host: </span><span class="mi">3000</span>
+
+  <span class="c1"># Use Chef Solo to provision our virtual machine</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">cookbooks_path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"cookbooks"</span><span class="p">,</span> <span class="s2">"site-cookbooks"</span><span class="p">]</span>
+
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"apt"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"nodejs"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"ruby_build"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"rbenv::user"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"rbenv::vagrant"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"vim"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"mysql::server"</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">add_recipe</span> <span class="s2">"mysql::client"</span>
+
+    <span class="c1"># Install Ruby 2.2.1 and Bundler</span>
+    <span class="c1"># Set an empty root password for MySQL to make things simple</span>
+    <span class="n">chef</span><span class="p">.</span><span class="nf">json</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">rbenv: </span><span class="p">{</span>
+        <span class="ss">user_installs: </span><span class="p">[{</span>
+          <span class="ss">user: </span><span class="s1">'vagrant'</span><span class="p">,</span>
+          <span class="ss">rubies: </span><span class="p">[</span><span class="s2">"2.2.1"</span><span class="p">],</span>
+          <span class="ss">global: </span><span class="s2">"2.2.1"</span><span class="p">,</span>
+          <span class="ss">gems: </span><span class="p">{</span>
+            <span class="s2">"2.2.1"</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="p">{</span> <span class="ss">name: </span><span class="s2">"bundler"</span> <span class="p">}</span>
+            <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">}]</span>
+      <span class="p">},</span>
+      <span class="ss">mysql: </span><span class="p">{</span>
+        <span class="ss">server_root_password: </span><span class="s1">''</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>接著就是啟動 vagrant，第一次的初始化因為要下載必要套件，所以可能會花上一段時間，結束之後我們只要用 vagrant ssh 就能進到我們的精神時光屋了！</p>
+<pre class="highlight shell"><code>  <span class="nv">$ </span>vagrant up
+
+  <span class="c"># 經過漫長的等待...</span>
+
+  <span class="nv">$ </span>vagrant ssh
+</code></pre>
+
+<p>裏頭的狀況就跟我們剛把一個專案從 remote repo 拉下來一樣，還是得要做 bundle install 以及 migration，然後一個在獨立的環境的獨立 rails app 就這樣完成了。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Setup Vagrant for Rails Development&amp;amp;url=http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/27/setup-vagrant-for-rails-development/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/27/scope-in-rails4/'>
+<section class='post'>
+<h2>Scope in Rails4</h2>
+<p>If you don&rsquo;t like where you are, change it. You&rsquo;re not a tree. - Jim Rohn 這幾次在寫 Code School&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/30/strong-parameter/'>
+<section class='post'>
+<h2>Strong Parameter</h2>
+<p>One man or woman with courage is a majority. - Andrew Jackson Strong Parameters Stong parameters 是在 rails4 關注比較大的更新，在一般&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

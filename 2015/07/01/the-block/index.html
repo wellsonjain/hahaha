@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: The Block</title>
+<meta content=' The future depends on what we do in the present. - Mahatma Gandhi 在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block Block ...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='The Block' property='og:title'>
+<meta content=' The future depends on what we do in the present. - Mahatma Gandhi 在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block Block ...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/01/the-block/' property='og:url'>
+<meta content='2015-07-01' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='The Block' name='twitter:title'>
+<meta content=' The future depends on what we do in the present. - Mahatma Gandhi 在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block Block ...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/01/the-block/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>The Block</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-01'>
+01 July 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>The future depends on what we do in the present. - Mahatma Gandhi</p>
+</blockquote>
+
+<p>在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block</p>
+
+<h4>Block</h4>
+
+<p>在 Ruby 的語法中有個非常常用的方法 <code>each</code>，</p>
+<pre class="highlight ruby"><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Hello'</span><span class="p">,</span> <span class="s1">'world'</span><span class="p">,</span> <span class="s1">'I am'</span><span class="p">,</span> <span class="s1">'Wellson'</span><span class="p">]</span>
+<span class="n">words</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">word</span><span class="o">|</span>
+  <span class="n">backward_word</span> <span class="o">=</span> <span class="n">word</span><span class="p">.</span><span class="nf">reverse</span>
+  <span class="nb">puts</span> <span class="n">backward_word</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>在 do &hellip; end 之間就是一個 block，但是有時候也會有使用大括號 (curly braces)，那這兩者是否有差異呢？事實上是有的，在龍哥有一篇討論 <a href="http://blog.eddie.com.tw/2011/06/03/do-end-vs-braces/" rel="nofollow">&ldquo;Do..End v.s Braces&rdquo;</a>，原來這兩者之間有著優先權的差異，大括號的優先權比較高，也就是說，可能 block 內還沒執行完，就已經先被優先權較高的給傳值出去了，所以如果說最後會回傳值的話，最好是使用大括號，其他的情況下兩者可以視為等價。</p>
+
+<p>有時候 block 會配合 yield 一起使用，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">call_this_block_twice</span>
+  <span class="k">yield</span>
+  <span class="k">yield</span>
+<span class="k">end</span>
+
+<span class="c1">################################</span>
+
+<span class="n">call_this_block_twice</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"wellsonjain"</span><span class="p">}</span>
+</code></pre>
+
+<p>在這個 method 中，我們呼叫他時同時傳入一個 block 為參數，而 yield 就會去執行我們在 block 裡面定義的程序，接著再做一點變形，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">call_this_block</span>
+  <span class="k">yield</span> <span class="s2">"wellsonjain"</span>
+<span class="k">end</span>
+
+<span class="c1">################################</span>
+
+<span class="n">call_this_block</span> <span class="p">{</span> <span class="o">|</span><span class="n">myarg</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">myarg</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}</span>  <span class="c1"># =&gt; "WELLSONJAIN"</span>
+</code></pre>
+
+<p>在上面這個例子裡，yiels 去執行時，也把跟在後頭參數一起帶進去執行，接下來再看一個例子，除了帶了參數以外，再讓他回傳值回來，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">call_this_block</span>
+  <span class="n">block_result</span> <span class="o">=</span> <span class="k">yield</span> <span class="s2">"wellsonjan"</span>
+  <span class="nb">puts</span> <span class="n">block_result</span>
+<span class="k">end</span>
+
+<span class="c1">################################</span>
+
+<span class="n">call_this_block</span> <span class="p">{</span> <span class="o">|</span><span class="n">arg</span><span class="o">|</span> <span class="n">arg</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}</span>  <span class="c1"># =&gt; "WELSONJAIN"</span>
+</code></pre>
+
+<p>最後來使用 block 和 yield 來嘗試簡化 code，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">update_status</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">tweet</span><span class="p">)</span>
+  <span class="k">begin</span>
+    <span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">post</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+  <span class="k">rescue</span> <span class="no">ConnectionError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+    <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+  <span class="k">ensure</span>
+    <span class="n">sign_out</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">################################</span>
+
+<span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">list_name</span><span class="p">)</span>
+  <span class="k">begin</span>
+    <span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">retrieve_list</span><span class="p">(</span><span class="n">list_name</span><span class="p">)</span>
+  <span class="k">rescue</span> <span class="no">ConnectionError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+    <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+  <span class="k">ensure</span>
+    <span class="n">sign_out</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>在這兩個 method 中我們可以清楚地看見只有一行最核心的 logic 是不同的，其他都在做相同的事情，這樣我們就可以把重複的地方給抽出來，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">while_signed_in_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">begin</span>
+    <span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">yield</span>
+  <span class="k">rescue</span> <span class="no">ConnectionError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+    <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+  <span class="k">ensure</span>
+    <span class="n">sign_out</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1">################################</span>
+
+<span class="n">while_signed_in_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">post</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1">################################</span>
+
+<span class="n">tweets</span> <span class="o">=</span> <span class="n">while_signed_in_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">retrieve_list</span><span class="p">(</span><span class="n">list_name</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們把核心的那段 code 讓他以一個 block 的方式隨著 method 一起帶入，然後再 yield 裡面去實現。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=The Block&amp;amp;url=http://wellsonjain.github.io/2015/07/01/the-block/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/01/the-block/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/01/the-block/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/06/28/module-concept/'>
+<section class='post'>
+<h2>Module Concept</h2>
+<p>Choose a job you love and you will never have to work a day of your life. - Confucius&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/03/model-and-poro/'>
+<section class='post'>
+<h2>Model and PORO</h2>
+<p>Decide that you want it more than you are afraid of it. - Unknown 今天要開始寫 Rails Pattern，在 Code School&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Domain Specific Language</title>
+<meta content=' Failure is just practice for success. - Unknown 終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Domain Specific Language' property='og:title'>
+<meta content=' Failure is just practice for success. - Unknown 終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/25/domain-specific-language/' property='og:url'>
+<meta content='2015-07-25' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Domain Specific Language' name='twitter:title'>
+<meta content=' Failure is just practice for success. - Unknown 終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/25/domain-specific-language/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Domain Specific Language</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-25'>
+25 July 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Failure is just practice for success. - Unknown</p>
+</blockquote>
+
+<p>終於 Code School 的 Ruby Bit 系列連載總算是要結束了，常常自己因為聽不懂內容而去找資料來整理自己的想法，但是這一段時間這樣看下來之後反而覺得這個系列文的標題真的太自以為是了 XD，這個程度應該只是入門到中階的程度而已，常常去翻 <a href="http://www.tenlong.com.tw/items/9866840220?item_id=44899" rel="nofollow">Ruby 程式設計</a>這本書，就很常覺得在裡面說提到的概念才是真正的精華所在，而精華也是最難以讀通的地方啊&hellip;不過在經過這些更為扎實的基礎學習之後，的確對於正確觀念的形成是有相當大的幫助的，我會繼續寫下去的!!!</p>
+
+<h4>DSL</h4>
+
+<p>在這系列的最後一篇要來講 Ruby 裡面最具威力的 DSL (Domain Specific Language)，那麼到底什麼是 DSL 呢？ DSL 是我們設計一個有限制的程式語言來更方便地去解決特定範圍的問題，讓我們可以以更加直觀的方法來實作出程式，DSL 又有分成 External DSL 和 Interal DSL，External DSL 指的是一個獨立的 DSL，像是 cucumber，至於 Internal DSL 則是以另一種程式語言實做出來的。</p>
+
+<p>接下來要實作以 Internal DSL 來當例子，</p>
+<pre class="highlight ruby"><code><span class="n">tweet_as</span> <span class="s1">'wellsonjain'</span> <span class="k">do</span>
+  <span class="n">mention</span> <span class="s1">'codeschool'</span>
+  <span class="n">text</span> <span class="s1">'I made a DSL!'</span>
+  <span class="n">hashtag</span> <span class="s1">'hooray'</span>
+  <span class="n">hashtag</span> <span class="s1">'ruby'</span>
+  <span class="n">link</span> <span class="s1">'http://codeschool.com'</span>
+<span class="k">end</span>
+
+<span class="c1"># @codeschool I made a DSL! #hooray #ruby http://codeschool.com</span>
+</code></pre>
+
+<p>為了要實踐出這樣的 DSL，就必須為此定義許多方法，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">tweet_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
+  <span class="vi">@tweet</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">yield</span>
+  <span class="n">submit_to_twitter</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">submit_to_twitter</span>
+  <span class="n">tweet_text</span> <span class="o">=</span> <span class="vi">@tweet</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet_text</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="n">str</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">mention</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="s2">"@"</span> <span class="o">+</span> <span class="n">user</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">hashtag</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="n">str</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">link</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="n">str</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>但是這樣很明顯不是個好的實作，因為所有的東西都是在 global 被實做出來，所以我們可以再進一步的去改進，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">tweet_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="k">yield</span> <span class="n">tweet</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">submit_to_twitter</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
+    <span class="vi">@tweet</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">submit_to_twitter</span>
+    <span class="n">tweet_text</span> <span class="o">=</span> <span class="vi">@tweet</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet_text</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="n">str</span>
+  <span class="k">end</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">end</span>
+
+<span class="n">tweet_as</span> <span class="s1">'wellsonjain'</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">mention</span> <span class="s1">'codeschool'</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">text</span> <span class="s1">'I made a DSL!'</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">hashtag</span> <span class="s1">'hooray'</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">hashtag</span> <span class="s1">'ruby'</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">link</span> <span class="s1">'http://codeschool.com'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>結果我們進一步的實作之後，竟然反而讓這個 DSL 變得更麻煩，這時候我們就可以使用 <code>instance_eval</code> 來幫助我們解決這個問題，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">tweet_as</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">instance_eval</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">submit_to_twitter</span>
+<span class="k">end</span>
+
+<span class="n">tweet_as</span> <span class="s1">'wellsonjain'</span> <span class="k">do</span>
+  <span class="n">mention</span> <span class="s1">'codeschool'</span>
+  <span class="n">text</span> <span class="s1">'I made a DSL!'</span>
+  <span class="n">hashtag</span> <span class="s1">'hooray'</span>
+  <span class="n">hashtag</span> <span class="s1">'ruby'</span>
+  <span class="n">link</span> <span class="s1">'http://codeschool.com'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們也可以他變得更 chainable，讓我們可以一直串接下去，那這樣我們就可以這樣實作，</p>
+<pre class="highlight ruby"><code><span class="n">tweet_as</span> <span class="s1">'wellsonjain'</span> <span class="k">do</span>
+  <span class="n">mention</span> <span class="s1">'codeschool'</span>
+  <span class="n">text</span><span class="p">(</span><span class="s1">'I made a DSL!'</span><span class="p">).</span><span class="nf">hashtag</span><span class="p">(</span><span class="s1">'hooray'</span><span class="p">).</span><span class="nf">hashtag</span><span class="p">(</span><span class="s1">'ruby'</span><span class="p">)</span>
+  <span class="n">link</span> <span class="s1">'http://codeschool.com'</span>
+<span class="k">end</span>
+
+<span class="n">ef</span> <span class="n">text</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="n">str</span>
+  <span class="nb">self</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">mention</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="s2">"@"</span> <span class="o">+</span> <span class="n">user</span>
+  <span class="nb">self</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">hashtag</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="n">str</span>
+  <span class="nb">self</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們只要把 self 給放進去，就可以直接把當前的 instance 內容 return，就可以做到我們想要的效果，
+可是我們當然還是不滿足，因為似乎還是有些地方可以改進，例如說我們可能只是單純的要 texting，但是還是要以 block 的形式傳值似乎不太簡潔，還有就是如果我們可能會 mention 多次或是 tag 多次，但是在現在的架構之下，很明顯是缺乏一些彈性的，所以我們就來一次改造一下，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">tweet_as</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">text</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">instance_eval</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="k">if</span> <span class="nb">block_given?</span>
+  <span class="n">tweet</span><span class="p">.</span><span class="nf">submit_to_twitter</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">mention</span><span class="p">(</span><span class="o">*</span><span class="n">users</span><span class="p">)</span>
+  <span class="n">users</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+   <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="s2">"@"</span> <span class="o">+</span> <span class="n">user</span>
+  <span class="k">end</span>
+  <span class="nb">self</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">hashtag</span><span class="p">(</span><span class="o">*</span><span class="n">strs</span><span class="p">)</span>
+  <span class="n">strs</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span>
+    <span class="vi">@tweet</span> <span class="o">&lt;&lt;</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="n">str</span>
+  <span class="k">end</span>
+  <span class="nb">self</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>最後我們來以 dynamic method 的方法來為他加一些註解，以及 error handling，</p>
+<pre class="highlight ruby"><code><span class="n">tweet_as</span> <span class="s1">'wellsonjain'</span> <span class="k">do</span>
+  <span class="n">mention</span> <span class="s1">'codeschool'</span><span class="p">,</span> <span class="s1">'envylabs'</span>
+  <span class="n">text</span> <span class="s1">'I made a DSL!'</span>
+  <span class="n">hashtag</span> <span class="s1">'hooray'</span>
+  <span class="n">hashtag</span> <span class="s1">'ruby'</span>
+  <span class="n">link</span> <span class="s1">'http://codeschool.com
+  lat 28.415833
+  lng -81.298889
+  keywords '</span><span class="no">Ruby</span><span class="s1">', '</span><span class="no">DSL</span><span class="s1">'
+end
+
+class Tweet
+  def initialize(user)
+    @user = user
+    @tweet = []
+    @annotations = {}
+  end
+
+  def submit_to_twitter
+    tweet_text = @tweet.join('</span> <span class="err">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tweet_text</span><span class="p">.</span><span class="nf">length</span> <span class="o">&lt;=</span> <span class="mi">140</span>
+      <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="vi">@user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet_text</span><span class="si">}</span><span class="s2">"</span>
+      <span class="nb">puts</span> <span class="vi">@annotations</span><span class="p">.</span><span class="nf">inspect</span> <span class="k">unless</span> <span class="vi">@annotations</span><span class="p">.</span><span class="nf">empty?</span>
+    <span class="k">else</span>
+      <span class="k">raise</span> <span class="s2">"Your tweet is too long."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="vi">@annotations</span><span class="p">[</span><span class="nb">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>藉由宣告 annotations 為一個 hash 之後，然後再 method missing 裡面去動態產生沒有被定義的方法，把這些字串都丟進去 hash 裡面，最後再一次丟出來，而且如果字數超過 140 就會 raise exception 和 error，以上就是一個簡單的 DSL 實作。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Domain Specific Language&amp;amp;url=http://wellsonjain.github.io/2015/07/25/domain-specific-language/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/25/domain-specific-language/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/25/domain-specific-language/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/20/decorator/'>
+<section class='post'>
+<h2>Decorator</h2>
+<p>If you hear a voice within you say &lsquo;you cannot paint,&rsquo; then by all means paint and that voice&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/08/03/regular-expression-tutorial-part1/'>
+<section class='post'>
+<h2>Regular Expression Tutorial (1)</h2>
+<p>Stop managing your time. Start managing your focus. - Robin Sharma 之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的是相當有幫助，今天就來稍微筆記一下看完整個課程的幾個重要的地方。 The&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

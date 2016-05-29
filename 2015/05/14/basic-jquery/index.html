@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Basic jQuery</title>
+<meta content=' Fear does not prevent death. It prevents life. - Naguib Mahfouz 今天要記錄一些基礎的 jQuery 基本常識，基本到我本來還真的不會&amp;hellip;首先先來看看 jQuery 到底可以做到哪些事呢？ find 找到 HTM...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Basic jQuery' property='og:title'>
+<meta content=' Fear does not prevent death. It prevents life. - Naguib Mahfouz 今天要記錄一些基礎的 jQuery 基本常識，基本到我本來還真的不會&amp;hellip;首先先來看看 jQuery 到底可以做到哪些事呢？ find 找到 HTM...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/05/14/basic-jquery/' property='og:url'>
+<meta content='2015-05-14' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Basic jQuery' name='twitter:title'>
+<meta content=' Fear does not prevent death. It prevents life. - Naguib Mahfouz 今天要記錄一些基礎的 jQuery 基本常識，基本到我本來還真的不會&amp;hellip;首先先來看看 jQuery 到底可以做到哪些事呢？ find 找到 HTM...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/05/14/basic-jquery/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Basic jQuery</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-05-14'>
+14 May 2015
+</time>
+on <a href='/tag/javascript/'>javascript</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Fear does not prevent death. It prevents life. - Naguib Mahfouz</p>
+</blockquote>
+
+<p>今天要記錄一些基礎的 jQuery 基本常識，基本到我本來還真的不會&hellip;首先先來看看 jQuery 到底可以做到哪些事呢？</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>find</td>
+<td>找到 HTML 裡的 element</td>
+</tr>
+<tr>
+<td>change</td>
+<td>改變 HTML 裡的 element</td>
+</tr>
+<tr>
+<td>listen</td>
+<td>聽使用者做了什麼，並做出相對的回應</td>
+</tr>
+<tr>
+<td>animate</td>
+<td>對 content 做特效</td>
+</tr>
+<tr>
+<td>talk</td>
+<td>透過網路來得到新的 Content</td>
+</tr>
+</tbody></table>
+<pre class="highlight html"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Basic jQuery<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>What do you want?<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>More basic teach<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+
+<p>假如我要找 <code>p</code> 內的文字並且改變它，我可以用 jQuery 這麼做，</p>
+<pre class="highlight javascript"><code><span class="c1">// $("p") - 找到(find) p</span>
+<span class="c1">// .text("") - 改變(change) p 裡面的文字</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">"More advance teach"</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>可是再深入了解為什麼可以這樣用，我們必須先瞭解到底 browser 是怎麼去處理 HTML? 在這之前我們要先瞭解什麼是 <code>DOM</code></p>
+
+<h4>Document Object Model</h4>
+
+<blockquote>
+<p>Document Object Model(DOM): A <b>tree-like</b> structure created by browsers so we can quickly find HTML Elements using JavaScript.</p>
+</blockquote>
+
+<p>DOM 會形成樹狀結構，所以上面的那段 HTML 就會變成</p>
+<pre class="highlight plaintext"><code>  html
+  | head
+  |   | title
+  |     | Basic jQuery
+  | body
+      | h1
+      | | What do you want?
+      | p
+        | More basic
+</code></pre>
+
+<p>每一個 html 的 element 都會轉變成一個個相對應的節點，但是如果你仔細看上面的 <code>$(document).ready(function(){</code>，這段又是什麼意思？
+<code>$</code>代表 jQuery，<code>document</code> 則代表我們前面所提到的 DOM，<code>ready</code> 則是等待 html 都轉變為 DOM ，所以整段我們組合起來所帶代表的意思就是，我們選取了所有的 object，並且等到 DOM ready 之後我們再開始下面程式，如果我們沒有執行這段的就直接選取 p 就會出錯，這是因為整個 html 並沒有完全被轉化成 DOM，所以 jQuery 沒有辦法找到 p 節點。</p>
+
+<p>在了解基本的規則以及整個 DOM 的結構之後，我想很好理解 jQuery 的行為了，首先先來解釋在前面我們提到的 <code>find</code>，jQuery 在 find 的行為跟 CSS 的 selector 相同</p>
+<pre class="highlight plaintext"><code>     CSS               jQuery
+     -----------       --------------
+     p { ... }    &lt;=&gt;  $("p")
+     #container        $("#container")
+     .articles         $(".articles")
+</code></pre>
+
+<p>jQuery 的 selector 也可以使用 <code>$(&quot;#container p&quot;)</code>，這樣的方式，選擇 container 底下的&quot;所有&quot; p element，也就代表如果在這個 id 下的子子孫孫 p 全部都會被選到，所以如果不要選擇到這麼多層，可以使用 &ldquo;&gt;&quot;，<code>$(&quot;#container &gt; p&quot;)</code>，這就表示只選擇到他的下一代。</p>
+
+<h4>Traversing</h4>
+
+<p>除了上面的這種用祖譜式的找到 element，我們還可以使用 traversal 直接去找就好，直觀效果強，這個的結果跟 <code>$(&quot;#container p&quot;)</code> 是相同的，</p>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"#container"</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span>
+</code></pre>
+
+<p>所以說如果要使用單純找到底下一層的 element，可以使用</p>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"#container"</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span>
+</code></pre>
+
+<p>Traversing 也可以走上走下這樣</p>
+<pre class="highlight javascript"><code><span class="c1">// 在同一個層級走訪</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"li"</span><span class="p">).</span><span class="nx">first</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"li"</span><span class="p">).</span><span class="nx">first</span><span class="p">().</span><span class="nx">next</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"li"</span><span class="p">).</span><span class="nx">first</span><span class="p">().</span><span class="nx">next</span><span class="p">().</span><span class="nx">prev</span><span class="p">();</span>
+
+<span class="c1">// 往上一個層級走</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"li"</span><span class="p">).</span><span class="nx">first</span><span class="p">().</span><span class="nx">parent</span><span class="p">();</span>
+</code></pre>
+
+<p>以上是幾種比較常用的 jQuery &quot;find&rdquo; 的行為</p>
+
+<h4>Working with the DOM</h4>
+
+<p>有時候我們會需要新增 class 或是 remove class 來區別我們所選擇的 element，先從 <code>appending</code> 舉例來說，我們要新增一個 node 在我們的 html 上，下面有四種方式，</p>
+<pre class="highlight html"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  ...
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"vacation"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h2&gt;</span>Taiwan<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;button&gt;</span>Get price<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;p&gt;From $399.99&lt;/p&gt;'</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="p">...</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>$(&rsquo;.vacation&rsquo;)</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>.before(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 之前</td>
+</tr>
+<tr>
+<td>.after(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 之後</td>
+</tr>
+<tr>
+<td>.prepend(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 子項最上面</td>
+</tr>
+<tr>
+<td>.append(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 子項最下面</td>
+</tr>
+</tbody></table>
+
+<p>當然在 jQuery 很易讀的地方在於，我們同樣可以更換主受詞得到相同的效果，</p>
+
+<table><thead>
+<tr>
+<th>price</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>.insertBefore(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 之前</td>
+</tr>
+<tr>
+<td>.insertAfter(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 之後</td>
+</tr>
+<tr>
+<td>.prependTo(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 子項最上面</td>
+</tr>
+<tr>
+<td>.appendTo(&lt; element &gt;)</td>
+<td>把 price 放在 .vacation 子項最下面</td>
+</tr>
+</tbody></table>
+
+<p>而 remove 就相對簡單得多 <code>.remove()</code> 就能夠做得到。</p>
+
+<p>(是說我本來打算一篇就把它寫完的&hellip;看來要寫兩篇了&hellip;)</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Basic jQuery&amp;amp;url=http://wellsonjain.github.io/2015/05/14/basic-jquery/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/05/14/basic-jquery/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/05/14/basic-jquery/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/08/rails-api-part6/'>
+<section class='post'>
+<h2>Rails API (6)</h2>
+<p>Everything around you that you call life was made up by people, and you can change it - Steve&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/05/16/basic-jquery-part2/'>
+<section class='post'>
+<h2>Basic jQuery (2)</h2>
+<p>The world is moving so fast that the man who says it can&rsquo;t be done is generally interrupted by&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

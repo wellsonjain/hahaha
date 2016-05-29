@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Basic Javascipt Closure</title>
+<meta content=' Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh We mentioned about function:...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Basic Javascipt Closure' property='og:title'>
+<meta content=' Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh We mentioned about function:...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/' property='og:url'>
+<meta content='2016-03-02' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Basic Javascipt Closure' name='twitter:title'>
+<meta content=' Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh We mentioned about function:...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Basic Javascipt Closure</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-03-02'>
+02 March 2016
+</time>
+on <a href='/tag/javascript/'>javascript</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Living in dreams of yesterday, we find ourselves still dreaming of impossible future conquests - Charles Lindbergh
+We mentioned about function:</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">buildTicket</span> <span class="p">(</span><span class="nx">allRides</span><span class="p">,</span> <span class="nx">passRides</span><span class="p">,</span> <span class="nx">pick</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">passRides</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nx">pick</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nx">allRides</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"Quick! You've got a Fast Pass to"</span> <span class="o">+</span> <span class="nx">pass</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">)</span> <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">allRides</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">allRides</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nx">pick</span><span class="p">){</span>
+        <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"A ticket is printing for "</span> <span class="o">+</span> <span class="nx">pick</span> <span class="o">+</span> <span class="s2">"!\n"</span> <span class="o">+</span> <span class="s2">"Your wait time is about "</span> <span class="o">+</span> <span class="nx">allRides</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" minutes."</span><span class="p">);</span> <span class="p">};</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>As you can see, returning a function from a function, complete with variables from an external scope, is called a closure. The entire contents of one of these inner functions will still be available OUTSIDE the outermost function.</p>
+
+<p>Here is an example,</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">testClosure</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// Local variable</span>
+  <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">testClosure</span><span class="p">();</span> <span class="c1">// -&gt; 4</span>
+<span class="nx">x</span><span class="p">;</span> <span class="c1">// -&gt; undefined</span>
+</code></pre>
+
+<p><code>x</code> is local variable, they aren’t available once the function’s scope is closed! And what if we make this function more complicate.</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">testClosure</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">closeX</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">closeX</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><code>x</code> is not declare in <code>closeX()</code>, but when we call the <code>testClosure()</code>, we still get the result <code>4</code>. Why was that? That&rsquo;s because the inner function can access the outer function’s variables, because they “feel” like global variables.</p>
+
+<p>Let&rsquo;s see one more example,</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">buildCoveTicketMaker</span><span class="p">(</span> <span class="nx">transport</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">name</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Here is your transportation ticket via the "</span> <span class="o">+</span> <span class="nx">transport</span> <span class="o">+</span> <span class="s2">".\n"</span> <span class="o">+</span> <span class="s2">"Welcome to the Cold Closures Cove, "</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>We build a ticket system again, and we give <code>buildCoveTicketMaker</code> the mode of transportation, which is closed into the returned anonymous function.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">getSubmarineTicket</span> <span class="o">=</span> <span class="nx">buildCoveTicketMaker</span><span class="p">(</span><span class="s2">"Submarine"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">getBattleshipTicket</span> <span class="o">=</span> <span class="nx">buildCoveTicketMaker</span><span class="p">(</span><span class="s2">"Battleship"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">getGiantSeagullTicket</span> <span class="o">=</span> <span class="nx">buildCoveTicketMaker</span><span class="p">(</span><span class="s2">"Giant Seagull"</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="p">(</span> <span class="nx">name</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// the transport holds "Submarine", "Battleship", "Giant Seagull"</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">"Here is your transportation ticket via the "</span> <span class="o">+</span> <span class="nx">transport</span> <span class="o">+</span> <span class="s2">".\n"</span> <span class="o">+</span> <span class="s2">"Welcome to the Cold Closures Cove, "</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">);</span>
+ <span class="p">}</span>
+</code></pre>
+
+<p>And when passing a name to any of our ticket makers will complete our ticket-making process.</p>
+<pre class="highlight javascript"><code><span class="nx">getSubmarineTicket</span><span class="p">(</span><span class="s2">"Mario"</span><span class="p">);</span>
+<span class="c1">// -&gt; "Here is your transportation ticket via the Submarine.</span>
+<span class="c1">//     Welcome to the Cold Closures Cove, Mario!"</span>
+</code></pre>
+
+<p>We can also modify bound variables in the background</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">buildCoveTicketMaker</span><span class="p">(</span> <span class="nx">transport</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">passengerNumber</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">name</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">passengerNumber</span><span class="o">++</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Here is your transportation ticket via the "</span> <span class="o">+</span> <span class="nx">transport</span> <span class="o">+</span> <span class="s2">".\n"</span> <span class="o">+</span> <span class="s2">"Welcome to the Cold Closures Cove, "</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="o">+</span> <span class="s2">"You are passenger #"</span> <span class="o">+</span> <span class="nx">passengerNumber</span> <span class="o">+</span> <span class="s2">"."</span> <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>We declare a variable to store passenger number, and every time we call the function, the <code>passengerNumber</code> is incremented by 1</p>
+<pre class="highlight javascript"><code><span class="nx">getSubmarineTicket</span><span class="p">(</span><span class="s2">"Mario"</span><span class="p">);</span>
+<span class="c1">// -&gt; "Here is your transportation ticket via the Submarine.</span>
+<span class="c1">//     Welcome to the Cold Closures Cove, Mario!</span>
+<span class="c1">//     You are passenger #1."</span>
+<span class="nx">getSubmarineTicket</span><span class="p">(</span><span class="s2">"Wellson"</span><span class="p">);</span>
+<span class="c1">// -&gt; "Here is your transportation ticket via the Submarine.</span>
+<span class="c1">//     Welcome to the Cold Closures Cove, Wellson!</span>
+<span class="c1">//     You are passenger #2."</span>
+</code></pre>
+
+<p>In the end, it&rsquo;s gonna talk about some common mistakes in loops with closure. Javascript has different way to load program, which is called &ldquo;Hoist&rdquo;. Memory is set aside of all necessary variables and declared functions first.</p>
+
+<p>Here is an example,</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">sumOfSquares</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="o">*</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="o">*</span><span class="nx">b</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>  
+
+  <span class="kd">function</span> <span class="nx">add</span> <span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">d</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Infact, Javascript loads like this,</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">sumOfSquares</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">add</span> <span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">d</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">x</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="o">*</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="o">*</span><span class="nx">b</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The necessary variable and function will be hoisted before the operational code run.</p>
+
+<p>More example:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">getMysteryNumber</span> <span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">function</span> <span class="nx">chooseMystery</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">chooseMystery</span><span class="p">();</span>
+
+  <span class="kd">function</span> <span class="nx">chooseMystery</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// -&gt; 7</span>
+<span class="c1">// The second chooseMystery() will override the first one.</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">getMysteryNumber</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">chooseMystery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">chooseMystery</span><span class="p">();</span>
+
+  <span class="kd">var</span> <span class="nx">chooseMystery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// -&gt; 12</span>
+</code></pre>
+
+<p>This is a little bit confusing. That is because function expressions are never hoisted. It will look like this in Javascript.</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">getMysteryNumber</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">chooseMystery</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">chooseMystery</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// Override the first one</span>
+
+  <span class="nx">chooseMystery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">chooseMystery</span><span class="p">();</span> <span class="c1">// -&gt; 12</span>
+
+  <span class="c1">// unreachable</span>
+  <span class="nx">chooseMystery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>One more example:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">capacityStatus</span> <span class="p">(</span><span class="nx">numPassengers</span><span class="p">,</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">numPassengers</span> <span class="o">==</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">noSeats</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">seatsAvail</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">noSeats</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"No seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">seatsAvail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"There are "</span> <span class="o">+</span> <span class="p">(</span><span class="nx">capacity</span> <span class="o">-</span> <span class="nx">numPassengers</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>If we call the function by <code>capacityStatus(60, 60)</code>, the result will be <code>ERROR</code>.
+But it seems looking good. Let&rsquo;s take a look what the inside of javascript loading.</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">capacityStatus</span> <span class="p">(</span><span class="nx">numPassengers</span><span class="p">,</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">noSeats</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">seatsAvail</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">numPassengers</span> <span class="o">==</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">noSeats</span><span class="p">();</span> <span class="c1">// Not exist yet</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">seatsAvail</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">noSeats</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"No seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">seatsAvail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"There are "</span> <span class="o">+</span> <span class="p">(</span><span class="nx">capacity</span> <span class="o">-</span> <span class="nx">numPassengers</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><code>noSeat()</code> is called when it&rsquo;s not define yet. There are two way to fix the problem.</p>
+<pre class="highlight javascript"><code><span class="c1">// First One: Change the order, and the function will be called after being defined.</span>
+<span class="kd">function</span> <span class="nx">capacityStatus</span> <span class="p">(</span><span class="nx">numPassengers</span><span class="p">,</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">noSeats</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"No seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">seatsAvail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"There are "</span> <span class="o">+</span> <span class="p">(</span><span class="nx">capacity</span> <span class="o">-</span> <span class="nx">numPassengers</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">numPassengers</span> <span class="o">==</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">noSeats</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">seatsAvail</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Second: Do not ues function expression, use declartion.</span>
+<span class="kd">function</span> <span class="nx">capacityStatus</span> <span class="p">(</span><span class="nx">numPassengers</span><span class="p">,</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">numPassengers</span> <span class="o">==</span> <span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">noSeats</span><span class="p">();</span> <span class="c1">// Not exist yet</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">seatsAvail</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">noSeats</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"No seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">seatsAvail</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"There are "</span> <span class="o">+</span> <span class="p">(</span><span class="nx">capacity</span> <span class="o">-</span> <span class="nx">numPassengers</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" seats left!"</span><span class="p">);</span>   
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Basic Javascipt Closure&amp;amp;url=http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/03/02/basic-javascript/'>
+<section class='post'>
+<h2>Basic Javascript</h2>
+<p>The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes The basic&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2016/03/18/back-to-basics-javascript-hoisting/'>
+<section class='post'>
+<h2>Back to Basics Javascript Hoisting</h2>
+<p>You may not control all the events that happen to you, but you can decide not to be reduced&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Method Missing and Delegate</title>
+<meta content=' To be beautiful means to be yourself. You don&amp;rsquo;t need to be accepted by others. You need to be yourself. - Thich Nhat Hanh Method Missing ...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Method Missing and Delegate' property='og:title'>
+<meta content=' To be beautiful means to be yourself. You don&amp;rsquo;t need to be accepted by others. You need to be yourself. - Thich Nhat Hanh Method Missing ...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/17/method-missing-and-delegate/' property='og:url'>
+<meta content='2015-07-17' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Method Missing and Delegate' name='twitter:title'>
+<meta content=' To be beautiful means to be yourself. You don&amp;rsquo;t need to be accepted by others. You need to be yourself. - Thich Nhat Hanh Method Missing ...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/17/method-missing-and-delegate/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Method Missing and Delegate</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-17'>
+17 July 2015
+</time>
+on <a href='/tag/ruby/'>ruby</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>To be beautiful means to be yourself. You don&rsquo;t need to be accepted by others. You need to be yourself. - Thich Nhat Hanh</p>
+</blockquote>
+
+<h4>Method Missing</h4>
+
+<p>Method Missing 是 Ruby 所提供的非常強大的工具，雖然之前我都只是以為這個功用<del>只是告訴我呼叫錯誤的方法了</del>，藉由 Method Missing 來處理未定義的方法，因此就可以更有彈性的去增加功能，不過在那之前，我們要先瞭解一下，到底 Ruby 方法 (假設 m) 的查找是怎麼找的？</p>
+
+<ol>
+<li>Ruby 具有 eigenclass (單體類別)，首先會去查找在物件所屬的 eigenclass 是否存在 method m？</li>
+<li>物件所屬的 class，找是否存在 method m</li>
+<li>查找物件所屬的 class 引用的 Module，若是引用多個則會以反向搜索查找，也就是說最後被引用的最先被搜索</li>
+<li>如果都沒有則會往該 class 的父類別查找，並且重複 2、3，直到搜尋了所有的父類別及其引用的 Module</li>
+<li>若是都找不到，則會調用 <code>method_missing</code></li>
+</ol>
+
+<p>因為 Ruby 提供我們重新定義方法的機制，所以我們也可以藉由這個方法來動態定義方法，這在 metaprogramming 中是相當常用的技術，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">logger</span><span class="p">.</span><span class="nf">warn</span> <span class="s2">"You tried to call </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> with these arguments: </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">super</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">submit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Here's a tweet."</span><span class="p">)</span>
+
+<span class="c1"># in `method_missing': undefined method `submit' ...￼￼￼</span>
+<span class="c1"># You tried to call submit with arguments: [1, "Here's a tweet."]</span>
+</code></pre>
+
+<p>上面我們留了一個 logger，接著再呼叫 super 來使用原本 Ruby default 所定義的方法。</p>
+
+<h4>Delegating Method</h4>
+
+<p>我們藉由 <code>method_missing</code> 的機制，可以使程式的設計上更加優雅，其中相當高階的技巧就是 delegate (委外)，這是什麼意思呢？這也是 Single Responsibility Principle 的概念，舉例來說，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">username</span>
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">username</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">avatar</span>
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">avatar</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>在這邊我們看到，我們可能會一直去取用到 User 的物件，有可能會一直增加下去，但是實際上他都是屬於 User 的方法，那這時候我們就可以把這些方法委外出去，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="nc">DELEGATED_METHODS</span> <span class="o">=</span> <span class="p">[</span><span class="ss">:username</span><span class="p">,</span> <span class="ss">:avatar</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="no">DELEGATED_METHODS</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+      <span class="vi">@user</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="k">super</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這樣的做法就非常直覺，我們不必再持續增加 User 相關的方法，我們只需要在 <code>DELEGATED_METHODS</code> 裡面去新增就好，因為新增方法是新增在 User 而不是 Tweet，不需要做重複的事。</p>
+
+<p>而 ruby 也針對了 delegate 這個機制做了一個 library，讓我們可以更加簡潔的使用這個技巧，只是真的相當 tricky 讓人摸不著頭緒就是，</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'delegate'</span>
+
+<span class="k">class</span> <span class="nc">Tweet</span> <span class="o">&lt;</span> <span class="no">SimpleDelegator</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們讓 Tweet 去繼承 SimpleDelegator，並且在初始化時帶入一個 user 物件，這樣就可以調用 User 的方法，事實上當你帶入不同 class 的物件，就等於是 delegate 到不同的 class，這真的相當 tricky。</p>
+
+<h4>Dynamic Methods</h4>
+
+<p>接著我們嘗試以 method missing 實作一個出 dynamic method，我們要呼叫方法後，output 一個 hash tag 加上我們的方法名稱，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tweet</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">to_s</span>
+    <span class="vi">@text</span>
+<span class="k">end</span>
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">method_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="sr">/^hash_(\w+)/</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span>
+      <span class="vi">@text</span> <span class="o">&lt;&lt;</span> <span class="s2">" #"</span> <span class="o">+</span> <span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span>
+      <span class="k">super</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'Created by'</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">tweet</span><span class="p">.</span><span class="nf">hash_wellsonjain</span>
+<span class="nb">puts</span> <span class="n">tweet</span><span class="p">.</span><span class="nf">hash_wellsonjain</span>
+</code></pre>
+
+<p>我們可以藉由 <code>respond_to?</code> 這個方法，來驗證該方法是否存在，</p>
+<pre class="highlight ruby"><code><span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">respond_to?</span><span class="p">(</span><span class="ss">:to_s</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">hash_ruby</span>  <span class="c1"># #ruby</span>
+<span class="n">tweet</span><span class="p">.</span><span class="nf">respond_to?</span><span class="p">(</span><span class="ss">:hash_ruby</span><span class="p">)</span> <span class="c1"># =&gt; false</span>
+</code></pre>
+
+<p>看起來有點奇妙，我們既然成功的執行，但是 <code>respond_to?</code> 卻是返回 false，我們細看 method missing 的內容我們就可以看見，事實上他並沒有去宣告任何的方法，我們只是去檢查 method name 是否與我們定義的格式相同，而且這樣的做法會導致我們在多次呼叫之後，output 會一直增長，所以我們來做一些修正，</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">match</span> <span class="o">=</span> <span class="n">method_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="sr">/^hash_(\w+)/</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">match</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">class_eval</span> <span class="k">do</span>
+      <span class="n">define_method</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span> <span class="k">do</span>
+        <span class="vi">@text</span> <span class="o">&lt;&lt;</span> <span class="s2">" #"</span> <span class="o">+</span> <span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="nb">send</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="k">super</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這樣一來，不只 <code>respond_to?</code> 是會回傳 true，還記得我們之前提到的 method method 嗎？我們也可以使用這個方法，讓方法先存在 method 物件中，之後再呼叫。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Method Missing and Delegate&amp;amp;url=http://wellsonjain.github.io/2015/07/17/method-missing-and-delegate/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/17/method-missing-and-delegate/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/17/method-missing-and-delegate/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/17/concerns-in-rails/'>
+<section class='post'>
+<h2>Concerns in Rails</h2>
+<p>Muddy water is best cleared by leaving it alone. - Alan Watts Model Concerns 接下來是要介紹在 rails4 之後，非常重要的重構技巧，就是將重複的程式，抽出來後放在 concerns 這個資料夾底下，這其實跟我們之前所提到的&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/20/decorator/'>
+<section class='post'>
+<h2>Decorator</h2>
+<p>If you hear a voice within you say &lsquo;you cannot paint,&rsquo; then by all means paint and that voice&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Regular Expression Tutorial (2)</title>
+<meta content=' Sometimes life hits you in the head with a brick. Don&amp;rsquo;t lose faith. - Steve Jobs Confirmative 表示 &amp;ldquo;OK&amp;rdquo; 有很多種說法，像是 OKay, Okie Do...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Regular Expression Tutorial (2)' property='og:title'>
+<meta content=' Sometimes life hits you in the head with a brick. Don&amp;rsquo;t lose faith. - Steve Jobs Confirmative 表示 &amp;ldquo;OK&amp;rdquo; 有很多種說法，像是 OKay, Okie Do...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/' property='og:url'>
+<meta content='2015-08-31' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Regular Expression Tutorial (2)' name='twitter:title'>
+<meta content=' Sometimes life hits you in the head with a brick. Don&amp;rsquo;t lose faith. - Steve Jobs Confirmative 表示 &amp;ldquo;OK&amp;rdquo; 有很多種說法，像是 OKay, Okie Do...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Regular Expression Tutorial (2)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-08-31'>
+31 August 2015
+</time>
+on <a href='/tag/regex/'>regex</a>, <a href='/tag/electives/'>electives</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Sometimes life hits you in the head with a brick. Don&rsquo;t lose faith. - Steve Jobs</p>
+</blockquote>
+
+<h4>Confirmative</h4>
+
+<p>表示 &ldquo;OK&rdquo; 有很多種說法，像是 OKay, Okie Dokie，之類的很多種，以上面三種來看，假如只接受前兩種但是不接受最後一種的話，那該怎麼做呢？首先我們先限定 OK 這個字串，然後再把第二種的 pattern 加入，那就會變成，</p>
+<pre class="highlight ruby"><code><span class="sr">/\bok(ay)?\b/i</span>
+</code></pre>
+
+<p>這邊出現了兩個新的 character <code>\b</code> 和 <code>?</code>，<code>b</code> 所代表的意義就是邊界 (boundary) 的意思，這和我們在前一篇所提到的 <code>^$</code> 有點不同，前者所代表的意思就可以看作是這個單字的結尾，但是後者代表的意思則是整段字串；而 <code>?</code> 所代表的意思是，在 <code>?</code> 之前的字元是 optional 的，有或沒有都會符合，&#39;i&rsquo; 在這裡則代表 pattern 裡面是不分大小寫。</p>
+<pre class="highlight ruby"><code><span class="sr">/\bok(ay)?|sure\b/i</span>
+</code></pre>
+
+<p>接著我們把案例增加，[ok, Okay, sure, yes, y]在這邊我們繼續試圖符合我們的下一個 case &ldquo;sure&quot;，我們使用 &rsquo;|&rsquo;(OR)，在這個情況底下雖然我們符合了 sure，卻並不是那麼的精準，原因在於我們這樣的 pattern 下並沒有限制到左邊的邊界，也就是說在這個 pattern 底下，&quot;sure&rdquo; 與 &ldquo;ensure&rdquo; 都是符合的，我們希望可以精準一點，所以我們把他都包起來</p>
+<pre class="highlight ruby"><code><span class="sr">/\b(ok(ay)?|sure)\b/i</span>
+</code></pre>
+
+<p>基本上我們已經把 pattern 完成了，接下來的就像倒吃甘蔗了，</p>
+<pre class="highlight ruby"><code><span class="sr">/\b(ok(ay)?|sure|y(es)?)\b/i</span>
+</code></pre>
+
+<p>所以我們在這裡完整地找出符合這些單字的 pattern，但是如果今天我們要處理的是一整個句子，或是我們希望一個句子不超過多少的字數或是具備我們希望 pattern 呢？以下面的例子來說，我們不希望我們的句子裡面有數字，也不希望字數超過 40 個或是低於 20 個</p>
+<pre class="highlight plaintext"><code>Work like a captain, play like a pirate.
+Keep calm and say Arr.
+Shiver me timbes matey
+Why are pirates pirates? cuz they arr
+</code></pre>
+
+<p>如果我們直接拿在前一篇的例子來看的話，好像我們只要讓他限制在 [A-z] 的集合，然後再加上 space 和 comma 就好，但事實是上我們從集合來看這件事，我們其實只是不希望有數字出現，那我們只要把數字從集合中拿掉就好，不然如果每次有找到不同的標點符號我們就必須要繼續新增</p>
+<pre class="highlight ruby"><code><span class="sr">/[a-z\s,]+/i</span>  <span class="o">=&gt;</span>  <span class="sr">/[^d]+/i</span>  <span class="o">=&gt;</span> <span class="sr">/^\D+$/</span>
+</code></pre>
+
+<p>在這裡的 &rsquo;^&rsquo; 好像在前面出現過，意思指的是句子的開頭，但是其實在集合(&rsquo;[]&rsquo;)內我們有不一樣的意思，他代表的是 negate(反向) 的意思，而在 regular expresion 也針對這幾種反向的集合定義了幾個 character，</p>
+<pre class="highlight ruby"><code><span class="p">[</span><span class="o">^</span><span class="p">\</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="p">\</span><span class="no">D</span> <span class="c1"># match every character except digit</span>
+<span class="p">[</span><span class="o">^</span><span class="p">\</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="p">\</span><span class="no">S</span> <span class="c1"># match every character except whitespace</span>
+<span class="p">[</span><span class="o">^</span><span class="p">\</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="p">\</span><span class="no">W</span> <span class="c1"># match every character except words</span>
+</code></pre>
+
+<p>好 der，所以我們已經可以判斷一整個句子了，但是我們的事情還沒做完，我們還沒定義出 range，regex 所提供的方法是 &rsquo;{a,b}&rsquo; a b 分別代表的就是最小最大值，如果單一個 {a}，則 a 代表的就是出現幾次，
+於是乎我們的 pattern 就完成了，</p>
+<pre class="highlight ruby"><code><span class="sr">/^\D+{20,40}$/</span>
+</code></pre>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Regular Expression Tutorial (2)&amp;amp;url=http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/08/03/regular-expression-tutorial-part1/'>
+<section class='post'>
+<h2>Regular Expression Tutorial (1)</h2>
+<p>Stop managing your time. Start managing your focus. - Robin Sharma 之前一度對於 Regular Expression 相當頭痛，突然 Code School 就又出了這個新的課程，馬上就開來看，覺得對於初學的人來說真的是相當有幫助，今天就來稍微筆記一下看完整個課程的幾個重要的地方。 The&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/10/11/farewell/'>
+<section class='post'>
+<h2>Farewell</h2>
+<p>Never look back unless you are planning to go that way. - Henry David Thoreau 最近在臉書上面看到一篇石頭的專訪死亡這麼近，更要用力的活著，稍微的瀏覽一下之後覺得很多想法十分認同，立刻就在臉書上面分享了，然後今天在滑臉書的時候看到了另外一篇廣告小妹寫的離婚是人生另一個開始，突然間覺得好像對自己解釋了什麼一樣，於是有了這篇文章。 這一個月來因為女朋友跑到澳洲去打工度假了，因為以前的經驗，其實蠻常因此思緒而有點混亂，其實一直覺得自己不是個懂得跟自己獨處的人，常常會有一些莫名其妙的恐懼出現，但是今天這兩篇文章讓我對自己又再更進一步地想了想，我發現自己似乎一直不太能夠面對失去這件事情，不過其實說穿了，人類本來就是希望能夠維持穩定的動物。 在這篇專訪裡面，石頭敘述他在《百日告別》這部電影裡面，所飾演的一位失去妻子的丈夫，在面對死亡之後，如何一個人自處，這同時也是導演林書宇的真實故事。對於離別，其實我們很少正面去面對過，就好像如果忽視他他就不會來一樣，然而事實上總有一天我們身邊的每一個人都會以各種形式離開身邊。 其實這有點像是去遊樂園，但是我們會知道關園的時間，因為知道什麼時候結束，所以我們會決定有什麼是一定要做到，只不過類似的情境似乎就無法完全的套用在人的身上，每每當自己幻想到一段關係可能會突然的中止，這樣的幻想總是讓我窒息，雖然知道這樣的幻想無濟於事，但是這些對自我的質疑以及對於情感付出的恐懼，往往讓我不由自主的崩潰或是恐慌。&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

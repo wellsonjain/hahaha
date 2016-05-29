@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: rails</title>
+<meta content='Make things in elegance.' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='website' property='og:type'>
+<meta content='rails' property='og:title'>
+<meta content='Make things in elegance.' property='og:description'>
+<meta content='http://wellsonjain.github.io/tag/rails/' property='og:url'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='rails' name='twitter:title'>
+<meta content='Make things in elegance.' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/tag/rails/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='home-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails nav-current' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/tag/rails/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover tag-head'>
+<nav class='main-nav overlay clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+<div class='vertical'>
+<div class='main-header-content inner'>
+<h1 class='page-title'>rails</h1>
+<h2 class='page-description'>A 6-post collection</h2>
+</div>
+</div>
+</header>
+<main class='content' id='content' role='main'>
+<div class='extra-pagination inner'>
+<nav class='pagination' role='pagination'>
+<span class='page-number'>Page 1 of 3</span>
+<a href="/tag/rails/page/2/" class="older-posts">Older Posts →</a>
+</nav>
+
+</div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/10/16/from-hypertext-to-hyperdata_part1/">From Hypertext to Hyperdata (1) - RESTful Rails Development</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Every dream begins with a dreamer. Always remember, you have within you the strength, the patience, and the passion to reach for the stars to change the world. - Harriet Tubman
+
+
+最近公司買了幾本新書，其中一本就是我最近非常有興趣的一本書 RESTful Rails Developement，真的非常建議如果是 Ruby
+<a href="/2015/10/16/from-hypertext-to-hyperdata_part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-10-16'>
+16 October 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/20/decorator/">Decorator</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+If you hear a voice within you say ‘you cannot paint,’ then by all means paint and that voice will be silenced. - Vincent Van Gogh
+
+
+Decorators
+
+如果不是看了 Rails Pattern 這堂課還真的是不知道有 decorator 這個東西，本篇文章就要來好好介紹一下，那麼先來說明一下什麼是 decorator，這是 Design pattern 的一
+<a href="/2015/07/20/decorator/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-20'>
+20 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/17/concerns-in-rails/">Concerns in Rails</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Muddy water is best cleared by leaving it alone. - Alan Watts
+
+
+Model Concerns
+
+接下來是要介紹在 rails4 之後，非常重要的重構技巧，就是將重複的程式，抽出來後放在 concerns 這個資料夾底下，這其實跟我們之前所提到的 PORO 的概念可能不太相同，在這邊的方法就會是以 Module 的形式出現，
+# app/models/post.rb
+class Post &lt; ActiveRecord::Base
+ 
+<a href="/2015/07/17/concerns-in-rails/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-17'>
+17 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/10/scope-in-rails/">Scope in Rails</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself. - Hermann Hesse
+
+
+Class Method and Scope
+
+在 Rails 裡，我們可能會需要從資料庫去撈出特定的資料，舉例來說，
+# app/controllers/posts_controller.rb
+class PostsController &lt; ApplicationController
+<a href="/2015/07/10/scope-in-rails/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-10'>
+10 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/03/model-and-poro/">Model and PORO</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Decide that you want it more than you are afraid of it. - Unknown
+
+
+今天要開始寫 Rails Pattern，在 Code School 的這堂課其實我當初也是一直很有興趣
+，先前就有先看過一次，可是當時對於 Ruby 和 Rails 的概念也不像現在這般的深刻，雖然進步的過程有點緩慢，但是卻是確實的看見這一切的顯現，不過當然目前的實力還是比起我所想像的程度還有一段距離，所以要繼續寫下去讓觀念更加扎實。
+
+Model
+
+在我剛
+<a href="/2015/07/03/model-and-poro/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-03'>
+03 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/04/etag-in-rails4/">Etag in Rails4</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Start where you are. Use what you can. Do what you can. - Arthur Ashe
+
+
+ETag
+
+接下來要介紹的是遠通的 ETag，ETag 的目的是用來辨識當前的頁面是否有所改變，流程大概是這樣，
+
+
+
+Client 第一次拜訪 Rails App
+
+
+render  body
+Create ETag headers['ETag'] = Digest::MD5.hexdigest(body)
+
+將 Etag 和 Body 包在一起
+
+
+Client
+
+<a href="/2015/06/04/etag-in-rails4/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-06-04'>
+04 June 2015
+</time>
+</footer>
+</article>
+<nav class='pagination' role='pagination'>
+<span class='page-number'>Page 1 of 3</span>
+<a href="/tag/rails/page/2/" class="older-posts">Older Posts →</a>
+</nav>
+
+
+</main>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

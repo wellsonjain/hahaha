@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Scope in Rails</title>
+<meta content=' Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself. - Hermann Hesse Class Method and Scope 在 Rails ...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Scope in Rails' property='og:title'>
+<meta content=' Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself. - Hermann Hesse Class Method and Scope 在 Rails ...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/07/10/scope-in-rails/' property='og:url'>
+<meta content='2015-07-10' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Scope in Rails' name='twitter:title'>
+<meta content=' Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself. - Hermann Hesse Class Method and Scope 在 Rails ...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/07/10/scope-in-rails/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Scope in Rails</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-07-10'>
+10 July 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Within you is a stillness and a sanctuary to which you can retreat at any time and be yourself. - Hermann Hesse</p>
+</blockquote>
+
+<h4>Class Method and Scope</h4>
+
+<p>在 Rails 裡，我們可能會需要從資料庫去撈出特定的資料，舉例來說，</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/posts_controller.rb</span>
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s1">'published = ? AND published_on &gt; ?'</span><span class="p">,</span> <span class="kp">true</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>但是在 Controller 裡面去做這件事並不恰當，首先是在 Controller 裡頭放進 logic 並不恰當，而且這樣已經破壞了封裝的概念，所以如果在別的地方有需要這個 query，也就會有重複的程式碼出現，所以比較好的做法是把這個地方給抽出來放到 Model 裡面，也就是讓這個 query，變成一個 class method，</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/posts_controller.rb</span>
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+<span class="err">￼</span>    <span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">recent</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># app/models/post.rb</span>
+<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">recent</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'published = ? AND published_on &gt; ?'</span><span class="p">,</span> <span class="kp">true</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>除此之外還可以用 scope，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+  <span class="n">scope</span> <span class="ss">:recent</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="s1">'published = ? AND published_on &gt; ?'</span><span class="p">,</span> <span class="kp">true</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這邊 scope 用到的方法就是我們在<a href="http://wellsonjain.github.io/2015/07/05/deeper-ruby-programming-part6/" rel="nofollow">前一篇</a>所談到的 lambda，class method 和 scope 是很類似的兩個方法，先以下面的例子來說，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">by_author</span><span class="p">(</span><span class="n">author</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">author: </span><span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">recent</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'published_on &gt; ?'</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>這邊我們看到的兩個 class method，他可以被鏈結再一起<del>食用</del>使用，所以我們就可以來的組合技，<code>Post.by_author(&#39;wellsonjain&#39;).recent</code>，這個方法非常好用，但是，如果今天這個要被帶進去的參數可能我們是從 form 那邊帶過來的，假如使用者忘記填，那這樣這個 query 會轉換成什麼樣的 SQL 呢？</p>
+<pre class="highlight sql"><code><span class="k">SELECT</span> <span class="nv">"posts"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"posts"</span> <span class="k">WHERE</span> <span class="nv">"posts"</span><span class="p">.</span><span class="nv">"author"</span> <span class="k">IS</span> <span class="k">NULL</span> <span class="k">AND</span>
+<span class="p">(</span><span class="n">published_on</span> <span class="o">&gt;</span> <span class="s1">'...'</span><span class="p">)</span>
+</code></pre>
+
+<p>這樣一來我們可能就得要在 class method 裡面再去濾掉可能會出現的空值，如果是空值再忽略這個空值 (各種饒口)回傳 all，否則會回傳 nil，但是其實我們可以有更好的方法，就是用 scope，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">author: </span><span class="n">author</span><span class="p">)</span> <span class="k">if</span> <span class="n">author</span><span class="p">.</span><span class="nf">present?</span> <span class="p">}</span>
+  <span class="n">scope</span> <span class="ss">:recent</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="s1">'published_on &gt; ?'</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="nf">days</span><span class="p">.</span><span class="nf">ago</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們使用 scope 的話，他永遠是回傳 chainable object，也就是說如果傳進去的值可能是空值，那他就會自動忽略，回傳可以被鏈結的物件。</p>
+
+<h4>Merging Scopes</h4>
+
+<p>如果說我們需要定義一個 scope，但是他會去使用到關聯的 Model 的 scope，就像下面的例子，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Comment</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:post</span>
+  <span class="n">scope</span> <span class="ss">:approved</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">approved: </span><span class="kp">true</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+  <span class="n">has_many</span> <span class="ss">:comments</span>
+  <span class="n">scope</span> <span class="ss">:with_approved_comments</span><span class="p">,</span>
+    <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">joins</span><span class="p">(</span><span class="ss">:comments</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="s1">'comments.approved = ?'</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>我們會重複使用到的 query，其實可以用更加優雅的方式實作出來，就是用 <code>merge</code> 這個方法，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span>
+  <span class="n">has_many</span> <span class="ss">:comments</span>
+  <span class="n">scope</span> <span class="ss">:with_approved_comments</span><span class="p">,</span>
+    <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">joins</span><span class="p">(</span><span class="ss">:comments</span><span class="p">).</span><span class="nf">merge</span><span class="p">(</span><span class="no">Comment</span><span class="p">.</span><span class="nf">approved</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="c1"># "SELECT "posts".* FROM "posts" INNER JOIN "comments" ON "comments"."post_id"</span>
+<span class="c1"># "posts"."id" WHERE ("comments"."approved" = 't')</span>
+</code></pre>
+
+<p>然後再 rails3 和 rails4 再 scope 的實作上有些差異，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">scope</span> <span class="ss">:active</span><span class="p">,</span>   <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">state: </span><span class="s1">'active'</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">scope</span> <span class="ss">:inactive</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">state: </span><span class="s1">'inactive'</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+
+<p><code>User.active.inactive</code> 在這個行為下，rails3 的結果是後面的會蓋掉前面的，但是 rails4 則是取兩者的交集，所以如果想要有 rails3 的結果，就是使用 <code>merge</code> 這個方法。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Scope in Rails&amp;amp;url=http://wellsonjain.github.io/2015/07/10/scope-in-rails/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/07/10/scope-in-rails/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/07/10/scope-in-rails/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/07/05/proc-and-lambda/'>
+<section class='post'>
+<h2>Proc and Lambda</h2>
+<p>It&rsquo;s not about where your starting point is, but your end goal and the journey that will get you&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/07/12/struct-and-method/'>
+<section class='post'>
+<h2>Struct and Method</h2>
+<p>It is not the load that breaks you down. It&rsquo;s the way you carry it. - Lou Holtz 在本篇要介紹的是&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

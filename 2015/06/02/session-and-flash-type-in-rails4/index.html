@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Session and Flash Type in Rails4</title>
+<meta content=' You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou Filter 在 rails3 有 before_fi...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Session and Flash Type in Rails4' property='og:title'>
+<meta content=' You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou Filter 在 rails3 有 before_fi...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2015/06/02/session-and-flash-type-in-rails4/' property='og:url'>
+<meta content='2015-06-02' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Session and Flash Type in Rails4' name='twitter:title'>
+<meta content=' You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou Filter 在 rails3 有 before_fi...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2015/06/02/session-and-flash-type-in-rails4/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Session and Flash Type in Rails4</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2015-06-02'>
+02 June 2015
+</time>
+on <a href='/tag/rails/'>rails</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou</p>
+</blockquote>
+
+<h4>Filter</h4>
+
+<p>在 rails3 有 <code>before_filter</code> 幫我們處理一些我們可能每次在執行某些 function 的時候會有些先行條件要完成，但是語意上可能會顯得不是那麼直觀，所以在 rails4 就改成為 <code>before_action</code>，但是值得一提的是 rails4 並沒有將 filter 給封掉，所以一樣還是可以使用。</p>
+
+<h4>Session</h4>
+
+<p>這個部分跟我上一篇所提的剛好可以做個相呼應，session 有點像 global variable，我們可以在 rails project 的任何地方都可以呼叫出來，因為他就是儲存在 server 上，Rails 採用的是 <code>Cookies session storage</code> 來儲存 session，概念上是這樣</p>
+<pre class="highlight plaintext"><code>            |     initial request     |
+Browser     |------------------------&gt;|session[:user_id] = user.id
+            |   Send session data     |
+{Cookeis}   |&lt;------------------------| APP
+            |                         |
+            |   Sends Cookie data     |
+            |------------------------&gt;|@current_user ||=
+                                          User.find(session[:user_id])
+</code></pre>
+
+<p>Session 透過編碼之後再存在 Cookies 裡面，在 rails3 裡雖然 session 裡面的值不能改變，但是卻可以讀得到，只要用 <code>Rack::Session::Cookie::Base64::Marshal.new.decode(cookie)</code> 就可以把 cookies 裡面的內容給讀取出來，但是在 rails4 加強了安全性，即使使用上述的方法依然沒辦法。</p>
+
+<h4>Flash Type</h4>
+
+<p>flash 是 rails 所提供的一個 hash，可以在前端顯示一些訊息，像是當我們在新增成功一筆資料可能導回前端之後，<code>Your item has created successfully.</code> 這樣一個訊息一起帶過去，在 rails4 有一些 mehthod 可以很方便的使用，</p>
+<pre class="highlight erb"><code><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"notice"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">flash</span><span class="p">[</span><span class="ss">:notice</span><span class="p">]</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"alert"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">flash</span><span class="p">[</span><span class="ss">:alert</span><span class="p">]</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+
+
+<span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"notice"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">notice</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"alert"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">alert</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+</code></pre>
+
+<p>而且事實上不只這些預設的可以使用，我們也可以自定義我們想要的 flash，只要在 Application controller 加上，</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">add_flash_type</span> <span class="ss">:warning</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>就一樣可以在前端直接使用這個 flash 的 method。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Session and Flash Type in Rails4&amp;amp;url=http://wellsonjain.github.io/2015/06/02/session-and-flash-type-in-rails4/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2015/06/02/session-and-flash-type-in-rails4/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2015/06/02/session-and-flash-type-in-rails4/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2015/05/31/security-in-rails-part1/'>
+<section class='post'>
+<h2>Security in Rails (1)</h2>
+<p>Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. -&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2015/06/04/etag-in-rails4/'>
+<section class='post'>
+<h2>Etag in Rails4</h2>
+<p>Start where you are. Use what you can. Do what you can. - Arthur Ashe ETag 接下來要介紹的是遠通的 ETag，ETag 的目的是用來辨識當前的頁面是否有所改變，流程大概是這樣，&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>
