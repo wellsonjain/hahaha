@@ -76,6 +76,33 @@
 </div>
 <article class='post'>
 <header class='post-header'>
+<h2 class='post-title'><a href="/2015/05/31/security-in-rails-part1/">Security in Rails (1)</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Believe in yourself. Under-confidence leads to a self-fulfilling prophecy that you are not good enough for your work. - Dr Roopleen
+
+
+這是第一篇開始對於 Rails Guides 所做的筆記記錄，也不一定是按照著順序寫，最近對於 Security 有點興趣而且也在這方面的機制不是很了解，所以就先從這篇開始看起。
+
+Session
+
+HTTP 是 stateless
+<a href="/2015/05/31/security-in-rails-part1/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>, <a href='/tag/rails-guides/'>rails guides</a>
+<time class='post-date' datetime='2015-05-31'>
+31 May 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
 <h2 class='post-title'><a href="/2015/05/31/1984/">1984</a></h2>
 </header>
 <section class='post-excerpt'>
@@ -325,33 +352,6 @@ Everything around you that you call life was made up by people, and you can chan
 on <a href='/tag/rails/'>rails</a>
 <time class='post-date' datetime='2015-05-08'>
 08 May 2015
-</time>
-</footer>
-</article>
-<article class='post'>
-<header class='post-header'>
-<h2 class='post-title'><a href="/2015/05/07/rails-api-part5/">Rails API (5)</a></h2>
-</header>
-<section class='post-excerpt'>
-<p>
-API Versioning
-
-隨著時間的推進，系統架構也會逐漸地成長，所以可能我們在新增一些功能的時候給新客戶的時候，會對於舊客戶有所影響，這時候比較好的做法就是把兩者切開，舊客戶使用 v1，新客戶使用 v2，這時候 namespace 就剛好能夠解決這個問題
-# config/routes.rb
-namespace :v1 do
-  resources :recipes    # http://apo.myrecipe.com/v1/recipes
-end
-
-namespace :v2 do
-<a href="/2015/05/07/rails-api-part5/" class="read-more">&raquo;</a>
-</p>
-</section>
-<footer class='post-meta'>
-<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
-<a href='/author/wellsonjain/'>wellsonjain</a>
-on <a href='/tag/rails/'>rails</a>
-<time class='post-date' datetime='2015-05-07'>
-07 May 2015
 </time>
 </footer>
 </article>

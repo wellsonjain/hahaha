@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: OAuth2, Why and How to implement (1)</title>
+<meta content=' If they can do it, so can you - Unknown 最近因為公司的需要，有機會可以深入的了解 OAuth，以前對於他的了解，應該也只僅限在某些網站下需要做些登入或註冊然後藉由 Google 或是 Facebook 之類的 OAuth 這樣的流程，鴨七的這篇對...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='OAuth2, Why and How to implement (1)' property='og:title'>
+<meta content=' If they can do it, so can you - Unknown 最近因為公司的需要，有機會可以深入的了解 OAuth，以前對於他的了解，應該也只僅限在某些網站下需要做些登入或註冊然後藉由 Google 或是 Facebook 之類的 OAuth 這樣的流程，鴨七的這篇對...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/' property='og:url'>
+<meta content='2016-05-29' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='OAuth2, Why and How to implement (1)' name='twitter:title'>
+<meta content=' If they can do it, so can you - Unknown 最近因為公司的需要，有機會可以深入的了解 OAuth，以前對於他的了解，應該也只僅限在某些網站下需要做些登入或註冊然後藉由 Google 或是 Facebook 之類的 OAuth 這樣的流程，鴨七的這篇對...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>OAuth2, Why and How to implement (1)</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-05-29'>
+29 May 2016
+</time>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>If they can do it, so can you - Unknown</p>
+</blockquote>
+
+<p>最近因為公司的需要，有機會可以深入的了解 OAuth，以前對於他的了解，應該也只僅限在某些網站下需要做些登入或註冊然後藉由 Google 或是 Facebook 之類的 OAuth 這樣的流程，鴨七的這篇對於 <a href="https://blog.yorkxin.org/posts/2013/09/30/oauth2-1-introduction/" rel="nofollow">OAuth 2.0 原理的筆記</a> 非常仔細，還有阮一峰老師寫的  <a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" rel="nofollow">理解 OAuth 2.0</a> 也是很棒的內容，接下來會基於這兩篇文章再加上一些自己看到的材料寫下本篇筆記。</p>
+
+<h3>OAuth 角色定義</h3>
+
+<p>首先先為我們會在 OAuth 中出現的角色做出定義，</p>
+
+<ul>
+<li><strong>Resource Owner</strong> - 可以授權給別人去存取 Protected Resource</li>
+<li><strong>Resource Server</strong> - 存放 Protected Resource 的 Server，可根據 Access Token 來回應 Protected Resource 的請求。</li>
+<li><strong>Client</strong> - 代表 Resource Owner 去存取 Protected Resource 的應用程式 (並不指特定的實作方式)</li>
+<li><strong>Authorization Server</strong> - 認證過 Resource Owner 並且 Resource Owner 授權後，核發 Access Token 的 Server</li>
+</ul>
+<pre class="highlight plaintext"><code>      +--------+                               +---------------+
+      |        |--(A)- Authorization Request -&gt;|   Resource    |
+      |        |                               |     Owner     |
+      |        |&lt;-(B)-- Authorization Grant ---|               |
+      |        |                               +---------------+
+      |        |
+      |        |                               +---------------+
+      |        |--(C)-- Authorization Grant --&gt;| Authorization |
+      | Client |                               |     Server    |
+      |        |&lt;-(D)----- Access Token -------|               |
+      |        |                               +---------------+
+      |        |
+      |        |                               +---------------+
+      |        |--(E)----- Access Token ------&gt;|    Resource   |
+      |        |                               |     Server    |
+      |        |&lt;-(F)--- Protected Resource ---|               |
+      +--------+                               +---------------+
+</code></pre>
+
+<p>從上圖可以看出，OAuth 的流程會有 3 種 Reuest (A, C, E), 以及 3 種 Response (B, D, F)，而這 3 種 Response 有相依性</p>
+
+<h4>Authorization Grant (授權許可)</h4>
+
+<p>代表了 Resource Owner 授權給 Client 去取得接下來的 Access Token 和 Protected Resource。 Grant 不一定是具體資料，依據 Spec 的四種 flow，有對應不同的 Grant type。 其中 Client 從 Resource Owner 取得 Authorization Grant 會比較偏好以 Authorization Server 當作中介。</p>
+
+<h4>Access Token</h4>
+
+<p>用來存取 Protected Resource，是一組具體的 string，有存取的 scope，時效。由 Resource Owner 授與，並且由 Authorization Server 和 Resource Server 遵循。</p>
+
+<p>Access Token 可以加上用來取得授權資訊的 identifier （編號或識別字等），或內建可以驗證的授權資訊（如數位簽章）。也就是說，可以由 Authorization Server 間接判定這個 Access Token 的 scope 及時效，也可以嵌在 Token 裡面，但為了防止竄改，要以加密演算法來實作資料的驗證。</p>
+
+<p>Access Token 可以有不同的格式、使用方式（如內建加密屬性）。Access Token 的內容，以及如何用它來存取 Protected Resource ，則定義在別的文件，像是 RFC 6750 (Bearer Token Usage) 。</p>
+
+<h4>四種 Grant Type</h4>
+
+<ul>
+<li>Authorization Code Grant Type Flow</li>
+<li>Implicit Grant Type Flow</li>
+<li>Resource Owner Password Credentials Grant Type Flow</li>
+<li>Client Credentials Grant Type Flow</li>
+</ul>
+
+<p>Clients 的類型，分成 Public 和 Confidential 兩種，根據能不能保密 Client Credentials 來區分，可以的就是 Confidential （如 Server 上的程式），不行的就是 Public （如 Native App、In-Browser App）</p>
+
+<h3>技術細節</h3>
+
+<h4>TLS Version</h4>
+
+<p>每當 Transport Layer Security (TLS）用於本規範，基於其部署和已知的安全漏洞相對應的版本會有所不同。目前 TLS 1.2 版本 [RFC5246] 是最新的版本，但是基於一個有限的基礎，可能不是這麼容易實作。 TLS 1.0版 [RFC2246] 則是被廣泛使用的版本，提供很好的操作。在實作上也可能可以支持額外的傳輸層安全機制，來滿足安全虛需求。</p>
+
+<h4>HTTP Redirections</h4>
+
+<p>大量使用 HTTP redirection，其中 client 或 authorization server 導引 resource owner 的 user-agent到另一個 destination。像是用 302 status code 來表示重新導向到新的新位置。</p>
+
+<h3>Client Grant Type</h3>
+
+<p>由於目前我們公司只有用到兩種，分別是 <code>Authorization Code</code> 和 <code>Implicit</code>，因此接下來先聚焦在這兩種 grant type。</p>
+
+<h4>Authorization Code</h4>
+
+<p>在 Authorization Code Flow 裡，Client 不直接向 Resource Owner 要求許可，而是把 Resource Owner 導去 Authorization Server 要求許可， Authorization Server 再透過轉址來告訴 Client 授權許可的代碼 (code)。在轉址回去之前， Authorization Server 會先認證 Resource Owner 並取得授權。因為 Resource Owner 只跟 Authorization Server 認證，所以 Client 絕對不會拿到 Resource Owner 的帳號密碼。</p>
+
+<p>在這種流程裡， Authorization Grant Code 會以一個字串 (string) 具體存在，並且傳遞給 Client ，做為 Authorization Grant （Resource Owner 的授權許可）。在取得 Grant 之後，還沒有取得 Access Token ，Client 要再自己去向 Authorization Server 取得 Access Token 。</p>
+<pre class="highlight plaintext"><code>+----------+
+| Resource |
+|   Owner  |
+|          |
++----------+
+     ^
+     |
+    (B)
++----|-----+          Client Identifier      +---------------+
+|         -+----(A)-- &amp; Redirection URI ----&gt;|               |
+|  User-   |                                 | Authorization |
+|  Agent  -+----(B)-- User authenticates ---&gt;|     Server    |
+|          |                                 |               |
+|         -+----(C)-- Authorization Code ---&lt;|               |
++-|----|---+                                 +---------------+
+  |    |                                         ^      v
+ (A)  (C)                                        |      |
+  |    |                                         |      |
+  ^    v                                         |      |
++---------+                                      |      |
+|         |&gt;---(D)-- Authorization Code ---------'      |
+|  Client |          &amp; Redirection URI                  |
+|         |                                             |
+|         |&lt;---(E)----- Access Token -------------------'
++---------+       (w/ Optional Refresh Token)
+</code></pre>
+
+<p>流程如下：</p>
+
+<ul>
+<li><p>（A）User 訪問 Client，而後者將前者導向 Authorization Server，其中（A）的參數為：</p>
+
+<table><thead>
+<tr>
+<th>參數名</th>
+<th>必填/選填</th>
+<th>內容</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response_type</td>
+<td>必</td>
+<td>code</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>必</td>
+<td>自己的 Client ID</td>
+</tr>
+<tr>
+<td>state</td>
+<td>建議有</td>
+<td>內部狀態</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>選</td>
+<td>申請結果下來之後要轉址去哪裡</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>選</td>
+<td>申請的存取範圍</td>
+</tr>
+</tbody></table></li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight plaintext"><code>GET /authorize?response_type=code&amp;client_id=s6BhdRkqt3&amp;state=xyz
+  &amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
+Host: server.example.com
+</code></pre>
+
+<ul>
+<li>（B）User 選擇是否要給予 Client 授權。</li>
+<li><p>（C）假設 User 給予授權，接著會收到 302 的轉址 response，Authorization Server 將 User 導向 Client 事先指定的 Redirection URI，並且附上 Authorization Code，其中（C）的 Response 參數是，</p>
+
+<table><thead>
+<tr>
+<th>參數名</th>
+<th>必填/選填</th>
+<th>內容</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>必</td>
+<td>code</td>
+</tr>
+<tr>
+<td>state</td>
+<td>必</td>
+<td>原內部狀態</td>
+</tr>
+</tbody></table></li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight plaintext"><code>HTTP/1.1 302 Found
+Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA
+          &amp;state=xyz
+</code></pre>
+
+<ul>
+<li><p>（D）Client 收到 Authorization Code，附上先前指定的 Redirection URI ，對 Authorization Server 申請 Token。這一個步驟是在 Client 後台完成，User 不可看見，其中 （D）的參數為，</p>
+
+<table><thead>
+<tr>
+<th>參數名</th>
+<th>必填/選填</th>
+<th>內容</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type</td>
+<td>必</td>
+<td>authorization_code</td>
+</tr>
+<tr>
+<td>code</td>
+<td>必</td>
+<td>在 &copy; 拿到的 Authorization Code</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>必</td>
+<td>如果 (A) 有提供，則必須提供一模一樣的。</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>必</td>
+<td>自己的 Client ID （Public Client 才要填）</td>
+</tr>
+</tbody></table></li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight plaintext"><code>POST /token HTTP/1.1
+Host: server.example.com
+Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&amp;code=SplxlOBeZQQYbYS6WxSbIA
+&amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb
+</code></pre>
+
+<ul>
+<li>（E）Authorization Server 核對 Authorization Code 和 Redirection URI，確認無誤後，對 Client 發送 Access Token 和 Refresh Token (Optional)。</li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight plaintext"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Cache-Control: no-store
+Pragma: no-cache
+
+{
+  "access_token":"2YotnFZFEjr1zCsicMWpAA",
+  "token_type":"example",
+  "expires_in":3600,
+  "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA",
+  "example_parameter":"example_value"
+}
+</code></pre>
+
+<h4>Implicit</h4>
+
+<p>在 Implicit Grant Flow 裡，Authorization Server 直接向 Client 核發 Access Token ，而不像 Authorization Code Grant Flow ，先核發 Grant ，再另外去拿 Access Token。</p>
+
+<p>Authorization Server 核發 Access Token 的時候，不認證 Client （其實也無法認證），在某些情況下，可以用 Redirection URI 來確保 Access Token 只發給正確的 Client 。這種流程依賴 Resource Owner 本人的存在，以及事先設定的 Redirection URI。</p>
+<pre class="highlight plaintext"><code>+----------+
+| Resource |
+|  Owner   |
+|          |
++----------+
+     ^
+     |
+    (B)
++----|-----+          Client Identifier     +---------------+
+|         -+----(A)-- &amp; Redirection URI ---&gt;|               |
+|  User-   |                                | Authorization |
+|  Agent  -|----(B)-- User authenticates --&gt;|     Server    |
+|          |                                |               |
+|          |&lt;---(C)--- Redirection URI ----&lt;|               |
+|          |          with Access Token     +---------------+
+|          |            in Fragment
+|          |                                +---------------+
+|          |----(D)--- Redirection URI ----&gt;|   Web-Hosted  |
+|          |          without Fragment      |     Client    |
+|          |                                |    Resource   |
+|     (F)  |&lt;---(E)------- Script ---------&lt;|               |
+|          |                                +---------------+
++-|--------+
+  |    |
+ (A)  (G) Access Token
+  |    |
+  ^    v
++---------+
+|         |
+|  Client |
+|         |
++---------+
+</code></pre>
+
+<p>流程如下：</p>
+
+<ul>
+<li>（A）Client 將 User 導向 Authorization Server，其中（A）的參數是：</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>參數名</th>
+<th>必填/選填</th>
+<th>內容</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response_type</td>
+<td>必</td>
+<td>token</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>必</td>
+<td>自己的 Client ID</td>
+</tr>
+<tr>
+<td>state</td>
+<td>建議有</td>
+<td>內部狀態</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>選</td>
+<td>申請結果下來之後要轉址去哪裡</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>選</td>
+<td>申請的存取範圍</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>（B）User 決定是否給 Client 授權。</li>
+<li>（C）假設 User 授權，Authorization Server 將 User 導向 Client 指定的 Redirection URI，並在 URI 的 Fragment Component 包含了 Access Token，其中（C）的參數是，</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>參數名</th>
+<th>必填/選填</th>
+<th>內容</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access_token</td>
+<td>必</td>
+<td>Access Token</td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>建議有</td>
+<td>幾秒過期，如 3600 表示 10 分鐘。若要省略，最好在文件裡註明效期。</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>必</td>
+<td>Access Token 的授權範圍 (scopes)</td>
+</tr>
+<tr>
+<td>state</td>
+<td>必</td>
+<td>原內部狀態</td>
+</tr>
+</tbody></table>
+
+<p>Example:</p>
+<pre class="highlight plaintext"><code>HTTP/1.1 302 Found
+Location: http://example.com/cb#access_token=2YotnFZFEjr1zCsicMWpAA
+          &amp;state=xyz&amp;token_type=example&amp;expires_in=3600
+</code></pre>
+
+<ul>
+<li>（D）Browser 向 Web-Hosted Client Resource 發出 Request，但是並不包含上一步所收到的 Hash 值。</li>
+<li>（E）Web-Hosted Client Resource 回傳一個網頁 (HTML &amp; JavaScript)，這個網頁可以拿到完整的 Redirection URI (含先前保留的 Fragment)</li>
+<li>（F）Browser 執行 Web-Hosted Client Resource 來的 Script 把 Access Token 解出來。</li>
+<li>（G）Browser 把 Access Token 傳給 Client。</li>
+</ul>
+
+<p>上面分別是 Authorization Code 以及 Implicit 這兩種 Type 的流程，同時也對一些 terminology 做了解釋，下一篇將會試著做出一些範例，另外兩種 type 再視情況補充。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=OAuth2, Why and How to implement (1)&amp;amp;url=http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/03/25/basic-javascript-object/'>
+<section class='post'>
+<h2>Basic Javascript Object</h2>
+<p>You got this. Make it happen. - Danielle LaPorte What is Object? Object is a &ldquo;container&rdquo; of multiple related&hellip;</p>
+</section>
+</a>
+<a class='no-cover prev read-next-story' href='/2016/05/30/how-to-read-the-source-code/'>
+<section class='post'>
+<h2>How to read Source Code</h2>
+<p>Everything around you that you call life was made up by people, and you can change it. - Steve&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>

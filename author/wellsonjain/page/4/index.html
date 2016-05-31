@@ -68,7 +68,7 @@
 <span class='author-location icon-location'>Taipei, Taiwan</span>
 <span class='author-stats'>
 <i class='icon-stats'></i>
-48 posts
+49 posts
 </span>
 </div>
 <h2>About</h2>
@@ -81,11 +81,43 @@
 <div class='extra-pagination inner'>
 <nav class='pagination' role='pagination'>
 <a href="/author/wellsonjain/page/3/" class="newer-posts">← Newer Posts</a>
-<span class='page-number'>Page 4 of 8</span>
+<span class='page-number'>Page 4 of 9</span>
 <a href="/author/wellsonjain/page/5/" class="older-posts">Older Posts →</a>
 </nav>
 
 </div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/12/self-class-eval-and-instance-eval/">Self、Class_eval and Instance_eval</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Life shrinks or expands in proportion to one’s courage. - Anaïs Nin
+
+
+Self
+
+在 Ruby 的世界裡 self 這個保留字代表當前物件的意思，
+class Tweet
+  def self.find(keyword)
+    puts "Inside a class method: #{self}"
+  end
+end
+
+Tweet.find("rubybits")      # Inside a class method
+<a href="/2015/07/12/self-class-eval-and-instance-eval/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/ruby/'>ruby</a>
+<time class='post-date' datetime='2015-07-12'>
+12 July 2015
+</time>
+</footer>
+</article>
 <article class='post'>
 <header class='post-header'>
 <h2 class='post-title'><a href="/2015/07/12/struct-and-method/">Struct and Method</a></h2>
@@ -227,43 +259,9 @@ on <a href='/tag/ruby/'>ruby</a>
 </time>
 </footer>
 </article>
-<article class='post'>
-<header class='post-header'>
-<h2 class='post-title'><a href="/2015/06/28/module-concept/">Module Concept</a></h2>
-</header>
-<section class='post-excerpt'>
-<p>
-
-Choose a job you love and you will never have to work a day of your life. - Confucius
-
-
-Module
-
-接續 Class 之後要來談談 Module，Module 的角色很特別，跟 Class 全然不同，首先 Module 不能被繼承，像是這樣，
-module Speaker
-  def quack
-    ...
-  end
-end
-
-class MakeSound &lt; Speaker
-  ...
-end
-<a href="/2015/06/28/module-concept/" class="read-more">&raquo;</a>
-</p>
-</section>
-<footer class='post-meta'>
-<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=24'>
-<a href='/author/wellsonjain/'>wellsonjain</a>
-on <a href='/tag/ruby/'>ruby</a>
-<time class='post-date' datetime='2015-06-28'>
-28 June 2015
-</time>
-</footer>
-</article>
 <nav class='pagination' role='pagination'>
 <a href="/author/wellsonjain/page/3/" class="newer-posts">← Newer Posts</a>
-<span class='page-number'>Page 4 of 8</span>
+<span class='page-number'>Page 4 of 9</span>
 <a href="/author/wellsonjain/page/5/" class="older-posts">Older Posts →</a>
 </nav>
 
