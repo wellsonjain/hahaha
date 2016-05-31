@@ -5,10 +5,25 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/feed.xml" rel="self"/>
-  <updated>2016-03-25T23:45:00+11:00</updated>
+  <updated>2016-05-31T09:37:00+10:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
+  <entry>
+    <title>How to read Source Code</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/"/>
+    <id>http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/</id>
+    <published>2016-05-31T09:37:00+10:00</published>
+    <updated>2016-05-31T11:02:21+10:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Everything around you that you call life was made up by people, and you can change it. - Steve Jobs
+
+
+昨天在臉書上面看到一篇 閱讀程式碼的心理層面 覺得有點感觸，其實自己在閱讀程式碼的方式真的就像是逐條閱讀，誰去呼叫誰？最後預期結果會在哪裡？但是這的確就像是作者所提到「見樹不見林」的狀況；前幾天在韓劇裡面看到一段台詞，大意上是說你所下的每一步棋都有個理由，先有意圖才有行動，回到閱讀原始碼這件事</summary>
+  </entry>
   <entry>
     <title>Basic Javascript Object</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/25/basic-javascript-object/"/>
@@ -93,25 +108,5 @@ We mentioned about function:
 function buildTicket (allRides, passRides, pick){
   if (passRides[0] == pick) {
     var pass = allRides.</summary>
-  </entry>
-  <entry>
-    <title>Basic Javascript</title>
-    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/02/basic-javascript/"/>
-    <id>http://wellsonjain.github.io/2016/03/02/basic-javascript/</id>
-    <published>2016-03-02T22:28:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
-    <author>
-      <name>wellsonjain</name>
-    </author>
-    <summary type="html">
-The mind, once stretched by a new idea, never regains its original dimensions. - Oliver Wendell Holmes
-The basic function structure
-
-
-Here is basic function structure:
-function sumOfCubes (a, b) {
-  // do some stuff
-
-  return // something (or nothing</summary>
   </entry>
 </feed>

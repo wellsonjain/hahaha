@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: How to read Source Code</title>
+<meta content=' Everything around you that you call life was made up by people, and you can change it. - Steve Jobs 昨天在臉書上面看到一篇 閱讀程式碼的心理層面 覺得有點感觸，其實自己在閱讀程式碼的方式...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='How to read Source Code' property='og:title'>
+<meta content=' Everything around you that you call life was made up by people, and you can change it. - Steve Jobs 昨天在臉書上面看到一篇 閱讀程式碼的心理層面 覺得有點感觸，其實自己在閱讀程式碼的方式...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/' property='og:url'>
+<meta content='2016-05-30' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='How to read Source Code' name='twitter:title'>
+<meta content=' Everything around you that you call life was made up by people, and you can change it. - Steve Jobs 昨天在臉書上面看到一篇 閱讀程式碼的心理層面 覺得有點感觸，其實自己在閱讀程式碼的方式...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>How to read Source Code</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-05-30'>
+30 May 2016
+</time>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Everything around you that you call life was made up by people, and you can change it. - Steve Jobs</p>
+</blockquote>
+
+<p>昨天在臉書上面看到一篇 <a href="http://www.codemud.net/~thinker/GinGin_CGI.py/show_id_doc/497" rel="nofollow">閱讀程式碼的心理層面</a> 覺得有點感觸，其實自己在閱讀程式碼的方式真的就像是逐條閱讀，誰去呼叫誰？最後預期結果會在哪裡？但是這的確就像是作者所提到「見樹不見林」的狀況；前幾天在韓劇裡面看到一段台詞，大意上是說你所下的每一步棋都有個理由，先有意圖才有行動，回到閱讀原始碼這件事，每個作者對於問題的解法不同，所以應該先去了解他對於整個程式的架構組件是如何去設計的，要把持住自己對於細節的慾望，目標導向「我的意圖是什麼？」，「我想要瞭解的地方是哪裡？」</p>
+
+<p>看完了這篇文章之後，心裡的好奇心就被激發出來了，於是乎就去找了一下是否有解釋如何閱讀程式碼之類的文章，結果找到了這篇 iThome 在 2008 年初由作者王建興所撰寫的 <a href="http://www.ithome.com.tw/node/47717" rel="nofollow">如何閱讀程式碼的系列文</a> 在這個系列文中，作者也是提出了先了解架構，採由上至下 (Top-Down) 的方式，從骨幹開始了解，去釐清開發者思考的脈絡，他選擇如何鋪陳。</p>
+
+<p>雖然後續也找了很多篇來看，不過我想核心價值應該都是一樣的，過去自己有個很大的問題是，「總是希望有步驟可以遵循」，其實很少從 Top-Down 的方式來去審視整個結構，就像是身處於一個陌生的城市，若是要從 A 點到 B 點，沿途一直問人也是很耗腦力，可是如果從地圖上來看自己的位置然後又要到哪裡去，雖然這樣的類比看似很容易，但是在閱讀程式碼的過程還是必須刻意去練習才能做到，畢竟 Source Code 也是人類心智下的產物。</p>
+
+<p>總結一下，理解開發者的設計架構，想清楚自己的目的意圖是什麼？而 Source Code 是如何去達成這個目的的？</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/f71e00ea1fdc39cca21f912e69e0514e?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=How to read Source Code&amp;amp;url=http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/03/25/basic-javascript-object/'>
+<section class='post'>
+<h2>Basic Javascript Object</h2>
+<p>You got this. Make it happen. - Danielle LaPorte What is Object? Object is a &ldquo;container&rdquo; of multiple related&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>
