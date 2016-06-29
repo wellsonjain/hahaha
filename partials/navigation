@@ -19,6 +19,9 @@
 <li class='nav-javascript' role='presentation'>
 <a href='/tag/javascript/'>Javascript</a>
 </li>
+<li class='nav-thought' role='presentation'>
+<a href='/tag/thought'>Thought</a>
+</li>
 </ul>
 <a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
 </div>
