@@ -5,7 +5,7 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/tag/ruby/feed.xml" rel="self"/>
-  <updated>2015-06-11T23:17:00+10:00</updated>
+  <updated>2015-06-11T21:17:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
@@ -13,8 +13,8 @@
     <title>Control Flow</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/06/11/control-flow/"/>
     <id>http://wellsonjain.github.io/2015/06/11/control-flow/</id>
-    <published>2015-06-11T23:17:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-06-11T21:17:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -28,8 +28,8 @@ Rails 要學得好，Ruby 才是 Rails 開發者的根基，而且其實有很�
     <title>Optional Argument</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/06/12/optional-argument/"/>
     <id>http://wellsonjain.github.io/2015/06/12/optional-argument/</id>
-    <published>2015-06-12T23:07:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-06-12T21:07:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -45,8 +45,8 @@ Optional Arguments
     <title>Class Concept</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/06/17/class-concept/"/>
     <id>http://wellsonjain.github.io/2015/06/17/class-concept/</id>
-    <published>2015-06-17T10:28:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-06-17T08:28:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -62,8 +62,8 @@ Class
     <title>Module Concept</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/06/28/module-concept/"/>
     <id>http://wellsonjain.github.io/2015/06/28/module-concept/</id>
-    <published>2015-06-28T16:00:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-06-28T14:00:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -88,8 +88,8 @@ end</summary>
     <title>The Block</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/07/01/the-block/"/>
     <id>http://wellsonjain.github.io/2015/07/01/the-block/</id>
-    <published>2015-07-01T18:00:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-07-01T16:00:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -110,8 +110,8 @@ words.each do |word|
     <title>Proc and Lambda</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/07/05/proc-and-lambda/"/>
     <id>http://wellsonjain.github.io/2015/07/05/proc-and-lambda/</id>
-    <published>2015-07-05T14:58:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-07-05T12:58:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>

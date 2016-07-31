@@ -5,16 +5,33 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/feed.xml" rel="self"/>
-  <updated>2016-05-31T09:37:00+10:00</updated>
+  <updated>2016-07-31T23:17:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
   <entry>
+    <title>Magnificent Turn</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/07/31/magnificent-turn/"/>
+    <id>http://wellsonjain.github.io/2016/07/31/magnificent-turn/</id>
+    <published>2016-07-31T23:17:00+08:00</published>
+    <updated>2016-08-01T01:25:30+08:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+It doesn’t matter where you start. Only that you begin. - Robin Sharma
+
+
+似乎又到了週期性的自我反思，剛好也是覺得自己好久沒有打一篇文章，就藉這個反省的機會稍微講一下最近的想法；我經常覺得自己是個不太有毅力的人，不過通常沒有毅力應該很大一部分的原因來自於很容易分心，進而導致拖延或是健忘的狀況。
+
+舉例來說，每天更新 redmine 這個事情就一直讓我覺得很困擾，不過我想比我更加困擾的人是 PM，今天在 slack 上面稍微</summary>
+  </entry>
+  <entry>
     <title>How to read Source Code</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/"/>
     <id>http://wellsonjain.github.io/2016/05/30/how-to-read-the-source-code/</id>
-    <published>2016-05-31T09:37:00+10:00</published>
-    <updated>2016-05-31T11:02:21+10:00</updated>
+    <published>2016-05-31T07:37:00+08:00</published>
+    <updated>2016-05-31T09:02:21+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -28,8 +45,8 @@ Everything around you that you call life was made up by people, and you can chan
     <title>OAuth2, Why and How to implement (1)</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/"/>
     <id>http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/</id>
-    <published>2016-05-29T13:06:00+10:00</published>
-    <updated>2016-05-31T16:10:07+10:00</updated>
+    <published>2016-05-29T11:06:00+08:00</published>
+    <updated>2016-05-31T14:10:07+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -47,8 +64,8 @@ OAuth 角色定義
     <title>Basic Javascript Object</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/25/basic-javascript-object/"/>
     <id>http://wellsonjain.github.io/2016/03/25/basic-javascript-object/</id>
-    <published>2016-03-25T23:45:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-25T20:45:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -64,8 +81,8 @@ In javascript</summary>
     <title>Demystifying Javascript Closures Callbacks IIFEs</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/demystifying-javascript-closures-callbacks-iifes/"/>
     <id>http://wellsonjain.github.io/2016/03/18/demystifying-javascript-closures-callbacks-iifes/</id>
-    <published>2016-03-18T14:23:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-18T11:23:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -81,8 +98,8 @@ Translated from: Demystifying JavaScript Closures, Callbacks and IIFEs
     <title>Demystifying Javascript Variable Scope Hoisting</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/"/>
     <id>http://wellsonjain.github.io/2016/03/18/demystifying-javascript-variable-scope-hoisting/</id>
-    <published>2016-03-18T14:22:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-18T11:22:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -93,22 +110,5 @@ Today I will do what others won’t, so tomorrow I can do what others can’t. -
 Translated from: Demystifying JavaScript Variable Scope and Hoisting
 
 每個構建都需要建立在強大的基礎建設上，而在 JavaScript 中了解 variable 的 scope 是建立堅固基礎的關鍵之一。本文將解釋 JavaScript 的 scope</summary>
-  </entry>
-  <entry>
-    <title>Back to Basics Javascript Hoisting</title>
-    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/back-to-basics-javascript-hoisting/"/>
-    <id>http://wellsonjain.github.io/2016/03/18/back-to-basics-javascript-hoisting/</id>
-    <published>2016-03-18T14:21:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
-    <author>
-      <name>wellsonjain</name>
-    </author>
-    <summary type="html">
-You may not control all the events that happen to you, but you can decide not to be reduced by them. - Maya Angelou
-
-
-Translated from: Back to Basics: JavaScript Hoisting
-
-Variable declarations 是任何 programming language 最基本的概念之一。然而，JavaScript 有一個很奇怪概</summary>
   </entry>
 </feed>

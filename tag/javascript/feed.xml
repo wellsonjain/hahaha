@@ -5,7 +5,7 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/tag/javascript/feed.xml" rel="self"/>
-  <updated>2015-05-14T10:31:00+10:00</updated>
+  <updated>2015-05-14T08:31:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
@@ -13,8 +13,8 @@
     <title>Basic jQuery</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/05/14/basic-jquery/"/>
     <id>http://wellsonjain.github.io/2015/05/14/basic-jquery/</id>
-    <published>2015-05-14T10:31:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-05-14T08:31:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -59,8 +59,8 @@ talk
     <title>Basic jQuery (2)</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/05/16/basic-jquery-part2/"/>
     <id>http://wellsonjain.github.io/2015/05/16/basic-jquery-part2/</id>
-    <published>2015-05-16T18:24:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-05-16T16:24:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -78,8 +78,8 @@ $('button'</summary>
     <title>Basic Javascipt Closure</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/"/>
     <id>http://wellsonjain.github.io/2016/03/02/basic-javascipt-closure/</id>
-    <published>2016-03-02T22:57:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-02T19:57:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -95,8 +95,8 @@ function buildTicket (allRides, passRides, pick){
     <title>Basic Javascript</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/02/basic-javascript/"/>
     <id>http://wellsonjain.github.io/2016/03/02/basic-javascript/</id>
-    <published>2016-03-02T22:28:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-02T19:28:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -115,8 +115,8 @@ function sumOfCubes (a, b) {
     <title>Back to Basics Javascript Hoisting</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/back-to-basics-javascript-hoisting/"/>
     <id>http://wellsonjain.github.io/2016/03/18/back-to-basics-javascript-hoisting/</id>
-    <published>2016-03-18T14:21:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-18T11:21:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -132,8 +132,8 @@ Variable declarations 是任何 programming language 最基本的概念之一。
     <title>Demystifying Javascript Closures Callbacks IIFEs</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/03/18/demystifying-javascript-closures-callbacks-iifes/"/>
     <id>http://wellsonjain.github.io/2016/03/18/demystifying-javascript-closures-callbacks-iifes/</id>
-    <published>2016-03-18T14:23:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2016-03-18T11:23:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>

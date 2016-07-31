@@ -137,14 +137,14 @@ on <a href='/tag/rails/'>rails</a>
 </code></pre>
 
 <p>可是這樣做到底會造成什麼問題呢？ 如果說我們可能有個需求就是當新增了之後要更新所有作者為 admin 的某個欄位值，這樣會造成 query 上的不一致，在 <code>first_or_create</code> 所做的 query 為</p>
-<pre class="highlight sql"><code><span class="c1">-- type 1
-</span><span class="k">SELECT</span> <span class="nv">"posts"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"posts"</span>
+<pre class="highlight sql"><code><span class="c1">-- type 1</span>
+<span class="k">SELECT</span> <span class="nv">"posts"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"posts"</span>
   <span class="k">WHERE</span> <span class="nv">"posts"</span><span class="p">.</span><span class="nv">"title"</span> <span class="o">=</span> <span class="s1">'Rails 4'</span> <span class="k">AND</span> <span class="nv">"posts"</span><span class="p">.</span><span class="nv">"author"</span> <span class="o">=</span> <span class="s1">'admin'</span>
 </code></pre>
 
 <p>可是我們在 callback 裡面只有呼叫 author 為 admin 的啊，這樣反而限制的更嚴格，和我們原本所設想的有落差，而 <code>find_or_create</code> 所做的 query 則是</p>
-<pre class="highlight sql"><code><span class="c1">-- type 2
-</span><span class="k">SELECT</span> <span class="nv">"posts"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"posts"</span> <span class="k">WHERE</span> <span class="nv">"posts"</span><span class="p">.</span><span class="nv">"author"</span> <span class="o">=</span> <span class="s1">'admin'</span>
+<pre class="highlight sql"><code><span class="c1">-- type 2</span>
+<span class="k">SELECT</span> <span class="nv">"posts"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"posts"</span> <span class="k">WHERE</span> <span class="nv">"posts"</span><span class="p">.</span><span class="nv">"author"</span> <span class="o">=</span> <span class="s1">'admin'</span>
 </code></pre>
 
 <p>接著 find 之後來說 update，在 rails4 裡提供了兩種 update 方式，分別是，</p>

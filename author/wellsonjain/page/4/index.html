@@ -71,7 +71,7 @@
 <span class='author-location icon-location'>Taipei, Taiwan</span>
 <span class='author-stats'>
 <i class='icon-stats'></i>
-49 posts
+50 posts
 </span>
 </div>
 <h2>About</h2>
@@ -104,6 +104,34 @@
 </nav>
 
 </div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/17/concerns-in-rails/">Concerns in Rails</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Muddy water is best cleared by leaving it alone. - Alan Watts
+
+
+Model Concerns
+
+接下來是要介紹在 rails4 之後，非常重要的重構技巧，就是將重複的程式，抽出來後放在 concerns 這個資料夾底下，這其實跟我們之前所提到的 PORO 的概念可能不太相同，在這邊的方法就會是以 Module 的形式出現，
+# app/models/post.rb
+class Post &lt; ActiveRecord::Base
+ 
+<a href="/2015/07/17/concerns-in-rails/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-17'>
+17 July 2015
+</time>
+</footer>
+</article>
 <article class='post'>
 <header class='post-header'>
 <h2 class='post-title'><a href="/2015/07/12/self-class-eval-and-instance-eval/">Self、Class_eval and Instance_eval</a></h2>
@@ -244,36 +272,6 @@ Model
 on <a href='/tag/rails/'>rails</a>
 <time class='post-date' datetime='2015-07-03'>
 03 July 2015
-</time>
-</footer>
-</article>
-<article class='post'>
-<header class='post-header'>
-<h2 class='post-title'><a href="/2015/07/01/the-block/">The Block</a></h2>
-</header>
-<section class='post-excerpt'>
-<p>
-
-The future depends on what we do in the present. - Mahatma Gandhi
-
-
-在 Ruby 的世界裡，有 block、Proc、lambda、method 這四個是非常重要的 closure，首先本篇會先講 block
-
-Block
-
-在 Ruby 的語法中有個非常常用的方法 each，
-words = ['Hello', 'world', 'I am', 'Wellson']
-words.each do |word|
-  backward_word
-<a href="/2015/07/01/the-block/" class="read-more">&raquo;</a>
-</p>
-</section>
-<footer class='post-meta'>
-<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
-<a href='/author/wellsonjain/'>wellsonjain</a>
-on <a href='/tag/ruby/'>ruby</a>
-<time class='post-date' datetime='2015-07-01'>
-01 July 2015
 </time>
 </footer>
 </article>

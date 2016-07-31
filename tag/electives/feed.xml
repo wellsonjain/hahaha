@@ -5,7 +5,7 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/tag/electives/feed.xml" rel="self"/>
-  <updated>2015-04-26T17:40:00+10:00</updated>
+  <updated>2015-04-26T15:40:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
@@ -13,8 +13,8 @@
     <title>Middleman And Github Pages (2)</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/"/>
     <id>http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages-part2/</id>
-    <published>2015-04-26T17:40:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-04-26T15:40:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -31,8 +31,8 @@ gem 'middleman</summary>
     <title>Middleman and Github Pages (1)</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/"/>
     <id>http://wellsonjain.github.io/2015/04/26/middleman-and-github-pages/</id>
-    <published>2015-04-26T16:06:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-04-26T14:06:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -44,8 +44,8 @@ gem 'middleman</summary>
     <title>Regular Expression Tutorial (1)</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/"/>
     <id>http://wellsonjain.github.io/2015/08/03/regular-expression-tutorial-part1/</id>
-    <published>2015-08-03T23:03:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-08-03T21:03:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -63,8 +63,8 @@ The String Story
     <title>Regular Expression Tutorial (2)</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/"/>
     <id>http://wellsonjain.github.io/2015/08/31/regular-expression-tutorial-part2/</id>
-    <published>2015-08-31T11:48:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-08-31T09:48:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>

@@ -5,7 +5,7 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/tag/thought/feed.xml" rel="self"/>
-  <updated>2015-04-30T03:10:00+10:00</updated>
+  <updated>2015-04-30T01:10:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
@@ -13,8 +13,8 @@
     <title>Pattern</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/04/29/pattern/"/>
     <id>http://wellsonjain.github.io/2015/04/29/pattern/</id>
-    <published>2015-04-30T03:10:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-04-30T01:10:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -32,8 +32,8 @@
     <title>Game Theory</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/05/02/game-theory/"/>
     <id>http://wellsonjain.github.io/2015/05/02/game-theory/</id>
-    <published>2015-05-02T22:56:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-05-02T20:56:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -59,8 +59,8 @@
     <title>崩潰的社會</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/05/18/societal-collapse/"/>
     <id>http://wellsonjain.github.io/2015/05/18/societal-collapse/</id>
-    <published>2015-05-18T13:54:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-05-18T11:54:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -76,8 +76,8 @@ Life is divided into the horrible and the miserable. - Woody Allen
     <title>1984</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/05/31/1984/"/>
     <id>http://wellsonjain.github.io/2015/05/31/1984/</id>
-    <published>2015-05-31T13:29:00+10:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-05-31T11:29:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -95,8 +95,8 @@ Big Brother is watching you - George Orwell, 1984
     <title>Farewell</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2015/10/11/farewell/"/>
     <id>http://wellsonjain.github.io/2015/10/11/farewell/</id>
-    <published>2015-10-11T17:56:00+11:00</published>
-    <updated>2016-05-29T22:43:50+10:00</updated>
+    <published>2015-10-11T14:56:00+08:00</published>
+    <updated>2016-05-29T20:43:50+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -107,5 +107,22 @@ Never look back unless you are planning to go that way. - Henry David Thoreau
 最近在臉書上面看到一篇石頭的專訪死亡這麼近，更要用力的活著，稍微的瀏覽一下之後覺得很多想法十分認同，立刻就在臉書上面分享了，然後今天在滑臉書的時候看到了另外一篇廣告小妹寫的離婚是人生另一個開始，突然間覺得好像對自己解釋了什麼一樣，於是有了這篇文章。
 
 這一個月來因為女朋友跑到澳洲去打工度假了，因為以前的經驗，其實蠻常因此思緒而有點混亂，</summary>
+  </entry>
+  <entry>
+    <title>Magnificent Turn</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/07/31/magnificent-turn/"/>
+    <id>http://wellsonjain.github.io/2016/07/31/magnificent-turn/</id>
+    <published>2016-07-31T23:17:00+08:00</published>
+    <updated>2016-08-01T01:25:30+08:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+It doesn’t matter where you start. Only that you begin. - Robin Sharma
+
+
+似乎又到了週期性的自我反思，剛好也是覺得自己好久沒有打一篇文章，就藉這個反省的機會稍微講一下最近的想法；我經常覺得自己是個不太有毅力的人，不過通常沒有毅力應該很大一部分的原因來自於很容易分心，進而導致拖延或是健忘的狀況。
+
+舉例來說，每天更新 redmine 這個事情就一直讓我覺得很困擾，不過我想比我更加困擾的人是 PM，今天在 slack 上面稍微</summary>
   </entry>
 </feed>
