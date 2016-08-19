@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Why we need HTTPS</title>
+<meta content=' Don&amp;rsquo;t find fault. Find a remedy. - Henry Ford HTTP 是明文傳輸，因此在端與端之間的任何一個節點都可以知道傳輸的內容是什麼， Sign in -&amp;gt; Proxy (do something bad) -&amp;gt; Serve...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Why we need HTTPS' property='og:title'>
+<meta content=' Don&amp;rsquo;t find fault. Find a remedy. - Henry Ford HTTP 是明文傳輸，因此在端與端之間的任何一個節點都可以知道傳輸的內容是什麼， Sign in -&amp;gt; Proxy (do something bad) -&amp;gt; Serve...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/08/19/why-we-need-https/' property='og:url'>
+<meta content='2016-08-19' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Why we need HTTPS' name='twitter:title'>
+<meta content=' Don&amp;rsquo;t find fault. Find a remedy. - Henry Ford HTTP 是明文傳輸，因此在端與端之間的任何一個節點都可以知道傳輸的內容是什麼， Sign in -&amp;gt; Proxy (do something bad) -&amp;gt; Serve...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/08/19/why-we-need-https/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+<li class='nav-thought' role='presentation'>
+<a href='/tag/thought'>Thought</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Why we need HTTPS</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-08-19'>
+19 August 2016
+</time>
+on <a href='/tag/web-dev/'>web-dev</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Don&rsquo;t find fault. Find a remedy. - Henry Ford</p>
+</blockquote>
+
+<p>HTTP 是明文傳輸，因此在端與端之間的任何一個節點都可以知道傳輸的內容是什麼，</p>
+<pre class="highlight plaintext"><code>Sign in -&gt; Proxy (do something bad) -&gt; Server
+</code></pre>
+
+<p>就算發送端加密，一樣在擷取後可以被拿來登入 Server</p>
+
+<h4>HTTPS</h4>
+
+<p>HTTP 是 OSI 的應用層，HTTP 下為傳輸層 TCP，TCP 負責傳輸而 HTTP 定義資料如何包裝，HTTPS 的不同之處，就是在兩者之間再加上一層加密層 TLS/SSL。</p>
+
+<h4>TLS/SSL</h4>
+
+<p>傳輸安全協議(TLS)，及其前身安全通訊協定(SSL)都是一種安全協定，目的是為網際網路通信，提供安全及資料完整性保障，於是應用層將資料交給 TLS/SSL 進行加密，再交給 TCP 進行傳輸。</p>
+
+<h4>How HTTPS works</h4>
+
+<p>一般來說加密分成兩種，<code>對稱加密</code> 和 <code>非對稱加密</code>，所謂的 <code>對稱加密</code> 指的是加解密的 key 都是用同一把，所以資料發送方和接收方需要協商、共享同一把 key，並確保不洩漏給其他人。此外，對於有多個數據交換需求的個體，兩兩之間需要分配並維護一把密鑰的成本過高。</p>
+
+<p><code>非對稱加密</code> 則是加解密的 key 是不同的，通常稱之為 Public Key/Private Key，而用 Public Key 進行加密的資料只有 private key 能解開，反之亦然。</p>
+
+<p>舉例來說，</p>
+
+<ul>
+<li>User: Wellson</li>
+<li>Server: Mouthbook (使用非對稱加密)</li>
+</ul>
+<pre class="highlight plaintext"><code>Wellson typein account/pwd -&gt; Browser encrypt by Public Key -&gt; Request to Mouthbook
+
+Mouthbook decrypt by Private Key -&gt; Get Wellson's info and encrypt by Public Key -&gt; Response to Browser
+
+Browser decrypt by Public Key and show data to Wellson
+</code></pre>
+
+<p>但是這樣似乎有兩個很明顯的問題，</p>
+
+<h4>How to get public key</h4>
+
+<p>關於如何取得 public key 得要先從兩個名詞開始說起，</p>
+
+<p><code>Certificate</code>: 可以理解為網站的身分證，裡面有很多資訊，其中就包含了 Public Key，所以當 user 來拜訪網站的時候，Server 會把 Certificate 給 Browser，讓 Browser 以這個 Public Key 進行加密。</p>
+
+<p>那麼 Certificate 又是由誰來核發的呢？</p>
+
+<p><code>Certificate Authority(CA)</code>: 雖然能核發 Certificate 的 CA 很多，但是只有少數幾個是具有公信力的，而且也只有這些 CA 所核發的 Certificate 才能夠被 Browser 所認可。</p>
+
+<h4>傳輸只有單向安全嗎？</h4>
+
+<p>既然大家都有相同的 Public Key，那麼 Private Key 加密後的資料不就沒意義了？事實上並不是這麼一回事，HTTPS 不只是用了 Private Key 進行加密，同時也結合了其他的手段，來確保授權加密的效率與安全性。</p>
+
+<p>流程大略是這樣：</p>
+
+<ol>
+<li>Wellson 訪問 Mouthbook，Mouthbook 將 Certificate 給 Browser</li>
+<li>Browser 從 Certificate 中取出 Mouthbook 的 Public Key A</li>
+<li>Browser 生成一個只有自己知道的 <code>對稱 Secrete Key B</code>，用 Public Key A 進行加密，傳給 Mouthbook</li>
+<li>Mouthbook 透過 Private Key 解密，拿到對稱 Secrete Key B</li>
+<li>Browser 與 Mouthbook 之後的 communication 都會用 Secrete Key B 進行加密</li>
+</ol>
+
+<h4>Certificate 的潛在問題</h4>
+
+<ol>
+<li>Certificate 是偽造的</li>
+<li>Certificate 是被篡改的</li>
+</ol>
+
+<p>像是 Sign in 的 Request 到 Proxy，Proxy 半路攔截 Request 並且 Response 回一個假的 Certificate，這類的問題又該怎麼去預防呢？</p>
+
+<h5>Digital Signature/Digest</h5>
+
+<p>先以 Hash Algorithm，例如 SHA1 或是 MD5 產出 Digest，再透過 Private Key 對這段 Digest 進行加密後得到的結果就是 Digital Signature</p>
+
+<blockquote>
+<p>Plaintext &ndash;&gt; Hash Algorithm &ndash;&gt; Digest &ndash;&gt; Private key encrypt &ndash;&gt; Digital Signature</p>
+</blockquote>
+
+<h5>Certificate Format</h5>
+
+<ol>
+<li>Certificate Authority</li>
+<li>Signature (用 CA Private Key 加密)</li>
+<li>Certificate Holder 的 Public Key</li>
+<li>Hash Algorithm</li>
+<li>Browser 會內置 CA 的 Root Certificate (包含 CA 的 Public Key)</li>
+</ol>
+<pre class="highlight plaintext"><code>  Certificate
+    Version Number
+    Serial Number
+    Signature Algorithm ID
+    Issuer Name
+    Validity period
+      Not Before
+      Not After
+    Subject name
+    Subject Public Key Info
+      Public Key Algorithm
+      Subject Public Key
+    Issuer Unique Identifier (optional)
+    Subject Unique Identifier (optional)
+    Extensions (optional)
+      ...
+  Certificate Signature Algorithm
+  Certificate Signature
+</code></pre>
+
+<p>所以如果是完全偽造的 Certificate:</p>
+
+<ol>
+<li>CA 是偽造的: Browser 無法辨識，判定為危險憑證</li>
+<li>以 CA Public Key 對偽造的 Digest 進行解密發現無法解開，判定為危險憑證</li>
+</ol>
+
+<h4>HTTPS Handshake</h4>
+
+<p><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" rel="nofollow">http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html</a></p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Why we need HTTPS&amp;amp;url=http://wellsonjain.github.io/2016/08/19/why-we-need-https/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/08/19/why-we-need-https/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/08/19/why-we-need-https/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/07/31/magnificent-turn/'>
+<section class='post'>
+<h2>Magnificent Turn</h2>
+<p>It doesn&rsquo;t matter where you start. Only that you begin. - Robin Sharma 似乎又到了週期性的自我反思，剛好也是覺得自己好久沒有打一篇文章，就藉這個反省的機會稍微講一下最近的想法；我經常覺得自己是個不太有毅力的人，不過通常沒有毅力應該很大一部分的原因來自於很容易分心，進而導致拖延或是健忘的狀況。 舉例來說，每天更新 redmine 這個事情就一直讓我覺得很困擾，不過我想比我更加困擾的人是 PM，今天在 slack&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    Carnival.init({
+      block_selector: ':scope > p, :scope li, :scope > .highlight, :scope > blockquote'
+    });
+  });
+</script>

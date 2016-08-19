@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: web-dev</title>
+  <subtitle>Posts tagged with web-dev</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/web-dev/feed.xml" rel="self"/>
+  <updated>2016-08-19T11:24:00+08:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Why we need HTTPS</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/08/19/why-we-need-https/"/>
+    <id>http://wellsonjain.github.io/2016/08/19/why-we-need-https/</id>
+    <published>2016-08-19T11:24:00+08:00</published>
+    <updated>2016-08-19T13:46:40+08:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Don’t find fault. Find a remedy. - Henry Ford
+
+
+HTTP 是明文傳輸，因此在端與端之間的任何一個節點都可以知道傳輸的內容是什麼，
+Sign in -&amp;gt; Proxy (do something bad) -&amp;gt; Server
+
+
+就算發送端加密，一樣在擷取後可以被拿來登入 Server
+
+HTTPS
+
+HTTP 是 OSI 的應用層，HTTP 下為傳輸層 TCP，TCP 負責傳輸而 HTTP 定義資料如何包裝，HTTPS 的不同之處，就是在兩者之間再</summary>
+  </entry>
+</feed>

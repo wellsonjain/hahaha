@@ -71,7 +71,7 @@
 <span class='author-location icon-location'>Taipei, Taiwan</span>
 <span class='author-stats'>
 <i class='icon-stats'></i>
-50 posts
+51 posts
 </span>
 </div>
 <h2>About</h2>
@@ -103,6 +103,37 @@
 </nav>
 
 </div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2016/08/19/why-we-need-https/">Why we need HTTPS</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Don’t find fault. Find a remedy. - Henry Ford
+
+
+HTTP 是明文傳輸，因此在端與端之間的任何一個節點都可以知道傳輸的內容是什麼，
+Sign in -&gt; Proxy (do something bad) -&gt; Server
+
+
+就算發送端加密，一樣在擷取後可以被拿來登入 Server
+
+HTTPS
+
+HTTP 是 OSI 的應用層，HTTP 下為傳輸層 TCP，TCP 負責傳輸而 HTTP 定義資料如何包裝，HTTPS 的不同之處，就是在兩者之間再
+<a href="/2016/08/19/why-we-need-https/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/web-dev/'>web-dev</a>
+<time class='post-date' datetime='2016-08-19'>
+19 August 2016
+</time>
+</footer>
+</article>
 <article class='post'>
 <header class='post-header'>
 <h2 class='post-title'><a href="/2016/07/31/magnificent-turn/">Magnificent Turn</a></h2>
@@ -215,31 +246,6 @@ Translated from: Demystifying JavaScript Closures, Callbacks and IIFEs
 
 我們已經了解了 Scope 和 Hoist，今天我們就來探討三個現
 <a href="/2016/03/18/demystifying-javascript-closures-callbacks-iifes/" class="read-more">&raquo;</a>
-</p>
-</section>
-<footer class='post-meta'>
-<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
-<a href='/author/wellsonjain/'>wellsonjain</a>
-on <a href='/tag/javascript/'>javascript</a>
-<time class='post-date' datetime='2016-03-18'>
-18 March 2016
-</time>
-</footer>
-</article>
-<article class='post'>
-<header class='post-header'>
-<h2 class='post-title'><a href="/2016/03/18/demystifying-javascript-variable-scope-hoisting/">Demystifying Javascript Variable Scope Hoisting</a></h2>
-</header>
-<section class='post-excerpt'>
-<p>
-
-Today I will do what others won’t, so tomorrow I can do what others can’t. - Jerry Rice
-
-
-Translated from: Demystifying JavaScript Variable Scope and Hoisting
-
-每個構建都需要建立在強大的基礎建設上，而在 JavaScript 中了解 variable 的 scope 是建立堅固基礎的關鍵之一。本文將解釋 JavaScript 的 scope
-<a href="/2016/03/18/demystifying-javascript-variable-scope-hoisting/" class="read-more">&raquo;</a>
 </p>
 </section>
 <footer class='post-meta'>

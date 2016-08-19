@@ -71,7 +71,7 @@
 <span class='author-location icon-location'>Taipei, Taiwan</span>
 <span class='author-stats'>
 <i class='icon-stats'></i>
-50 posts
+51 posts
 </span>
 </div>
 <h2>About</h2>
@@ -104,6 +104,45 @@
 </nav>
 
 </div>
+<article class='post'>
+<header class='post-header'>
+<h2 class='post-title'><a href="/2015/06/04/etag-in-rails4/">Etag in Rails4</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Start where you are. Use what you can. Do what you can. - Arthur Ashe
+
+
+ETag
+
+接下來要介紹的是遠通的 ETag，ETag 的目的是用來辨識當前的頁面是否有所改變，流程大概是這樣，
+
+
+
+Client 第一次拜訪 Rails App
+
+
+render  body
+Create ETag headers['ETag'] = Digest::MD5.hexdigest(body)
+
+將 Etag 和 Body 包在一起
+
+
+Client
+
+<a href="/2015/06/04/etag-in-rails4/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-06-04'>
+04 June 2015
+</time>
+</footer>
+</article>
 <article class='post'>
 <header class='post-header'>
 <h2 class='post-title'><a href="/2015/06/02/session-and-flash-type-in-rails4/">Session and Flash Type in Rails4</a></h2>
@@ -228,29 +267,6 @@ Vagrant 一直是我很想好好搞懂的東西，因為搞懂了這個才能接
 <img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
 <a href='/author/wellsonjain/'>wellsonjain</a>
 on <a href='/tag/devops/'>devops</a>, <a href='/tag/rails/'>rails</a>
-<time class='post-date' datetime='2015-05-27'>
-27 May 2015
-</time>
-</footer>
-</article>
-<article class='post'>
-<header class='post-header'>
-<h2 class='post-title'><a href="/2015/05/27/scope-in-rails4/">Scope in Rails4</a></h2>
-</header>
-<section class='post-excerpt'>
-<p>
-
-If you don’t like where you are, change it. You’re not a tree. - Jim Rohn
-
-
-這幾次在寫 Code School 學習筆記的時候，通常都會自己開個專案進去根據他所說的去做點實驗，其實一方面也是幫助自己記憶，只是有時候會卡關，想不通為什麼可以這樣用，所以後來覺得去看官方的 Rails Guide 其實是蠻好的幫助，而且裡面的解釋也是相當的淺顯易懂，是非常適合練習閱讀以及了解核心概念的方法，所以之後每個禮拜都會寫一篇 Guide
-<a href="/2015/05/27/scope-in-rails4/" class="read-more">&raquo;</a>
-</p>
-</section>
-<footer class='post-meta'>
-<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
-<a href='/author/wellsonjain/'>wellsonjain</a>
-on <a href='/tag/rails/'>rails</a>
 <time class='post-date' datetime='2015-05-27'>
 27 May 2015
 </time>
