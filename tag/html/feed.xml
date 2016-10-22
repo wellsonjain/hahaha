@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>規矩與秩序: html</title>
+  <subtitle>Posts tagged with html</subtitle>
+  <id>http://wellsonjain.github.io</id>
+  <link href="http://wellsonjain.github.io"/>
+  <link href="http://wellsonjain.github.io/tag/html/feed.xml" rel="self"/>
+  <updated>2016-10-22T16:23:00+08:00</updated>
+  <author>
+    <name>wellsonjain</name>
+  </author>
+  <entry>
+    <title>Website Project 01</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/10/22/website-project-01/"/>
+    <id>http://wellsonjain.github.io/2016/10/22/website-project-01/</id>
+    <published>2016-10-22T16:23:00+08:00</published>
+    <updated>2016-10-22T19:34:38+08:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+The struggle you’re in today is developing the strength you need for tomorrow.
+
+
+最近在 Hahow 上面看到一門相當超值的課程，叫做 動畫互動網頁程式入門，雖然說是“入門"，可是教材內容卻非常的扎實，二話不說就直接買下來了；在課程內容裡面有一些 Project 的練習，覺得這些也拿來記錄一下也很不錯。
+
+覺得自己還是 Foolstack developer，距離 Fullstack developer 還有好長一</summary>
+  </entry>
+</feed>

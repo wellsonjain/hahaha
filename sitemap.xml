@@ -313,206 +313,224 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://wellsonjain.github.io/2016/10/22/website-project-01/index.html</loc>
+    <lastmod>2016-10-22T19:34:38+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://wellsonjain.github.io/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/middleman/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/github/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/electives/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/thought/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/game-theory/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/book/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/rails/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/javascript/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/devops/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/rails-guides/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/ruby/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/regex/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/life-in-au/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/web-dev/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://wellsonjain.github.io/tag/html/index.html</loc>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://wellsonjain.github.io/tag/front-end/index.html</loc>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/page/2/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/page/3/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/page/4/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/page/5/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/page/6/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/2/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/3/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/4/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/5/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/6/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/7/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/8/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/author/wellsonjain/page/9/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/thought/page/2/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/rails/page/2/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/rails/page/3/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/javascript/page/2/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://wellsonjain.github.io/tag/ruby/page/2/index.html</loc>
-    <lastmod>2016-10-22T14:29:25+08:00</lastmod>
+    <lastmod>2016-10-22T19:35:36+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: Website Project 01</title>
+<meta content=' The struggle you&amp;rsquo;re in today is developing the strength you need for tomorrow. 最近在 Hahow 上面看到一門相當超值的課程，叫做 動畫互動網頁程式入門，雖然說是&amp;ldquo;入門&amp;quot;，...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='Website Project 01' property='og:title'>
+<meta content=' The struggle you&amp;rsquo;re in today is developing the strength you need for tomorrow. 最近在 Hahow 上面看到一門相當超值的課程，叫做 動畫互動網頁程式入門，雖然說是&amp;ldquo;入門&amp;quot;，...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/10/22/website-project-01/' property='og:url'>
+<meta content='2016-10-22' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='Website Project 01' name='twitter:title'>
+<meta content=' The struggle you&amp;rsquo;re in today is developing the strength you need for tomorrow. 最近在 Hahow 上面看到一門相當超值的課程，叫做 動畫互動網頁程式入門，雖然說是&amp;ldquo;入門&amp;quot;，...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/10/22/website-project-01/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+<li class='nav-thought' role='presentation'>
+<a href='/tag/thought'>Thought</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>Website Project 01</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-10-22'>
+22 October 2016
+</time>
+on <a href='/tag/html/'>html</a>, <a href='/tag/front-end/'>front end</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>The struggle you&rsquo;re in today is developing the strength you need for tomorrow.</p>
+</blockquote>
+
+<p>最近在 Hahow 上面看到一門相當超值的課程，叫做 <a href="https://hahow.in/courses/56189df9df7b3d0b005c6639" rel="nofollow">動畫互動網頁程式入門</a>，雖然說是&ldquo;入門&quot;，可是教材內容卻非常的扎實，二話不說就直接買下來了；在課程內容裡面有一些 Project 的練習，覺得這些也拿來記錄一下也很不錯。</p>
+
+<p>覺得自己還是 Foolstack developer，距離 Fullstack developer 還有好長一段路啊！前端一直是我蠻苦手的地方，就像這個 project 練習我大概一個月前就做過了，但是過了一個月後我竟然還是忘記自己當初到底怎麼讓他完成的，甚至其中設計的概念也不太記得了，所以就像上一篇說的，我還是需要一些軌跡的紀錄讓未來的自己可以有效的還原當初的想法，下面的例子是很單純的一個 HTML 框架，要做的是一張線上的名片，這邊有個很棒的習慣就是以 border 來看出整體的架構是如何安排。</p>
+<pre class="highlight css"><code><span class="o">*</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="no">black</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<p data-height="340" data-theme-id="light" data-slug-hash="WGwLoL" data-default-tab="css,result" data-user="wellsonjain" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/wellsonjain/pen/WGwLoL/">Project 1</a> by Tzu Chien Wei (<a href="http://codepen.io/wellsonjain">@wellsonjain</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>因為還沒有做到 Responsive 的關係，最後的結果在 codepen 的 embed 會有超出範圍的狀況發生。這邊 CSS 的部分有幾個地方蠻值得一提的，我們從外層講到內層，首先是 body 的部分，從上面的預覽可以看到，在 html 和 body 的地方都會有一些間隔，我們希望是能夠完全填滿整個頁面，所以在實作上我們會把 padding 跟 margin 給取消，並且給予 100% 的寬高，</p>
+<pre class="highlight css"><code><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>再來就是我們在 body 的地方給了上下兩條粗線，在 html 裡面的 box model 中，border 也是佔寬度的，所以線給的越粗，就會有把內容給擠下去的感覺，這時候就可以使用 <code>border-box</code> 讓它的作用範圍會是在 border 之內</p>
+<pre class="highlight css"><code><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#d1d1d1</span><span class="p">;</span>
+  <span class="nl">border-top</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">20px</span> <span class="m">#41B883</span><span class="p">;</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">20px</span> <span class="m">#41B883</span><span class="p">;</span>
+
+  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>在 <code>namecard</code> 的主體內可以藉由 <code>box-shadow</code> 來對整體的區塊去做陰影，在顏色的參數最好是可以使用到透明度，這樣可以有疊上去的感覺</p>
+<pre class="highlight css"><code><span class="nc">.namecard</span> <span class="p">{</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">350px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">100px</span> <span class="nb">auto</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">1px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#666</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#eee</span><span class="p">;</span>
+
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span> <span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.15</span><span class="p">);</span>
+
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="m">500</span><span class="p">;</span>
+  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0px</span> <span class="m">0px</span> <span class="m">20px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>最後就是定位，在名片中有兩個圓形分別在不同的位置，這邊是用 <code>position: absolute</code> 去實現出來的，<code>absolute</code> 的特性是不參與排序，但是他會相對於上層容器做偏移，而上層容器如果不是可被定位的元素(預設的 <code>staic</code> 是不可被定位)，他就會去對整個 body 做定位偏移，所以在前面的 wildcard selector 就可以去設定所有的 position 都預設為 relative，這樣就可以確保所有都可被定位。</p>
+<pre class="highlight css"><code><span class="nc">.circle</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<p data-height="500" data-theme-id="light" data-slug-hash="KgbLPL" data-default-tab="css,result" data-user="wellsonjain" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/wellsonjain/pen/KgbLPL/">Project 1</a> by Tzu Chien Wei (<a href="http://codepen.io/wellsonjain">@wellsonjain</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+
+<script async src="http://assets.codepen.io/assets/embed/ei.js"></script>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=Website Project 01&amp;amp;url=http://wellsonjain.github.io/2016/10/22/website-project-01/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/10/22/website-project-01/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/10/22/website-project-01/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/10/22/running-in-daily-life/'>
+<section class='post'>
+<h2>Running in Daily Life</h2>
+<p>The struggle you&rsquo;re in today is developing the strength you need for tomorrow. 很常聽到人家拿跑馬拉松來跟人生做比喻，確實在跑步的過程來說，有一些地方是很像，像是當跑得很痛苦覺得乳酸堆積快崩潰的時候，靠著意志力撐下去，就是在人生遇到一些困難時候應該有的態度，不過後來自己覺得寫作跟跑步更像，有些人一個月偶爾跑（寫）個幾次，有些人則是可以每天都跑（寫）還樂此不疲，也因為都是一個屬於自己的活動，距離與頻率都是可長可短，只是想當然爾那些真正的強者都會是一直堅持到最後的人。 對我來說，寫作跟跑步都是一種打磨心智的方式，我可以藉由寫作或是筆記來整理自己的思考邏輯，這樣的過程其實蠻累人的但是同時也是收穫甚豐，而且也是開始用這樣的方式來寫 blog 之後才養成了使用 Markdown 的方式；而跑步則是從能不能戰勝懶惰出門跑的&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    Carnival.init({
+      block_selector: ':scope > p, :scope li, :scope > .highlight, :scope > blockquote'
+    });
+  });
+</script>

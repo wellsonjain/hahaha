@@ -5,10 +5,27 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/feed.xml" rel="self"/>
-  <updated>2016-10-22T10:25:00+08:00</updated>
+  <updated>2016-10-22T16:23:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
+  <entry>
+    <title>Website Project 01</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/10/22/website-project-01/"/>
+    <id>http://wellsonjain.github.io/2016/10/22/website-project-01/</id>
+    <published>2016-10-22T16:23:00+08:00</published>
+    <updated>2016-10-22T19:34:38+08:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+The struggle you’re in today is developing the strength you need for tomorrow.
+
+
+最近在 Hahow 上面看到一門相當超值的課程，叫做 動畫互動網頁程式入門，雖然說是“入門"，可是教材內容卻非常的扎實，二話不說就直接買下來了；在課程內容裡面有一些 Project 的練習，覺得這些也拿來記錄一下也很不錯。
+
+覺得自己還是 Foolstack developer，距離 Fullstack developer 還有好長一</summary>
+  </entry>
   <entry>
     <title>Running in Daily Life</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/10/22/running-in-daily-life/"/>
@@ -97,22 +114,5 @@ If they can do it, so can you - Unknown
 OAuth 角色定義
 
 首先先為我</summary>
-  </entry>
-  <entry>
-    <title>Basic Javascript Object</title>
-    <link rel="alternate" href="http://wellsonjain.github.io/2016/03/25/basic-javascript-object/"/>
-    <id>http://wellsonjain.github.io/2016/03/25/basic-javascript-object/</id>
-    <published>2016-03-25T20:45:00+08:00</published>
-    <updated>2016-05-29T20:43:50+08:00</updated>
-    <author>
-      <name>wellsonjain</name>
-    </author>
-    <summary type="html">
-You got this. Make it happen. - Danielle LaPorte
-
-
-What is Object? Object is a “container” of multiple related data, call properties. Like a Book may have the properties, which is title, author, publisher, numChapters, numPages, illustrator.
-
-In javascript</summary>
   </entry>
 </feed>
