@@ -90,6 +90,34 @@
 </div>
 <article class='post'>
 <header class='post-header'>
+<h2 class='post-title'><a href="/2015/07/17/concerns-in-rails/">Concerns in Rails</a></h2>
+</header>
+<section class='post-excerpt'>
+<p>
+
+Muddy water is best cleared by leaving it alone. - Alan Watts
+
+
+Model Concerns
+
+接下來是要介紹在 rails4 之後，非常重要的重構技巧，就是將重複的程式，抽出來後放在 concerns 這個資料夾底下，這其實跟我們之前所提到的 PORO 的概念可能不太相同，在這邊的方法就會是以 Module 的形式出現，
+# app/models/post.rb
+class Post &lt; ActiveRecord::Base
+ 
+<a href="/2015/07/17/concerns-in-rails/" class="read-more">&raquo;</a>
+</p>
+</section>
+<footer class='post-meta'>
+<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+on <a href='/tag/rails/'>rails</a>
+<time class='post-date' datetime='2015-07-17'>
+17 July 2015
+</time>
+</footer>
+</article>
+<article class='post'>
+<header class='post-header'>
 <h2 class='post-title'><a href="/2015/07/12/self-class-eval-and-instance-eval/">Self、Class_eval and Instance_eval</a></h2>
 </header>
 <section class='post-excerpt'>
@@ -342,29 +370,6 @@ Optional Arguments
 on <a href='/tag/ruby/'>ruby</a>
 <time class='post-date' datetime='2015-06-12'>
 12 June 2015
-</time>
-</footer>
-</article>
-<article class='post'>
-<header class='post-header'>
-<h2 class='post-title'><a href="/2015/06/11/control-flow/">Control Flow</a></h2>
-</header>
-<section class='post-excerpt'>
-<p>
-
-The secret of change is to focus all of your energy, not on fighting the old but on building the new. - Unknown
-
-
-Rails 要學得好，Ruby 才是 Rails 開發者的根基，而且其實有很多用 Ruby 寫成的應用也常常讓我覺得很有趣，只是有很多比較深入的用法如果平常沒有接觸，有些技巧性的寫法就會覺得實在跟魔法沒兩樣，但是又很難參透其中的道理，所以今天要來談的就是比較深入一點的 Ruby
-<a href="/2015/06/11/control-flow/" class="read-more">&raquo;</a>
-</p>
-</section>
-<footer class='post-meta'>
-<img alt='wellsonjain' class='author-thumb' nopin='nopin' src='https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=24'>
-<a href='/author/wellsonjain/'>wellsonjain</a>
-on <a href='/tag/ruby/'>ruby</a>
-<time class='post-date' datetime='2015-06-11'>
-11 June 2015
 </time>
 </footer>
 </article>
