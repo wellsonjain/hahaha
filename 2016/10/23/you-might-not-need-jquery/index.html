@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>規矩與秩序: You might not need jQuery</title>
+<meta content=' Launch and learn. Everything is progress. - Danielle LaPorte jQuery 提供了很多很棒很方便的工具，讓我們在操作 DOM 的時候可以更容易上手，不過隨著新一代的前端框架不停的出現，還有持續更迭的 ECMAScript (J...' name='description'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='True' name='HandheldFriendly'>
+<meta content='規矩與秩序' property='og:site_name'>
+<meta content='article' property='og:type'>
+<meta content='You might not need jQuery' property='og:title'>
+<meta content=' Launch and learn. Everything is progress. - Danielle LaPorte jQuery 提供了很多很棒很方便的工具，讓我們在操作 DOM 的時候可以更容易上手，不過隨著新一代的前端框架不停的出現，還有持續更迭的 ECMAScript (J...' property='og:description'>
+<meta content='http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/' property='og:url'>
+<meta content='2016-10-23' property='article:published_time'>
+<meta content='summary' name='twitter:card'>
+<meta content='http://www.twitter.com/wellsonjain' name='twitter:site'>
+<meta content='You might not need jQuery' name='twitter:title'>
+<meta content=' Launch and learn. Everything is progress. - Danielle LaPorte jQuery 提供了很多很棒很方便的工具，讓我們在操作 DOM 的時候可以更容易上手，不過隨著新一代的前端框架不停的出現，還有持續更迭的 ECMAScript (J...' name='twitter:description'>
+<meta content='http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/' name='twitter:url'>
+<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+<link href="/images/WJ-logo.png" rel="icon" type="image/png" />
+<link href="/stylesheets/application.css" rel="stylesheet" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,300italic|Open+Sans:700,400|Source+Code+Pro:500,700' rel='stylesheet' type='text/css'>
+<script src='https://carnivalapp.io/sites/444/init.js'></script>
+</head>
+<body class='post-template nav-closed'>
+<div class='nav'>
+<h3 class='nav-title'>Menu</h3>
+<a class='nav-close' href='#'>
+<span class='hidden'>Close</span>
+</a>
+<ul>
+<li class='nav-home' role='presentation'>
+<a href='/'>Home</a>
+</li>
+<li class='nav-about' role='presentation'>
+<a href='/author/wellsonjain/'>About</a>
+</li>
+<li class='nav-ruby' role='presentation'>
+<a href='/tag/ruby/'>Ruby</a>
+</li>
+<li class='nav-rails' role='presentation'>
+<a href='/tag/rails/'>Rails</a>
+</li>
+<li class='nav-javascript' role='presentation'>
+<a href='/tag/javascript/'>Javascript</a>
+</li>
+<li class='nav-thought' role='presentation'>
+<a href='/tag/thought'>Thought</a>
+</li>
+</ul>
+<a class='subscribe-button icon-feed' href='/feed.xml'>Subscribe</a>
+</div>
+<span class='nav-cover'></span>
+
+<div class='site-wrapper'>
+<header class='main-header no-cover post-head'>
+<nav class='main-nav clearfix'>
+<a class='menu-button icon-menu' href='#'>
+<span class='word'>Menu</span>
+</a>
+</nav>
+</header>
+<main class='content' role='main'>
+<article class='post'>
+<header class='post-header'>
+<h1 class='post-title'>You might not need jQuery</h1>
+<section class='post-meta'>
+<time class='post-date' datetime='2016-10-23'>
+23 October 2016
+</time>
+on <a href='/tag/javascript/'>javascript</a>
+</section>
+</header>
+<section class='post-content'><blockquote>
+<p>Launch and learn. Everything is progress. - Danielle LaPorte</p>
+</blockquote>
+
+<p>jQuery 提供了很多很棒很方便的工具，讓我們在操作 DOM 的時候可以更容易上手，不過隨著新一代的前端框架不停的出現，還有持續更迭的 ECMAScript (JavaScrtipt)，這些在 jQuery 上的 dependency 反而會是一種綁架，也就讓人回頭再看看我能怎麼用 JS 來達成同樣的效果。</p>
+
+<p>最近也是在網路上看到 <a href="http://youmightnotneedjquery.com/" rel="nofollow">You might not need jQuery</a> 介紹著一些常用的方法，回到 JS 又該怎麼實作？雖然看了 code 會覺得好像變長不少，但是 jQuery 本身就是抽象化之後的工具，本就是以更簡潔的方式來實作。</p>
+
+<p>在看到這篇文章前先來看看最常見的 jQuery selector mapping 到 JS 之後又會是什麼樣子呢？</p>
+<pre class="highlight javascript"><code><span class="err">#</span><span class="nx">fetches</span> <span class="nx">the</span> <span class="nx">first</span> <span class="nx">matching</span> <span class="nx">node</span> <span class="nx">only</span>
+<span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".foo"</span><span class="p">);</span>
+
+<span class="err">#</span><span class="nx">fetches</span> <span class="nx">a</span> <span class="nx">single</span> <span class="nx">node</span> <span class="nx">by</span> <span class="nx">its</span> <span class="nx">ID</span> <span class="nx">name</span>
+<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">);</span>
+
+<span class="err">#</span><span class="nx">fetches</span> <span class="nx">nodes</span> <span class="nx">matching</span> <span class="nx">an</span> <span class="nx">element</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span> <span class="nx">h1</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">strong</span><span class="p">,</span> <span class="nx">etc</span><span class="p">).</span>
+<span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'div'</span><span class="p">)</span> 
+
+<span class="err">#</span><span class="nx">fetches</span> <span class="nx">nodes</span> <span class="kd">with</span> <span class="nx">a</span> <span class="nx">specific</span> <span class="kr">class</span> <span class="nx">name</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span> 
+</code></pre>
+
+<p>接著來看最常會使用到的 Ajax，在 jQuery 裡是這樣實作的，</p>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">'/my/url'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>而在 JavaScript 可以這麼做，</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'/my/url'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">200</span> <span class="o">&amp;&amp;</span> <span class="nx">request</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Success!</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// We reached our target server, but it returned an error</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// There was a connection error of some sort</span>
+<span class="p">};</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre>
+
+<p><code>XMLHttpRequest()</code> 物件 new 出來之後，<code>open()</code> 這個方法顧名思義就是初始化連線的意思，在定義中它包含了幾個參數</p>
+<pre class="highlight plaintext"><code>void open(
+   DOMString method,            # HTTP method
+   DOMString url,               # Request url
+   optional boolean async,      # true: async, false: sync
+   optional DOMString user,     # For authentication
+   optional DOMString password  # For authentication
+);
+</code></pre>
+
+<p>在上述的例子是 <code>GET</code>，那如果是 <code>POST</code> 的話就會是下面這樣，不過在例子中的 <code>setRequestHeader()</code> 必須注意必須在 <code>open()</code> 和 <code>send()</code> 之間宣告好，不然就沒帶上了</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'/my/url'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/x-www-form-urlencoded; charset=UTF-8'</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+
+<p><code>onload()</code> 事件其實蠻好理解，就是在 load 進資料之後要怎麼處理，下面有幾個常見的 event handler </p>
+<pre class="highlight plaintext"><code>interface XMLHttpRequestEventTarget : EventTarget {
+  // event handlers
+  attribute EventHandler onloadstart;
+  attribute EventHandler onprogress;
+  attribute EventHandler onabort;
+  attribute EventHandler onerror;
+  attribute EventHandler onload;
+  attribute EventHandler ontimeout;
+  attribute EventHandler onloadend;
+};
+</code></pre>
+
+<p>最後再以 <code>send()</code> 把請求觸發就好。是說大致的把內部的機制看過真的蠻有趣的，以前可能就比較沒有耐心把它看完，現在對於程式語言的敏銳度比較高一些了，就覺得看著好像就豁然開朗了。</p>
+</section>
+<div id='disqus_thread'></div>
+<script type='text/javascript'>
+//<![CDATA[
+                  var disqus_shortname = 'wellsonjain';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<a href='http://disqus.com' class='dsq-brlink'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+
+<!-- # Google Analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-62313382-1"]);
+  _gaq.push(["_setDomainName", "wellsonjain.github.io"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<footer class='post-footer'>
+<figure class='author-image'>
+<a class='img' href='/author/wellsonjain/' style='background-image: url(https://www.gravatar.com/avatar/da18abbd93834d26efd7351b09912db5?size=68)'>
+<span class='hidden'>wellsonjain's Picture</span>
+</a>
+</figure>
+<section class='author'>
+<h4>
+<a href='/author/wellsonjain/'>wellsonjain</a>
+</h4>
+<p></p>
+不以規距，不成方圓
+<div class='author-meta'>
+<span class='author-location icon-location'>Taipei, Taiwan</span>
+</div>
+</section>
+<section class='share'>
+<h4>Share this post</h4>
+<a class='icon-twitter' href='https://twitter.com/intent/tweet?text=You might not need jQuery&amp;amp;url=http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/' onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+<span class='hidden'>Twitter</span>
+</a>
+<a class='icon-facebook' href='https://www.facebook.com/sharer/sharer.php?u=http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/' onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+<span class='hidden'>Facebook</span>
+</a>
+<a class='icon-google-plus' href='https://plus.google.com/share?url=http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/' onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+<span class='hidden'>Google+</span>
+</a>
+</section>
+</footer>
+</article>
+</main>
+<aside class='read-next'>
+<a class='no-cover read-next-story' href='/2016/10/22/website-project-01/'>
+<section class='post'>
+<h2>Website Project 01</h2>
+<p>The struggle you&rsquo;re in today is developing the strength you need for tomorrow. 最近在 Hahow 上面看到一門相當超值的課程，叫做 動畫互動網頁程式入門，雖然說是&ldquo;入門&quot;，可是教材內容卻非常的扎實，二話不說就直接買下來了；在課程內容裡面有一些 Project 的練習，覺得這些也拿來記錄一下也很不錯。&hellip;</p>
+</section>
+</a>
+</aside>
+
+<footer class='site-footer clearfix'>
+<section class='copyright'>
+<a href='/'>規矩與秩序</a>
+&copy;
+2016
+</section>
+<section class='poweredby'>
+Casper theme powered by
+<a href='https://ghost.org'>Ghost</a>
+</section>
+</footer>
+</div>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    Carnival.init({
+      block_selector: ':scope > p, :scope li, :scope > .highlight, :scope > blockquote'
+    });
+  });
+</script>

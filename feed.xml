@@ -5,16 +5,33 @@
   <id>http://wellsonjain.github.io</id>
   <link href="http://wellsonjain.github.io"/>
   <link href="http://wellsonjain.github.io/feed.xml" rel="self"/>
-  <updated>2016-10-22T16:23:00+08:00</updated>
+  <updated>2016-10-23T08:02:00+08:00</updated>
   <author>
     <name>wellsonjain</name>
   </author>
+  <entry>
+    <title>You might not need jQuery</title>
+    <link rel="alternate" href="http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/"/>
+    <id>http://wellsonjain.github.io/2016/10/23/you-might-not-need-jquery/</id>
+    <published>2016-10-23T08:02:00+08:00</published>
+    <updated>2016-10-23T15:08:58+08:00</updated>
+    <author>
+      <name>wellsonjain</name>
+    </author>
+    <summary type="html">
+Launch and learn. Everything is progress. - Danielle LaPorte
+
+
+jQuery 提供了很多很棒很方便的工具，讓我們在操作 DOM 的時候可以更容易上手，不過隨著新一代的前端框架不停的出現，還有持續更迭的 ECMAScript (JavaScrtipt)，這些在 jQuery 上的 dependency 反而會是一種綁架，也就讓人回頭再看看我能怎麼用 JS 來達成同樣的效果。
+
+最近也是在網路上看到 You might not need</summary>
+  </entry>
   <entry>
     <title>Website Project 01</title>
     <link rel="alternate" href="http://wellsonjain.github.io/2016/10/22/website-project-01/"/>
     <id>http://wellsonjain.github.io/2016/10/22/website-project-01/</id>
     <published>2016-10-22T16:23:00+08:00</published>
-    <updated>2016-10-22T19:34:38+08:00</updated>
+    <updated>2016-10-22T22:59:24+08:00</updated>
     <author>
       <name>wellsonjain</name>
     </author>
@@ -95,24 +112,5 @@ Everything around you that you call life was made up by people, and you can chan
 
 
 昨天在臉書上面看到一篇 閱讀程式碼的心理層面 覺得有點感觸，其實自己在閱讀程式碼的方式真的就像是逐條閱讀，誰去呼叫誰？最後預期結果會在哪裡？但是這的確就像是作者所提到「見樹不見林」的狀況；前幾天在韓劇裡面看到一段台詞，大意上是說你所下的每一步棋都有個理由，先有意圖才有行動，回到閱讀原始碼這件事</summary>
-  </entry>
-  <entry>
-    <title>OAuth2, Why and How to implement (1)</title>
-    <link rel="alternate" href="http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/"/>
-    <id>http://wellsonjain.github.io/2016/05/29/oauth-2-guideline-part1/</id>
-    <published>2016-05-29T11:06:00+08:00</published>
-    <updated>2016-05-31T14:10:07+08:00</updated>
-    <author>
-      <name>wellsonjain</name>
-    </author>
-    <summary type="html">
-If they can do it, so can you - Unknown
-
-
-最近因為公司的需要，有機會可以深入的了解 OAuth，以前對於他的了解，應該也只僅限在某些網站下需要做些登入或註冊然後藉由 Google 或是 Facebook 之類的 OAuth 這樣的流程，鴨七的這篇對於 OAuth 2.0 原理的筆記 非常仔細，還有阮一峰老師寫的  理解 OAuth 2.0 也是很棒的內容，接下來會基於這兩篇文章再加上一些自己看到的材料寫下本篇筆記。
-
-OAuth 角色定義
-
-首先先為我</summary>
   </entry>
 </feed>
